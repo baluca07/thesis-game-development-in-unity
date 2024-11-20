@@ -1,29 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControll : MonoBehaviour
 {
-    public float speed = 5f;
-
-    private Vector2 movementInput;
+    [Header("Components")]
     private Rigidbody2D rb;
+
+    [Header("Movement")]
+    public float moveSpeed = 5f;
+    public InputActionReference move;
+
+    private Vector2 _moveDirection;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        movementInput = context.ReadValue<Vector2>();
-        Debug.Log(movementInput);
-        Debug.Log("Player moves");
-    }
-    void FixedUpdate()
-    {
 
-        Vector2 move = movementInput * speed * Time.deltaTime;
-        rb.velocity = move;
+    private void OnEnable()
+    {
+        move.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        move.action.Disable();
+    }
+
+    private void Update()
+    {
+        _moveDirection = move.action.ReadValue<Vector2>();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = _moveDirection.normalized * moveSpeed;
     }
 }
