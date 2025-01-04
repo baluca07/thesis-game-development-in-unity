@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorTrigger : MonoBehaviour
+public class ExitPointTrigger : MonoBehaviour
 {
     [Tooltip("The spawn point where the player should be moved when entering this door.")]
     public Transform spawnPoint;
