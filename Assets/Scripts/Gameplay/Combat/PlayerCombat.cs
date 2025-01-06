@@ -1,0 +1,122 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerCombat : BaseAttack
+{
+    private bool isAim = false;
+    private bool isMeleeAttack = false;
+
+    public Collider2D meleeWeaponCollider;
+    public float meleeAttackTime = 1f;
+
+    public Vector2 attackDirection;
+
+    public MeleeWeapon currentWeapon;
+
+    public DamageController damageController;
+
+
+    private void Start()
+    {
+        UpdateWeaponCollider();
+
+    }
+    void Update()
+    {
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+
+        attackDirection = (mousePosition - transform.position).normalized;
+
+        if (isAim)
+        {
+
+            float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            Debug.DrawLine(transform.position, mousePosition, Color.red);
+        }
+
+        else if (isMeleeAttack)
+        {
+            float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            Debug.DrawLine(transform.position, (Vector2)transform.position + attackDirection * 10, Color.blue);
+        }
+
+
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isAim = true;
+            Debug.Log("Aim started");
+            Debug.Log("Aim started");
+        }
+        else if (context.canceled)
+        {
+            isAim = false;
+            Debug.Log("Aim canceled");
+        }
+    }
+
+    public void OnMeleeAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            PerformMeleeAttack();
+        }
+    }
+
+    private void PerformMeleeAttack()
+    {
+        isMeleeAttack = true;
+        Debug.Log("Attack performed");
+        StartCoroutine(PerformMeleeAttack(meleeWeaponCollider, attackDirection, meleeAttackTime));
+        isMeleeAttack = false;
+    }
+
+    public void UpdateWeaponCollider()
+    {
+        GameObject meleeWeapon = FindMeleeWeapon();
+
+        if (meleeWeapon != null)
+        {
+            meleeWeaponCollider = meleeWeapon.GetComponent<Collider2D>();
+            currentWeapon = meleeWeapon.GetComponent<MeleeWeapon>();
+            Debug.Log($"Weapon Damage: {currentWeapon.baseDamage}");
+            damageController.damageCategory = currentWeapon.damageCategory;
+            damageController.elementalType = currentWeapon.elementalDamageType;
+            damageController.amount = currentWeapon.baseDamage;
+        }
+        else
+        {
+            Debug.LogWarning("MeleeWeapon not found!");
+        }
+    }
+
+    private GameObject FindMeleeWeapon()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Melee"))
+            {
+                return child.gameObject;
+            }
+        }
+
+        return null;
+    }
+
+    public void AttackEnemy(Enemy enemy)
+    {
+        enemy.TakeDamage(damageController);
+    }
+
+}
