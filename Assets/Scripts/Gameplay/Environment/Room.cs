@@ -37,7 +37,7 @@ public class Room : MonoBehaviour
             minBounds = center - size / 2;
             maxBounds = center + size / 2;
 
-            Debug.Log("Bounds calculated for room " + name + ": Min = " + minBounds + ", Max = " + maxBounds);
+            //Debug.Log("Bounds calculated for room " + name + ": Min = " + minBounds + ", Max = " + maxBounds);
         }
         else
         {

@@ -1,13 +1,19 @@
 using System;
-using System.Diagnostics;
 
-public class DamageController
+public class Damage
 {
     public DamageCategory damageCategory;
     public ElementalDamageType elementalType;
 
     public float amount;
- 
+
+    public Damage(DamageCategory damageCategory, ElementalDamageType elementalType, float amount)
+    {
+        this.damageCategory = damageCategory;
+        this.elementalType = elementalType;
+        this.amount = amount;
+    }
+
     public int CalculateDamageOnEnemy(EnemyData enemy)
     {
         float finalDamage = amount;

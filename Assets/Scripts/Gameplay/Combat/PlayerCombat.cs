@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCombat : BaseAttack
+public class PlayerCombat : MonoBehaviour
 {
     private bool isAim = false;
     private bool isMeleeAttack = false;
-
-    public Collider2D meleeWeaponCollider;
-    public float meleeAttackTime = 1f;
 
     public Vector2 attackDirection;
 
     public MeleeWeapon currentWeapon;
 
-    public DamageController damageController;
-
 
     private void Start()
     {
+
         UpdateWeaponCollider();
 
     }
-    void Update()
+    private void Update()
     {
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -70,16 +66,8 @@ public class PlayerCombat : BaseAttack
     {
         if (context.performed)
         {
-            PerformMeleeAttack();
+            currentWeapon.PerformMeleeAttack(ref isMeleeAttack,attackDirection);
         }
-    }
-
-    private void PerformMeleeAttack()
-    {
-        isMeleeAttack = true;
-        Debug.Log("Attack performed");
-        StartCoroutine(PerformMeleeAttack(meleeWeaponCollider, attackDirection, meleeAttackTime));
-        isMeleeAttack = false;
     }
 
     public void UpdateWeaponCollider()
@@ -88,12 +76,8 @@ public class PlayerCombat : BaseAttack
 
         if (meleeWeapon != null)
         {
-            meleeWeaponCollider = meleeWeapon.GetComponent<Collider2D>();
             currentWeapon = meleeWeapon.GetComponent<MeleeWeapon>();
             Debug.Log($"Weapon Damage: {currentWeapon.baseDamage}");
-            damageController.damageCategory = currentWeapon.damageCategory;
-            damageController.elementalType = currentWeapon.elementalDamageType;
-            damageController.amount = currentWeapon.baseDamage;
         }
         else
         {
@@ -112,11 +96,6 @@ public class PlayerCombat : BaseAttack
         }
 
         return null;
-    }
-
-    public void AttackEnemy(Enemy enemy)
-    {
-        enemy.TakeDamage(damageController);
     }
 
 }

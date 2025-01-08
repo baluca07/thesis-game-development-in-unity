@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : BaseMeleeAttack
 {
-    public MeleeWeaponData weaponData;
 
     [Header("Basic Stats")]
     public string weaponName;
     public int baseDamage;
-    public int damageSpeed;
+    public float damageSpeed;
+    public float attackCoolDown;
 
     [Header("Damage Category")]
     public DamageCategory damageCategory;
@@ -18,33 +20,48 @@ public class MeleeWeapon : MonoBehaviour
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;
 
-    public PlayerCombat playerCombat;
+    [SerializeField] Collider2D meleeCollider2D;
 
-    void Start()
+    private HashSet<Enemy> hitEnemies = new HashSet<Enemy>();
+
+    public Damage damage;
+
+    private void Start()
     {
-        playerCombat = GetComponentInParent<PlayerCombat>();
-        if (weaponData != null)
-        {
-            Debug.Log("Weapon: " + weaponData.weaponName);
-            weaponName = weaponData.weaponName;
-            baseDamage = weaponData.baseDamage;
-            damageSpeed = weaponData.damageSpeed;
-            damageCategory = weaponData.damageCategory;
-            elementalDamageType = weaponData.elementalDamageType;
-        }
-        else
-        {
-            Debug.LogWarning("No WeaponData assigned to this weapon!");
-        }
+        damage = new Damage(damageCategory, elementalDamageType, baseDamage);
+        meleeCollider2D = GetComponent<Collider2D>();
+    }
+    public void PerformMeleeAttack(ref bool isMeleeAttack, Vector2 attackDirection)
+    {
+        hitEnemies.Clear();
+        isMeleeAttack = true;
+        Debug.Log("Attack performed");
+        StartCoroutine(PerformColliderChange(meleeCollider2D, attackDirection, damageSpeed));
+        isMeleeAttack = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
+        //Debug.Log($"Object triggered: {collision.name}");
 
-        if (enemy != null && playerCombat != null)
+        if (collision.CompareTag("Enemy"))
         {
-            playerCombat.AttackEnemy(enemy);
+            Enemy enemy = collision.GetComponent<Enemy>();
+            //Debug.Log($"Enemy collided: {enemy.enemyData.enemyName}");
+            if (!hitEnemies.Contains(enemy))
+            {
+                hitEnemies.Add(enemy);
+                //Debug.Log($"Enemy added to hitEnemies: {enemy.enemyData.enemyName}");
+                enemy.TakeDamage(damage);
+                //Debug.Log($"Enemy damaged: {enemy.enemyData.enemyName}");
+
+
+            }
+            /*else {
+                Debug.Log($"Enemy is already hit by player: {enemy.enemyData.enemyName}");
+            }*/
+
+            //Debug.Log(hitEnemies.Count);
         }
     }
 }

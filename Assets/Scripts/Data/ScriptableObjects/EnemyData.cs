@@ -8,6 +8,8 @@ public class EnemyData : ScriptableObject
     public string enemyName;
     public int health;
     public int baseDamage;
+    public float attackTime;
+    public float attackCoolDown;
 
     [Header("Damage Category")]
     public DamageCategory damageCategory;

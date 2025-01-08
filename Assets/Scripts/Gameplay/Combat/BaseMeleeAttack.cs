@@ -1,16 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseAttack : MonoBehaviour
+public class BaseMeleeAttack : MonoBehaviour
 {
-    public void SetAttackDirection(Collider2D attackCollider, Vector2 direction)
+    private void SetAttackDirection(Collider2D attackCollider, Vector2 direction)
     {
        
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             attackCollider.transform.rotation = Quaternion.Euler(0, 0, angle);
     
     }
-    public void ActivateAttackRange(Collider2D attackCollider, Vector2 direction)
+    private void ActivateAttackRange(Collider2D attackCollider, Vector2 direction)
     {
         if (attackCollider != null)
         {
@@ -23,22 +24,18 @@ public class BaseAttack : MonoBehaviour
         }
    }
 
-    public void DeactivateAttackRange(Collider2D attackCollider)
+    private void DeactivateAttackRange(Collider2D attackCollider)
     {
             attackCollider.enabled = false;
     }
 
-    public IEnumerator PerformMeleeAttack(Collider2D attackCollider, Vector2 direction, float attackTime)
+    public IEnumerator PerformColliderChange(Collider2D attackCollider, Vector2 direction, float damageSpeed)
     {
         ActivateAttackRange(attackCollider,direction);
 
-        yield return new WaitForSeconds(attackTime);
+        yield return new WaitForSeconds(damageSpeed);
 
         DeactivateAttackRange(attackCollider);
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D other)
-    {
     }
 }
 
