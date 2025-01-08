@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class MeleeWeapon : BaseMeleeAttack
+public class MeleeWeapon : MonoBehaviour
 {
 
     [Header("Basic Stats")]
@@ -21,6 +19,8 @@ public class MeleeWeapon : BaseMeleeAttack
     public ElementalDamageType elementalDamageType;
 
     [SerializeField] Collider2D meleeCollider2D;
+    [SerializeField] SpriteRenderer sprite;
+    private Color originalSpriteColor;
 
     private HashSet<Enemy> hitEnemies = new HashSet<Enemy>();
 
@@ -30,14 +30,38 @@ public class MeleeWeapon : BaseMeleeAttack
     {
         damage = new Damage(damageCategory, elementalDamageType, baseDamage);
         meleeCollider2D = GetComponent<Collider2D>();
+        meleeCollider2D.enabled = false;
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.enabled = true;
+        originalSpriteColor = sprite.color;
+        sprite.color = Color.clear;
     }
-    public void PerformMeleeAttack(ref bool isMeleeAttack, Vector2 attackDirection)
+    public void PerformMeleeAttack(ref bool isMeleeAttack)
     {
         hitEnemies.Clear();
         isMeleeAttack = true;
         Debug.Log("Attack performed");
-        StartCoroutine(PerformColliderChange(meleeCollider2D, attackDirection, damageSpeed));
+        StartCoroutine(PerformColliderChange(damageSpeed));
         isMeleeAttack = false;
+    }
+
+    private IEnumerator PerformColliderChange(float damageSpeed)
+    {
+        if (meleeCollider2D != null)
+        {
+            meleeCollider2D.enabled = true;
+            sprite.color = originalSpriteColor;
+        }
+        else
+        {
+            Debug.LogWarning("Attack Collider is not assigned!");
+        }
+
+        yield return new WaitForSeconds(damageSpeed);
+
+        meleeCollider2D.enabled = false;
+
+        sprite.color = Color.clear;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

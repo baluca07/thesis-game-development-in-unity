@@ -8,15 +8,29 @@ public class PlayerCombat : MonoBehaviour
     private bool isAim = false;
     private bool isMeleeAttack = false;
 
-    public Vector2 attackDirection;
+    private Vector2 attackDirection;
+    private float attackAngle;
 
-    public MeleeWeapon currentWeapon;
+
+    [SerializeField] GameObject weapon;
+
+    [SerializeField] MeleeWeapon currentMeleeWeapon;
 
 
     private void Start()
     {
+        weapon = FindWeapon();
 
-        UpdateWeaponCollider();
+        if (weapon == null)
+        {
+            Debug.LogWarning("Weapon not found! Make sure the Weapon object is tagged as 'Weapon'.");
+        }
+        else
+        {
+            Debug.Log("Weapon found.");
+        }
+
+        UpdateMeleeWeapon();
 
     }
     private void Update()
@@ -29,22 +43,10 @@ public class PlayerCombat : MonoBehaviour
 
         if (isAim)
         {
-
-            float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            SetAttackRotation(transform);
 
             Debug.DrawLine(transform.position, mousePosition, Color.red);
         }
-
-        else if (isMeleeAttack)
-        {
-            float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            Debug.DrawLine(transform.position, (Vector2)transform.position + attackDirection * 10, Color.blue);
-        }
-
-
     }
 
     public void OnAim(InputAction.CallbackContext context)
@@ -66,36 +68,82 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed)
         {
-            currentWeapon.PerformMeleeAttack(ref isMeleeAttack,attackDirection);
+            currentMeleeWeapon.PerformMeleeAttack(ref isMeleeAttack);
         }
     }
 
-    public void UpdateWeaponCollider()
+    public void UpdateMeleeWeapon()
     {
+        if (weapon == null)
+        {
+            Debug.LogWarning("Weapon is not assigned, cannot find melee weapon.");
+            return;
+        }
+
         GameObject meleeWeapon = FindMeleeWeapon();
 
         if (meleeWeapon != null)
         {
-            currentWeapon = meleeWeapon.GetComponent<MeleeWeapon>();
-            Debug.Log($"Weapon Damage: {currentWeapon.baseDamage}");
+            currentMeleeWeapon = meleeWeapon.GetComponent<MeleeWeapon>();
+            if (currentMeleeWeapon != null)
+            {
+                Debug.Log($"Weapon Damage: {currentMeleeWeapon.baseDamage}");
+            }
+            else
+            {
+                Debug.LogWarning("MeleeWeapon script not found on the Melee object.");
+            }
         }
         else
         {
-            Debug.LogWarning("MeleeWeapon not found!");
+            Debug.LogWarning("MeleeWeapon object not found!");
         }
+    }
+    private GameObject FindWeapon()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Weapon"))
+            {
+                return child.gameObject;
+            }
+        }
+        return null;
     }
 
     private GameObject FindMeleeWeapon()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in weapon.transform)
         {
             if (child.CompareTag("Melee"))
             {
                 return child.gameObject;
             }
         }
-
         return null;
     }
+
+    private void SetAttackRotation(Transform transform)
+    {
+        attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+
+        float characterFacingYRotation = transform.parent.rotation.eulerAngles.y;
+
+        if (characterFacingYRotation == 0)
+        {
+            attackAngle = Mathf.Clamp(attackAngle, -90f, 90f);
+        }
+        else if (Mathf.Approximately(characterFacingYRotation, 180f))
+        {
+            if (attackAngle > 0)
+                attackAngle = Mathf.Clamp(attackAngle, 90f, 180f);
+            else
+                attackAngle = Mathf.Clamp(attackAngle, -180f, -90f);
+        }
+
+        transform.rotation = Quaternion.Euler(0, 0, attackAngle);
+    }
+
+
 
 }

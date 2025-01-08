@@ -12,7 +12,7 @@ public class PlayerControll : MonoBehaviour
     public float moveSpeed = 5f;
     public InputActionReference move;
 
-    private Vector2 _moveDirection;
+    private Vector2 moveDirection;
 
 
     private void Awake()
@@ -32,11 +32,19 @@ public class PlayerControll : MonoBehaviour
 
     private void Update()
     {
-        _moveDirection = move.action.ReadValue<Vector2>();
+        moveDirection = move.action.ReadValue<Vector2>();
+        if (moveDirection.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (moveDirection.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = _moveDirection.normalized * moveSpeed;
+        rb.velocity = moveDirection.normalized * moveSpeed;
     }
 }
