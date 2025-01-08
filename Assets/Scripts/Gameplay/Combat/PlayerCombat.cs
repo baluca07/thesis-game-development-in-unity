@@ -68,6 +68,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed)
         {
+            SetAttackRotation(weapon.transform);
             currentMeleeWeapon.PerformMeleeAttack(ref isMeleeAttack);
         }
     }
@@ -123,11 +124,13 @@ public class PlayerCombat : MonoBehaviour
         return null;
     }
 
-    private void SetAttackRotation(Transform transform)
+    private void SetAttackRotation(Transform weaponTransform)
     {
-        attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+        // Calculate attack angle
+        float attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
-        float characterFacingYRotation = transform.parent.rotation.eulerAngles.y;
+        // Determine the character's facing rotation
+        float characterFacingYRotation = transform.rotation.eulerAngles.y;
 
         if (characterFacingYRotation == 0)
         {
@@ -141,8 +144,9 @@ public class PlayerCombat : MonoBehaviour
                 attackAngle = Mathf.Clamp(attackAngle, -180f, -90f);
         }
 
-        transform.rotation = Quaternion.Euler(0, 0, attackAngle);
+        weaponTransform.rotation = Quaternion.Euler(0, 0, attackAngle);
     }
+
 
 
 

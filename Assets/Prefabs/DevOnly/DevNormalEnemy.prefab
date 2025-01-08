@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2477864423420073314, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.72
       objectReference: {fileID: 0}
     - target: {fileID: 2477864423420073314, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2477864423420073314, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2477864423420073314, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2477864423420073314, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2477864423420073314, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_Name
-      value: NormalEnemy Variant
+      value: DevNormalEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8635479269230849835, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: enemyData
@@ -66,6 +66,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3719796273787378999}
+    - targetCorrespondingSourceObject: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5983789080471450284}
   m_SourcePrefab: {fileID: 100100000, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
 --- !u!1 &8319118428301125430 stripped
 GameObject:
@@ -169,3 +172,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.28}
   m_EdgeRadius: 0
+--- !u!50 &5983789080471450284
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319118428301125430}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

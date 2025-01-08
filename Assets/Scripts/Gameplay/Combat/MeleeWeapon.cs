@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour
 {
-
+    [Header("Manualy Managed")]
     [Header("Basic Stats")]
     public string weaponName;
     public int baseDamage;
@@ -18,19 +18,18 @@ public class MeleeWeapon : MonoBehaviour
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;
 
-    [SerializeField] Collider2D meleeCollider2D;
+    [Header("Need to add DamageZone")]
+    [SerializeField] GameObject damageZonePrefab;
+
+    [Header("Need to add Sprite")]
     [SerializeField] SpriteRenderer sprite;
     private Color originalSpriteColor;
-
-    private HashSet<Enemy> hitEnemies = new HashSet<Enemy>();
 
     public Damage damage;
 
     private void Start()
     {
         damage = new Damage(damageCategory, elementalDamageType, baseDamage);
-        meleeCollider2D = GetComponent<Collider2D>();
-        meleeCollider2D.enabled = false;
         sprite = GetComponent<SpriteRenderer>();
         sprite.enabled = true;
         originalSpriteColor = sprite.color;
@@ -38,54 +37,36 @@ public class MeleeWeapon : MonoBehaviour
     }
     public void PerformMeleeAttack(ref bool isMeleeAttack)
     {
-        hitEnemies.Clear();
         isMeleeAttack = true;
         Debug.Log("Attack performed");
-        StartCoroutine(PerformColliderChange(damageSpeed));
+        StartCoroutine(SetDamageZone(damageSpeed));
         isMeleeAttack = false;
     }
 
-    private IEnumerator PerformColliderChange(float damageSpeed)
+
+    private IEnumerator SetDamageZone(float damageSpeed)
     {
-        if (meleeCollider2D != null)
+        if (damageZonePrefab != null)
         {
-            meleeCollider2D.enabled = true;
             sprite.color = originalSpriteColor;
+            GameObject damageZone = Instantiate(damageZonePrefab, transform.position, transform.rotation);
+
+            DamageZone damageZoneScript = damageZone.GetComponent<DamageZone>();
+
+            if (damageZoneScript != null)
+            {
+                damageZoneScript.damage = damage;  // Passing the damage
+            }
+
+            yield return new WaitForSeconds(damageSpeed);
+
+            Destroy(damageZone);
+
+            sprite.color = Color.clear;
         }
         else
         {
-            Debug.LogWarning("Attack Collider is not assigned!");
-        }
-
-        yield return new WaitForSeconds(damageSpeed);
-
-        meleeCollider2D.enabled = false;
-
-        sprite.color = Color.clear;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Debug.Log($"Object triggered: {collision.name}");
-
-        if (collision.CompareTag("Enemy"))
-        {
-            Enemy enemy = collision.GetComponent<Enemy>();
-            //Debug.Log($"Enemy collided: {enemy.enemyData.enemyName}");
-            if (!hitEnemies.Contains(enemy))
-            {
-                hitEnemies.Add(enemy);
-                //Debug.Log($"Enemy added to hitEnemies: {enemy.enemyData.enemyName}");
-                enemy.TakeDamage(damage);
-                //Debug.Log($"Enemy damaged: {enemy.enemyData.enemyName}");
-
-
-            }
-            /*else {
-                Debug.Log($"Enemy is already hit by player: {enemy.enemyData.enemyName}");
-            }*/
-
-            //Debug.Log(hitEnemies.Count);
+            Debug.LogWarning("Damage Zone is not assigned!");
         }
     }
 }
