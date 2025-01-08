@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4226606c4b38e548b447d9a456ee1bb, type: 3}
-  m_Name: TestEnemy
+  m_Name: AirEnemy
   m_EditorClassIdentifier: 
-  enemyName: TestEnemy
+  enemyName: Air Enemy
   health: 100
   baseDamage: 0
+  attackTime: 0
+  attackCoolDown: 0
   damageCategory: 0
-  elementalDamageType: 0
+  elementalDamageType: 3
   physicalShield: 0
   magicShield: 0

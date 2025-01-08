@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
         currentHealht -= damageAmoun;
 
-        //Debug.Log($"{enemyData.enemyName} took {damageAmoun} damage! Current Health: {currentHealht}");
+        Debug.Log($"{enemyData.enemyName} took {damageAmoun} damage! Current Health: {currentHealht}");
 
         if (currentHealht <= 0)
         {
