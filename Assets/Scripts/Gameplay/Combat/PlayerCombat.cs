@@ -63,15 +63,14 @@ public class PlayerCombat : MonoBehaviour
         {
             MeleeWeapon meleeWeapon = weaponManager.GetMeleeWeapon();
             RangedWeapon rangedWeapon = weaponManager.GetRangedWeapon();
-            Debug.Log($"Get weapons. Melee: {meleeWeapon?.weaponName ?? "None"}, Ranged: {rangedWeapon?.weaponName ?? "None"}");
+            //Debug.Log($"Get weapons. Melee: {meleeWeapon?.weaponName ?? "None"}, Ranged: {rangedWeapon?.weaponName ?? "None"}");
             if (rangedWeapon != null)
             {
-                Debug.LogWarning("Ranged Attack not implemented yet");
+                rangedWeapon.PerformRangedAttack(ref isAttack);
             }
             else if (meleeWeapon != null)
             {
                 meleeWeapon.PerformMeleeAttack(ref isAttack);
-                Debug.Log("Melee attack.");
             }
             else
             {

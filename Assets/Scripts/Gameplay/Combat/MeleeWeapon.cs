@@ -42,14 +42,14 @@ public class MeleeWeapon : MonoBehaviour
         if(!isOnCooldown)
         {
             isAttack = true;
-            Debug.Log("Attack performed");
+            Debug.Log("Melee attack performed");
             StartCoroutine(SetDamageZone(damageSpeed));
             isAttack = false;
             StartCoroutine(AttackCoolDown());
         }
         else
         {
-            //Debug.Log($"{weaponName} is on cooldown");
+            Debug.Log($"{weaponName} is on cooldown");
             //Cooldown logic comes here
         }
     }
