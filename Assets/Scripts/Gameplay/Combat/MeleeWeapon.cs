@@ -10,7 +10,9 @@ public class MeleeWeapon : MonoBehaviour
     public string weaponName;
     public int baseDamage;
     public float damageSpeed;
-    public float attackCoolDown;
+    public float attackCooldown;
+
+    private bool isOnCooldown = false;
 
     [Header("Damage Category")]
     public DamageCategory damageCategory;
@@ -37,10 +39,19 @@ public class MeleeWeapon : MonoBehaviour
     }
     public void PerformMeleeAttack(ref bool isMeleeAttack)
     {
-        isMeleeAttack = true;
-        Debug.Log("Attack performed");
-        StartCoroutine(SetDamageZone(damageSpeed));
-        isMeleeAttack = false;
+        if(!isOnCooldown)
+        {
+            isMeleeAttack = true;
+            Debug.Log("Attack performed");
+            StartCoroutine(SetDamageZone(damageSpeed));
+            isMeleeAttack = false;
+            StartCoroutine(AttackCoolDown());
+        }
+        else
+        {
+            //Debug.Log($"{weaponName} is on cooldown");
+            //Cooldown logic comes here
+        }
     }
 
 
@@ -68,5 +79,12 @@ public class MeleeWeapon : MonoBehaviour
         {
             Debug.LogWarning("Damage Zone is not assigned!");
         }
+    }
+
+    private IEnumerator AttackCoolDown()
+    {
+        isOnCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        isOnCooldown = false;
     }
 }
