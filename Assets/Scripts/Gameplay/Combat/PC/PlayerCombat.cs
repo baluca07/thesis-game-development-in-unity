@@ -8,12 +8,6 @@ public class PlayerCombat : MonoBehaviour
     private bool isAim = false;
     private bool isAttack = false;
 
-    private Vector2 attackDirection;
-    private float attackAngle;
-
-
-    private GameObject weaponObject;
-
     private WeaponManager weaponManager;
 
 
@@ -23,10 +17,9 @@ public class PlayerCombat : MonoBehaviour
         {
             if (child.gameObject.CompareTag("Weapon"))
             {
-                weaponObject = child.gameObject;
+                weaponManager = child.gameObject.GetComponent<WeaponManager>();
             }
         }
-        weaponManager = weaponObject.GetComponent<WeaponManager>();
         if (weaponManager == null)
         {
             Debug.LogError("WeaponManager is missing on the player.");
