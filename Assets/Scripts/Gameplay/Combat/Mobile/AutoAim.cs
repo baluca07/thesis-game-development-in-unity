@@ -1,44 +1,63 @@
 using UnityEngine;
 
-//TODO - Implement correctly rotation
 public class AutoAim : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject weaponObject;
+    private GameObject player;
+    private GameObject weaponObject;
 
     private GameObject nearestEnemy;
+
+    [SerializeField] GameObject targetSelectorPrefab;
+    private GameObject targetSelector;
+
+    private SpriteRenderer aim;
+    private Color originalAimColor;
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
         weaponObject = transform.parent.gameObject;
 
-        // Find the nearest enemy at the start
+        aim = GetComponent<SpriteRenderer>();
+        originalAimColor = aim.color;
         FindNearestEnemy();
+        if(nearestEnemy != null)
+        {
+            targetSelector = Instantiate(targetSelectorPrefab,nearestEnemy.transform,nearestEnemy);
+        }
+        else
+        {
+            aim.color = Color.clear;
+        }
     }
 
     private void Update()
     {
-        // Continuously update the nearest enemy
         FindNearestEnemy();
 
         if (nearestEnemy != null)
         {
+            aim.color = originalAimColor;
+            if(targetSelector == null)
+            {
+                targetSelector = Instantiate(targetSelectorPrefab, nearestEnemy.transform, nearestEnemy);
+            }
+            targetSelector.transform.position = nearestEnemy.transform.position;
+
             // Calculate the direction to the nearest enemy
             Vector3 direction = (nearestEnemy.transform.position - weaponObject.transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            // Rotate the player towards the enemy (only Y axis rotation)
-            Vector3 playerLookDirection = nearestEnemy.transform.position - player.transform.position;
-            float playerAngle = Mathf.Atan2(playerLookDirection.y, playerLookDirection.x) * Mathf.Rad2Deg;
-            player.transform.rotation = Quaternion.Euler(0, playerAngle, 0);
-
             // Rotate the weapon towards the enemy
             weaponObject.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
+        else
+        {
+            aim.color = Color.clear;
+        }
     }
 
-    void FindNearestEnemy()
+    private void FindNearestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (enemies.Length == 0)
