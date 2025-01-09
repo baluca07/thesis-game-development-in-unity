@@ -37,14 +37,14 @@ public class MeleeWeapon : MonoBehaviour
         originalSpriteColor = sprite.color;
         sprite.color = Color.clear;
     }
-    public void PerformMeleeAttack(ref bool isMeleeAttack)
+    public void PerformMeleeAttack(ref bool isAttack)
     {
         if(!isOnCooldown)
         {
-            isMeleeAttack = true;
+            isAttack = true;
             Debug.Log("Attack performed");
             StartCoroutine(SetDamageZone(damageSpeed));
-            isMeleeAttack = false;
+            isAttack = false;
             StartCoroutine(AttackCoolDown());
         }
         else

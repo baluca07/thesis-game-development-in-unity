@@ -21,6 +21,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 628879219716950439, guid: f2ca560b25f3cd2488f31e4dcf284a60, type: 3}
+      propertyPath: attackCooldown
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 628879219716950439, guid: f2ca560b25f3cd2488f31e4dcf284a60, type: 3}
       propertyPath: damageZonePrefab
       value: 
       objectReference: {fileID: 7571239819642080628, guid: c11eedb7dd15f114db15c43140166823, type: 3}
@@ -66,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7091247220052237098, guid: f2ca560b25f3cd2488f31e4dcf284a60, type: 3}
       propertyPath: m_Name
-      value: DevPlayerMeleeWeapon Variant
+      value: DevPlayerMeleeWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

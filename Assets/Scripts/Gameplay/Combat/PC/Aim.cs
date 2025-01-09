@@ -4,10 +4,13 @@ using UnityEngine.InputSystem;
 public class Aim : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject weaponObject;
 
     private void Start()
     {
-        player= player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
+        weaponObject = transform.parent.gameObject;
+
     }
     void Update()
     {
@@ -34,6 +37,6 @@ public class Aim : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        weaponObject.transform.rotation = transform.rotation;
     }
 }
-

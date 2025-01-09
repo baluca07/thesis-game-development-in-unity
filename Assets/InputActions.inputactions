@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Melee Attack",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "8fbb247e-6d3c-4f2c-8d59-4fdf9014ff45",
                     "expectedControlType": "",
@@ -162,7 +162,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Melee Attack",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
