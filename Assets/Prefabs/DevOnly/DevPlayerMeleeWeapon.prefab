@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DevPlayerMeleeWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 7091247220052237098, guid: f2ca560b25f3cd2488f31e4dcf284a60, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

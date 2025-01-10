@@ -4,13 +4,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyData enemyData;
-    public int currentHealht;
+    public int currentHealth;
 
     void Start()
     {
-        currentHealht = enemyData.health;
+        currentHealth = enemyData.health;
         //Debug.Log($"Enemy Name: {enemyData.enemyName}");
-        //Debug.Log($"Max Health: {enemyData.health}");
+        //Debug.Log($"Max Health: {enemyData.health}");s
         //Debug.Log($"Current Health: {currentHealht}");
         //Debug.Log($"Base Damage: {enemyData.baseDamage}");
         //Debug.Log($"Damage Category: {enemyData.damageCategory}");
@@ -18,17 +18,22 @@ public class Enemy : MonoBehaviour
         //Debug.Log($"Physical Shield: {enemyData.physicalShield}");
         //Debug.Log($"Magical Shield: {enemyData.magicShield}");
     }
+    public virtual void Attack(PlayerStats player)
+    {
+        Debug.Log($"{enemyData.enemyName} attacks Player.");
+    }
+
 
 
     public void TakeDamage(Damage damage)
     {
         int damageAmoun = damage.CalculateDamageOnEnemy(enemyData);
 
-        currentHealht -= damageAmoun;
+        currentHealth -= damageAmoun;
 
-        Debug.Log($"{enemyData.enemyName} took {damageAmoun} damage! Current Health: {currentHealht}");
+        Debug.Log($"{enemyData.enemyName} took {damageAmoun} damage! Current Health: {currentHealth}");
 
-        if (currentHealht <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

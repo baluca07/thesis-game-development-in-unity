@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9135557047233004219}
   - component: {fileID: 229289421598965133}
   - component: {fileID: 7870984424807458112}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: BasePlayerMeleeDamageZone
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 704
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

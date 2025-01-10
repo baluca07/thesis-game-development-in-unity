@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Fire Enemy
   health: 100
-  baseDamage: 0
+  baseDamage: 10
   attackTime: 0
   attackCoolDown: 0
   damageCategory: 0

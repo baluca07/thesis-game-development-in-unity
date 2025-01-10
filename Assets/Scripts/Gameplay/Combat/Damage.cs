@@ -35,4 +35,25 @@ public class Damage
         return (int)Math.Round(finalDamage);
 
     }
+
+    public int CalculateDamageOnPlayer(PlayerStats player)
+    {
+        float finalDamage = amount;
+
+        float elementalMultiplier = ElementalDamageSystem.GetElementalDamageMultiplier(elementalType,player.elementalDamageType);
+
+        finalDamage *= elementalMultiplier;
+
+        if (damageCategory == DamageCategory.Physical)
+        {
+            finalDamage -= (float)player.physicalShield;
+        }
+        else if (damageCategory == DamageCategory.Magical)
+        {
+            finalDamage -= (float)player.magicShield;
+        }
+
+        return (int)Math.Round(finalDamage);
+
+    }
 }
