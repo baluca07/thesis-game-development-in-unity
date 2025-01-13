@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour
 
         if (player != null)
         {
+            TurnTowardsPlayer();
             if (!isAttacking)
             {
                 ChasePlayer();
@@ -52,7 +53,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     if (enemyAttack != null)
                     {
-                        enemyAttack.Attack(player.GetComponent<PlayerStats>());
+                        enemyAttack.Attack();
                         lastAttackTime = Time.time;
                     }
                     else
@@ -61,6 +62,17 @@ public class EnemyAI : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+    private void TurnTowardsPlayer()
+    {
+        if (player.transform.position.x > transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 

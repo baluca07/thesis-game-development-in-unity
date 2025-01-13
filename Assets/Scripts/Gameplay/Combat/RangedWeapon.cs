@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RangedWeapon : MonoBehaviour
@@ -63,9 +64,10 @@ public class RangedWeapon : MonoBehaviour
 
         if (projectileScript != null)
         {
-            projectileScript.damage = damage;  // Passing the damage
+            projectileScript.damage = damage;
             projectileScript.attackRange = projectileRange;
             projectileScript.speed = projectileSpeed;
+            projectileScript.owner = Projectile.ProjectileOwner.Enemy;
         }
         Debug.Log("Shoot projectile.");
     }

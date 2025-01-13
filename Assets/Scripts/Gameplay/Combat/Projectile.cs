@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public enum ProjectileOwner
+    {
+        Enemy,
+        Player
+    }
+
+    public ProjectileOwner owner;
+
     public Damage damage;
     public float attackRange;
     public float speed;
@@ -32,6 +40,16 @@ public class Projectile : MonoBehaviour
     {
         Debug.Log($"Object triggered: {collision.name}");
 
+        if (owner == ProjectileOwner.Enemy && collision.CompareTag("Enemy"))
+        {
+            return;
+        }
+
+        if (owner == ProjectileOwner.Player && collision.CompareTag("Player"))
+        {
+            return;
+        }
+
         if (collision.CompareTag("Enemy"))
         {
             EnemyStats enemy = collision.GetComponent<EnemyStats>();
@@ -40,6 +58,16 @@ public class Projectile : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(gameObject);
             Debug.Log($"Enemy damaged: {enemy.enemyName}");
+        }
+
+        if (collision.CompareTag("Player"))
+        {
+            PlayerStats player = collision.GetComponent<PlayerStats>();
+            Debug.Log($"Player collided.");
+
+            player.TakeDamage(damage);
+            Destroy(gameObject);
+            Debug.Log($"Player Damaged");
         }
     }
 }

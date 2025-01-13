@@ -14,7 +14,7 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Damage Category")]
     public DamageCategory damageCategory;
-    public Range range;
+    //public Range range;
 
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;

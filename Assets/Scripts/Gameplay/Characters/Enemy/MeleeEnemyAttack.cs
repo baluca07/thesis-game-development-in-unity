@@ -7,16 +7,20 @@ public class MeleeEnemyAttack : EnemyAttack
     private EnemyStats stats;
     private Damage damage;
 
+    [SerializeField] GameObject player;
     private void Start()
     {
         stats = GetComponent<EnemyStats>();
+        player = GameObject.FindGameObjectWithTag("Player");
         damage = new Damage(stats.damageCategory, stats.elementalDamageType, stats.baseDamage);
     }
 
-   public override void Attack(PlayerStats player)
+   public override void Attack()
     {
         Debug.Log($"{stats.enemyName} performs a melee attack on {player.name} causing {stats.baseDamage} damage!");
-        player.TakeDamage(damage);
+        player.GetComponent<PlayerStats>().TakeDamage(damage);
+
+        //TODO - Start attack, but only damage, when player close enough when attack ends
     }
 
     private void Update()

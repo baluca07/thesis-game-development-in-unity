@@ -50,12 +50,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       propertyPath: m_Name
-      value: MeleeEnemy Variant
+      value: MeleeEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 8854543839102956228}
     - targetCorrespondingSourceObject: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4492395469981306115}
@@ -68,6 +71,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2677586711947248084, guid: d106e0f69bb0d93458cffa05bb9cbf06, type: 3}
   m_PrefabInstance: {fileID: 3548210568994370247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8854543839102956228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447190789692994323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1348bbf5d986b884eac93eebb4abbc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &4492395469981306115
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +130,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1348bbf5d986b884eac93eebb4abbc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
-  currentHealth: 0
-  attackRange: 1.5
-  player: {fileID: 0}
