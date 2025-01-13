@@ -12,3 +12,9 @@ public enum ElementalDamageType
     Air,
     Earth
 }
+
+public enum Range
+{
+    Ranged,
+    Melee
+}

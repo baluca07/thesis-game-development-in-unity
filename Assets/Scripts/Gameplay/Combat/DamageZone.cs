@@ -7,7 +7,7 @@ public class DamageZone : MonoBehaviour
 
     public Damage damage;
 
-    private HashSet<Enemy> hitEnemies = new HashSet<Enemy>();
+    private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
 
     private void Start()
     {
@@ -26,18 +26,18 @@ public class DamageZone : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
-            Debug.Log($"Enemy collided: {enemy.enemyData.enemyName}");
+            EnemyStats enemy = collision.GetComponent<EnemyStats>();
+            Debug.Log($"Enemy collided: {enemy.enemyName}");
             if (!hitEnemies.Contains(enemy))
             {
                 hitEnemies.Add(enemy);
-                Debug.Log($"Enemy added to hitEnemies: {enemy.enemyData.enemyName}");
+                Debug.Log($"Enemy added to hitEnemies: {enemy.enemyName}");
                 enemy.TakeDamage(damage);
-                Debug.Log($"Enemy damaged: {enemy.enemyData.enemyName}");
+                Debug.Log($"Enemy damaged: {enemy.enemyName}");
             }
             else
             {
-                Debug.Log($"Enemy is already hit by player: {enemy.enemyData.enemyName}");
+                Debug.Log($"Enemy is already hit by player: {enemy.enemyName}");
             }
 
             Debug.Log(hitEnemies.Count);

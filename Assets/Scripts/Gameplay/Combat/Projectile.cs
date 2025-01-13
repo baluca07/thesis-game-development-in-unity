@@ -34,12 +34,12 @@ public class Projectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
-            Debug.Log($"Enemy collided: {enemy.enemyData.enemyName}");
+            EnemyStats enemy = collision.GetComponent<EnemyStats>();
+            Debug.Log($"Enemy collided: {enemy.enemyName}");
            
             enemy.TakeDamage(damage);
             Destroy(gameObject);
-            Debug.Log($"Enemy damaged: {enemy.enemyData.enemyName}");
+            Debug.Log($"Enemy damaged: {enemy.enemyName}");
         }
     }
 }

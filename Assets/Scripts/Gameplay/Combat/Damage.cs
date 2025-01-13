@@ -15,7 +15,7 @@ public class Damage
         this.amount = amount;
     }
 
-    public int CalculateDamageOnEnemy(EnemyData enemy)
+    public int CalculateDamageOnEnemy(EnemyStats enemy)
     {
         float finalDamage = amount;
 
