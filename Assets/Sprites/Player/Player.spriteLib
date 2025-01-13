@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: face
+    m_Hash: 85228391
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: angry
+      m_Hash: 12658329
+      m_Sprite: {fileID: 2049972358, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2049972358, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: happy
+      m_Hash: 1055753161
+      m_Sprite: {fileID: -1681695959, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1681695959, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: frontHand
+    m_Hash: 37969129
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: back
+      m_Hash: 768524599
+      m_Sprite: {fileID: -965678897, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -965678897, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: palm
+      m_Hash: 958785497
+      m_Sprite: {fileID: 1930153088, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1930153088, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: fistBack
+      m_Hash: 13956886
+      m_Sprite: {fileID: 874337489, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 874337489, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: fistFront
+      m_Hash: 855599262
+      m_Sprite: {fileID: -433231956, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -433231956, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: like
+      m_Hash: 744702131
+      m_Sprite: {fileID: -1979820084, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1979820084, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 5
+  - m_Name: backHand
+    m_Hash: 482031355
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: back
+      m_Hash: 768524599
+      m_Sprite: {fileID: 72346692, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 72346692, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: palm
+      m_Hash: 958785497
+      m_Sprite: {fileID: -1950800188, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1950800188, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: fistBack
+      m_Hash: 13956886
+      m_Sprite: {fileID: -952703103, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -952703103, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: fistFront
+      m_Hash: 855599262
+      m_Sprite: {fileID: 524174970, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 524174970, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    - m_Name: like
+      m_Hash: 744702131
+      m_Sprite: {fileID: -1998188705, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1998188705, guid: 30fe89c6556c9544da5bdfb7da7f2943, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 5
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638722842856463782
+  m_Version: 1
