@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerControll : MonoBehaviour
 {
     [Header("Components")]
-    private Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rigidbodyPlayer;
+    [SerializeField] Animator animatior;
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -17,7 +18,9 @@ public class PlayerControll : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidbodyPlayer = GetComponent<Rigidbody2D>();
+        animatior = GetComponent<Animator>();
+
     }
 
     private void OnEnable()
@@ -41,10 +44,18 @@ public class PlayerControll : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+        if (moveDirection != Vector2.zero)
+        {
+            animatior.SetBool("Run", true);
+        }
+        else
+        {
+            animatior.SetBool("Run", false);
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = moveDirection.normalized * moveSpeed;
+        rigidbodyPlayer.velocity = moveDirection.normalized * moveSpeed;
     }
 }
