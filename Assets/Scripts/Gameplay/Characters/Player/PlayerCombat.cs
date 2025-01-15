@@ -26,7 +26,7 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        weaponManager.UpdateWeapon();
+        //weaponManager.UpdateWeapon();
     }
 
     public void OnAim(InputAction.CallbackContext context)

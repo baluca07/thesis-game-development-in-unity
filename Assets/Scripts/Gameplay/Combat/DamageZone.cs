@@ -11,7 +11,6 @@ public class DamageZone : MonoBehaviour
 
     private void Start()
     {
-        damage = new Damage(DamageCategory.Physical, ElementalDamageType.Normal, 10);
         if (GetComponent<Collider2D>() != null)
         {
             Collider2D collider = GetComponent<Collider2D>();

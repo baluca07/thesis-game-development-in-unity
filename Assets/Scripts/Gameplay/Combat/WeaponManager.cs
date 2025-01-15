@@ -1,49 +1,100 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+
+    private List<GameObject> weapons = new List<GameObject>();
     [SerializeField] private MeleeWeapon currentMeleeWeapon;
     [SerializeField] private RangedWeapon currentRangedWeapon;
+    public static bool isAnyWeaponActive = false;
+
+    public static WeaponType activeWeaponType;
     private void Start()
     {
+        GetWeapons();
         UpdateWeapon();
     }
 
     public void UpdateWeapon()
     {
-        GameObject activeWeapon = FindActiveWeapon();
-        if (activeWeapon != null)
+        if (weapons.Count != 0)
         {
-            if (activeWeapon.CompareTag("Melee"))
+            GameObject activeWeapon = FindActiveWeapon();
+
+            if (activeWeapon != null)
             {
-                currentMeleeWeapon = activeWeapon.GetComponent<MeleeWeapon>();
-                currentRangedWeapon = null;
-                //Debug.Log($"Equipped Melee Weapon: {currentMeleeWeapon?.name}");
+                if (activeWeapon.CompareTag("Melee"))
+                {
+                    currentMeleeWeapon = activeWeapon.GetComponent<MeleeWeapon>();
+                    currentRangedWeapon = null;
+
+                    if (currentMeleeWeapon != null)
+                    {
+                        activeWeaponType = currentMeleeWeapon.weaponType;
+                    }
+                    else
+                    {
+                        Debug.LogError("Melee weapon component missing on active weapon!");
+                    }
+                }
+                else if (activeWeapon.CompareTag("Ranged"))
+                {
+                    currentRangedWeapon = activeWeapon.GetComponent<RangedWeapon>();
+                    currentMeleeWeapon = null;
+
+                    if (currentRangedWeapon != null)
+                    {
+                        activeWeaponType = currentRangedWeapon.weaponType;
+                    }
+                    else
+                    {
+                        Debug.LogError("Ranged weapon component missing on active weapon!");
+                    }
+                }
+                activeWeaponType = currentMeleeWeapon.weaponType;
+                isAnyWeaponActive = true;
             }
-            else if (activeWeapon.CompareTag("Ranged"))
+            else
             {
-                currentRangedWeapon = activeWeapon.GetComponent<RangedWeapon>();
-                currentMeleeWeapon = null;
-                //Debug.Log($"Equipped Ranged Weapon: {currentRangedWeapon?.name}");
+                // No active weapon found
+                isAnyWeaponActive = false;
+                Debug.LogWarning("No active weapon found.");
             }
         }
         else
         {
-            Debug.LogWarning("No active weapon found.");
+            Debug.LogWarning("No weapons found in the list.");
+            isAnyWeaponActive = false;
         }
     }
 
     private GameObject FindActiveWeapon()
     {
-        foreach (Transform child in transform)
+        foreach (GameObject weapon in weapons)
         {
-            //Debug.Log($"Checking child: {child.name}");
-            if (child.gameObject.CompareTag("Melee") || child.gameObject.CompareTag("Ranged"))
+            if (weapon.activeSelf)
             {
-                return child.gameObject;
+                return weapon;
             }
         }
         return null;
+    }
+
+    private void GetWeapons()
+    {
+        weapons.Clear(); // Clear the list to avoid duplicate entries
+
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Melee") || child.CompareTag("Ranged"))
+            {
+                weapons.Add(child.gameObject);
+            }
+        }
+
+        Debug.Log($"Found {weapons.Count} weapons under WeaponManager.");
     }
 
     public MeleeWeapon GetMeleeWeapon() => currentMeleeWeapon;

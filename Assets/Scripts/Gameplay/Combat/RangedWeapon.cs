@@ -20,6 +20,7 @@ public class RangedWeapon : MonoBehaviour
 
     [Header("Damage Category")]
     public DamageCategory damageCategory;
+    public WeaponType weaponType;
 
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;

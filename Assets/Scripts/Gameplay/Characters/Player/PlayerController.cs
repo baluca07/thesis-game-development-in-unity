@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControll : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] Rigidbody2D rigidbodyPlayer;
@@ -35,6 +35,10 @@ public class PlayerControll : MonoBehaviour
 
     private void Update()
     {
+        if (WeaponManager.activeWeaponType == WeaponType.Sword)
+        {
+            animatior.SetBool("Melee", true);
+        }
         moveDirection = move.action.ReadValue<Vector2>();
         if (moveDirection.x > 0)
         {

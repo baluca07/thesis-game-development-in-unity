@@ -13,8 +13,9 @@ public enum ElementalDamageType
     Earth
 }
 
-public enum Range
+public enum WeaponType
 {
-    Ranged,
-    Melee
+    Sword,
+    Bow,
+    Wand
 }

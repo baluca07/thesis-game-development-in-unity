@@ -16,6 +16,7 @@ public class MeleeWeapon : MonoBehaviour
 
     [Header("Damage Category")]
     public DamageCategory damageCategory;
+    public WeaponType weaponType;
 
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;
@@ -23,19 +24,21 @@ public class MeleeWeapon : MonoBehaviour
     [Header("Need to add DamageZone")]
     [SerializeField] GameObject damageZonePrefab;
 
-    [Header("Need to add Sprite")]
+
+    /*[Header("Need to add Sprite")]
     [SerializeField] SpriteRenderer sprite;
-    private Color originalSpriteColor;
+    private Color originalSpriteColor;*/
+
 
     public Damage damage;
 
     private void Start()
     {
         damage = new Damage(damageCategory, elementalDamageType, baseDamage);
-        sprite = GetComponent<SpriteRenderer>();
+        /*sprite = GetComponent<SpriteRenderer>();
         sprite.enabled = true;
         originalSpriteColor = sprite.color;
-        sprite.color = Color.clear;
+        sprite.color = Color.clear;*/
     }
     public void PerformMeleeAttack(ref bool isAttack)
     {
@@ -59,8 +62,11 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (damageZonePrefab != null)
         {
-            sprite.color = originalSpriteColor;
-            GameObject damageZone = Instantiate(damageZonePrefab, transform.position, transform.rotation);
+            /*sprite.color = originalSpriteColor;*/
+            Vector3 spawnPosition = transform.position + damageZonePrefab.transform.localPosition;
+
+            // Instantiate the damage zone
+            GameObject damageZone = Instantiate(damageZonePrefab, spawnPosition, transform.rotation);
 
             DamageZone damageZoneScript = damageZone.GetComponent<DamageZone>();
 
@@ -73,7 +79,7 @@ public class MeleeWeapon : MonoBehaviour
 
             Destroy(damageZone);
 
-            sprite.color = Color.clear;
+            /*sprite.color = Color.clear;*/
         }
         else
         {

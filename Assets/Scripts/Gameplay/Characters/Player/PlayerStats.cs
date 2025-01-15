@@ -7,17 +7,16 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-    public ElementalDamageType damageType;
-
-    [Header("Damage Category")]
-    public DamageCategory damageCategory;
-
-    [Header("Damage Type")]
-    public ElementalDamageType elementalDamageType;
-
     [Header("Defense Stats")]
     public int physicalShield;
     public int magicShield;
+
+    [Header("Damage Category")]
+    public DamageCategory damageCategory;
+    //public Range range;
+
+    [Header("Damage Type")]
+    public ElementalDamageType elementalDamageType;
 
     //TODO - Set Player stats
 
