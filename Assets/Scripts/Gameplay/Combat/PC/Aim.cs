@@ -3,15 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Aim : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject weaponObject;
-
-    private void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-        weaponObject = transform.parent.gameObject;
-
-    }
     void Update()
     {
 
@@ -21,6 +12,7 @@ public class Aim : MonoBehaviour
         Vector2 direction = (mousePosition - transform.position).normalized;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Debug.Log(angle);
         
         /*float characterFacingYRotation = player.transform.rotation.eulerAngles.y;
         if (characterFacingYRotation == 0)
@@ -36,6 +28,5 @@ public class Aim : MonoBehaviour
         }*/
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        weaponObject.transform.rotation = transform.rotation;
     }
 }

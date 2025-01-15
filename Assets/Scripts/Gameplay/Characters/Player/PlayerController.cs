@@ -39,7 +39,11 @@ public class PlayerController : MonoBehaviour
         {
             animatior.SetBool("Melee", true);
         }
-        moveDirection = move.action.ReadValue<Vector2>();
+        else
+        {
+            animatior.SetBool("Melee", false);
+        }
+            moveDirection = move.action.ReadValue<Vector2>();
         if (moveDirection.x > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);

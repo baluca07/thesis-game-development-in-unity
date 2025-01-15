@@ -5,9 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private bool isAim = false;
-    private bool isAttack = false;
-
     private WeaponManager weaponManager;
 
 
@@ -54,21 +51,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed)
         {
-            MeleeWeapon meleeWeapon = weaponManager.GetMeleeWeapon();
-            RangedWeapon rangedWeapon = weaponManager.GetRangedWeapon();
-            Debug.Log($"Get weapons. Melee: {meleeWeapon?.weaponName ?? "None"}, Ranged: {rangedWeapon?.weaponName ?? "None"}");
-            if (rangedWeapon != null)
-            {
-                rangedWeapon.PerformRangedAttack(ref isAttack);
-            }
-            else if (meleeWeapon != null)
-            {
-                meleeWeapon.PerformMeleeAttack(ref isAttack);
-            }
-            else
-            {
-                Debug.LogWarning("No weapon equipped.");
-            }
+            weaponManager.Attack();
         }
     }
 }

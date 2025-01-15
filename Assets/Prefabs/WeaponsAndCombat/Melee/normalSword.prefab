@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1712071422040711227}
   - component: {fileID: 2666189619342736766}
   - component: {fileID: 2952288100378544958}
+  - component: {fileID: 3116804017475009555}
   m_Layer: 0
   m_Name: normalSword
   m_TagString: Melee
@@ -28,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8819875544241291986}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.3160962, y: 0.9487272, z: 0, w: 0}
+  m_LocalPosition: {x: 0.085, y: -0.032, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 36.854}
 --- !u!212 &7006770033307708447
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -134,5 +135,42 @@ MonoBehaviour:
   damageSpeed: 1.5
   attackCooldown: 1
   damageCategory: 0
+  weaponType: 0
   elementalDamageType: 0
-  damageZonePrefab: {fileID: 8857218722754349553, guid: c820eede87c2e714db010541a523ee34, type: 3}
+  attackCollider: {fileID: 0}
+  player: {fileID: 0}
+--- !u!58 &3116804017475009555
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819875544241291986}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.16399819, y: 0.5455369}
+  serializedVersion: 2
+  m_Radius: 0.67495465

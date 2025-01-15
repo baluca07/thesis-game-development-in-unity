@@ -3,51 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : Weapon
 {
-    [Header("Manualy Managed")]
-    [Header("Basic Stats")]
-    public string weaponName;
-    public int baseDamage;
-    public float damageSpeed;
-    public float attackCooldown;
-
-    private bool isOnCooldown = false;
-
-    [Header("Damage Category")]
-    public DamageCategory damageCategory;
-    public WeaponType weaponType;
-
-    [Header("Damage Type")]
-    public ElementalDamageType elementalDamageType;
-
     [Header("Need to add DamageZone")]
-    [SerializeField] GameObject damageZonePrefab;
+    //[SerializeField] GameObject damageZonePrefab;
+    [SerializeField] Collider2D attackCollider;
 
+    [SerializeField] GameObject player;
 
-    /*[Header("Need to add Sprite")]
-    [SerializeField] SpriteRenderer sprite;
-    private Color originalSpriteColor;*/
-
-
-    public Damage damage;
+    private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
 
     private void Start()
     {
         damage = new Damage(damageCategory, elementalDamageType, baseDamage);
-        /*sprite = GetComponent<SpriteRenderer>();
-        sprite.enabled = true;
-        originalSpriteColor = sprite.color;
-        sprite.color = Color.clear;*/
+        player = GameObject.FindGameObjectWithTag("Player");
+        attackCollider = GetComponent<Collider2D>();
+
     }
-    public void PerformMeleeAttack(ref bool isAttack)
+    public override void Attack()
     {
         if(!isOnCooldown)
         {
-            isAttack = true;
             Debug.Log("Melee attack performed");
             StartCoroutine(SetDamageZone(damageSpeed));
-            isAttack = false;
             StartCoroutine(AttackCoolDown());
         }
         else
@@ -60,37 +38,65 @@ public class MeleeWeapon : MonoBehaviour
 
     private IEnumerator SetDamageZone(float damageSpeed)
     {
-        if (damageZonePrefab != null)
-        {
-            /*sprite.color = originalSpriteColor;*/
-            Vector3 spawnPosition = transform.position + damageZonePrefab.transform.localPosition;
+        /* if (damageZonePrefab != null)
+         {
+             Vector3 spawnPosition = transform.position + damageZonePrefab.transform.localPosition;
+             float characterFacingYRotation = player.transform.rotation.eulerAngles.y;
+             if (characterFacingYRotation == -180)
+             {
+                 spawnPosition.x = Math.Abs(spawnPosition.x);
+             }
 
-            // Instantiate the damage zone
-            GameObject damageZone = Instantiate(damageZonePrefab, spawnPosition, transform.rotation);
 
-            DamageZone damageZoneScript = damageZone.GetComponent<DamageZone>();
+             // Instantiate the damage zone
+             GameObject damageZone = Instantiate(damageZonePrefab, spawnPosition, transform.rotation);
 
-            if (damageZoneScript != null)
-            {
-                damageZoneScript.damage = damage;  // Passing the damage
-            }
+             DamageZone damageZoneScript = damageZone.GetComponent<DamageZone>();
 
-            yield return new WaitForSeconds(damageSpeed);
+             if (damageZoneScript != null)
+             {
+                 damageZoneScript.damage = damage;  // Passing the damage
+             }
 
-            Destroy(damageZone);
+             yield return new WaitForSeconds(damageSpeed);
 
-            /*sprite.color = Color.clear;*/
-        }
-        else
-        {
-            Debug.LogWarning("Damage Zone is not assigned!");
-        }
+             Destroy(damageZone);
+
+         }
+         else
+         {
+             Debug.LogWarning("Damage Zone is not assigned!");
+         }*/
+        attackCollider.enabled = true;
+
+        yield return new WaitForSeconds(damageSpeed);
+
+        attackCollider.enabled = false;
+        hitEnemies.Clear();
+
     }
 
-    private IEnumerator AttackCoolDown()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        isOnCooldown = true;
-        yield return new WaitForSeconds(attackCooldown);
-        isOnCooldown = false;
+        Debug.Log($"Object triggered: {collision.name}");
+
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyStats enemy = collision.GetComponent<EnemyStats>();
+            Debug.Log($"Enemy collided: {enemy.enemyName}");
+            if (!hitEnemies.Contains(enemy))
+            {
+                hitEnemies.Add(enemy);
+                Debug.Log($"Enemy added to hitEnemies: {enemy.enemyName}");
+                enemy.TakeDamage(damage);
+                Debug.Log($"Enemy damaged: {enemy.enemyName}");
+            }
+            else
+            {
+                Debug.Log($"Enemy is already hit by player: {enemy.enemyName}");
+            }
+
+            Debug.Log(hitEnemies.Count);
+        }
     }
 }

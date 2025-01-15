@@ -21,34 +21,15 @@ public class AutoAttack : MonoBehaviour
                 weaponManager = child.gameObject.GetComponent<WeaponManager>();
             }
         }
-        if (weaponManager == null)
-        {
-            Debug.LogError("WeaponManager is missing on the player.");
-            return;
-        }
 
-        weaponManager.UpdateWeapon();
+        //weaponManager.UpdateWeapon();
     }
     private void Update()
     {
         canAttack = !isAttack;
         if (canAttack)
         {
-            MeleeWeapon meleeWeapon = weaponManager.GetMeleeWeapon();
-            RangedWeapon rangedWeapon = weaponManager.GetRangedWeapon();
-            //Debug.Log($"Get weapons. Melee: {meleeWeapon?.weaponName ?? "None"}, Ranged: {rangedWeapon?.weaponName ?? "None"}");
-            if (rangedWeapon != null)
-            {
-                rangedWeapon.PerformRangedAttack(ref isAttack);
-            }
-            else if (meleeWeapon != null)
-            {
-                meleeWeapon.PerformMeleeAttack(ref isAttack);
-            }
-            else
-            {
-                Debug.LogWarning("No weapon equipped.");
-            }
+            weaponManager.Attack();
         }
     }
 }

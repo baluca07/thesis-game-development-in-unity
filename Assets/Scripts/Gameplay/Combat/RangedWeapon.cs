@@ -3,52 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class RangedWeapon : MonoBehaviour
+public class RangedWeapon : Weapon
 {
-    [Header("Manualy Managed")]
-    [Header("Basic Stats")]
-    public string weaponName;
-    public int baseDamage;
-    public float attackCooldown;
-
     [Header("Projectile")]
     public float projectileSpeed;
     public float projectileRange;
     [SerializeField] GameObject projectilePrefab;
 
-    private bool isOnCooldown = false;
-
-    [Header("Damage Category")]
-    public DamageCategory damageCategory;
-    public WeaponType weaponType;
-
-    [Header("Damage Type")]
-    public ElementalDamageType elementalDamageType;
-
-    [Header("Need to add Sprite")]
-    [SerializeField] SpriteRenderer sprite;
-
-    private Color originalSpriteColor;
-
-    public Damage damage;
-
     private void Start()
     {
         damage = new Damage(damageCategory, elementalDamageType, baseDamage);
-        sprite = GetComponent<SpriteRenderer>();
-        sprite.enabled = true;
-        originalSpriteColor = sprite.color;
-        //sprite.color = Color.clear;
     }
 
-    public void PerformRangedAttack(ref bool isAttack)
+    public override void Attack()
     {
         if (!isOnCooldown)
         {
-            isAttack = true;
             Debug.Log("Attack performed");
             ShootProjectile();
-            isAttack = false;
             StartCoroutine(AttackCoolDown());
         }
         else
@@ -71,13 +43,6 @@ public class RangedWeapon : MonoBehaviour
             projectileScript.owner = Projectile.ProjectileOwner.Enemy;
         }
         Debug.Log("Shoot projectile.");
-    }
-
-    private IEnumerator AttackCoolDown()
-    {
-        isOnCooldown = true;
-        yield return new WaitForSeconds(attackCooldown);
-        isOnCooldown = false;
     }
 
 }
