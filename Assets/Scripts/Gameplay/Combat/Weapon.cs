@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType
+{
+    Sword = 0,
+    Wand = 1
+}
+
 public class Weapon : MonoBehaviour
 {
     [Header("Manualy Managed")]
@@ -14,13 +20,10 @@ public class Weapon : MonoBehaviour
     protected bool isOnCooldown = false;
 
     [Header("Damage Category")]
-    public DamageCategory damageCategory;
     public WeaponType weaponType;
 
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;
-
-    public Damage damage;
 
     protected IEnumerator AttackCoolDown()
     {

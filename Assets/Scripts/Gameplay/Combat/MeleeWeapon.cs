@@ -1,24 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
-    [Header("Need to add DamageZone")]
+    //[Header("Need to add DamageZone")]
     //[SerializeField] GameObject damageZonePrefab;
-    [SerializeField] Collider2D attackCollider;
+    public float meleeRange;
 
     [SerializeField] GameObject player;
+    [SerializeField] CircleCollider2D meleeCollider;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Color originalColor;
 
     private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
 
     private void Start()
     {
-        damage = new Damage(damageCategory, elementalDamageType, baseDamage);
         player = GameObject.FindGameObjectWithTag("Player");
-        attackCollider = GetComponent<Collider2D>();
-
+        meleeCollider = player.GetComponent<CircleCollider2D>();
+        meleeCollider.enabled = false;
+        meleeCollider.radius = meleeRange;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+        spriteRenderer.color = Color.clear;
     }
     public override void Attack()
     {
@@ -67,36 +74,14 @@ public class MeleeWeapon : Weapon
          {
              Debug.LogWarning("Damage Zone is not assigned!");
          }*/
-        attackCollider.enabled = true;
+        spriteRenderer.color = originalColor;
+        meleeCollider.enabled = true;
 
         yield return new WaitForSeconds(damageSpeed);
 
-        attackCollider.enabled = false;
+        meleeCollider.enabled = false;
         hitEnemies.Clear();
+        spriteRenderer.color = Color.clear;
 
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log($"Object triggered: {collision.name}");
-
-        if (collision.CompareTag("Enemy"))
-        {
-            EnemyStats enemy = collision.GetComponent<EnemyStats>();
-            Debug.Log($"Enemy collided: {enemy.enemyName}");
-            if (!hitEnemies.Contains(enemy))
-            {
-                hitEnemies.Add(enemy);
-                Debug.Log($"Enemy added to hitEnemies: {enemy.enemyName}");
-                enemy.TakeDamage(damage);
-                Debug.Log($"Enemy damaged: {enemy.enemyName}");
-            }
-            else
-            {
-                Debug.Log($"Enemy is already hit by player: {enemy.enemyName}");
-            }
-
-            Debug.Log(hitEnemies.Count);
-        }
     }
 }

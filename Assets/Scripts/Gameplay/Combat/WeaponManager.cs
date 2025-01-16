@@ -5,11 +5,14 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     private PlayerInventory playerInventory;
-    [SerializeField] MeleeWeapon currentMeleeWeapon;
-    [SerializeField] RangedWeapon currentRangedWeapon;
-    [SerializeField] GameObject currentWeapon;
+    public MeleeWeapon currentMeleeWeapon;
+    public RangedWeapon currentRangedWeapon;
+    public GameObject currentWeapon;
 
-    public static WeaponType activeWeaponType;
+    public bool isAttacking = false;
+
+    public WeaponType activeWeaponType;
+    public Damage currentDamage;
 
     private void Start()
     {
@@ -29,30 +32,20 @@ public class WeaponManager : MonoBehaviour
         {
             currentMeleeWeapon = currentWeapon.GetComponent<MeleeWeapon>();
             currentRangedWeapon = null;
-
-            if (currentMeleeWeapon != null)
-            {
-                activeWeaponType = currentMeleeWeapon.weaponType;
-            }
-            else
-            {
-                Debug.LogError("Melee weapon component missing on active weapon!");
-            }
+            currentDamage = new Damage(currentMeleeWeapon.elementalDamageType,currentMeleeWeapon.baseDamage);
+            
+            activeWeaponType = currentMeleeWeapon.weaponType;
+      
         }
         else if (currentWeapon.CompareTag("Ranged"))
         {
             currentRangedWeapon = currentWeapon.GetComponent<RangedWeapon>();
             currentMeleeWeapon = null;
+            currentDamage = new Damage( currentRangedWeapon.elementalDamageType, currentRangedWeapon.baseDamage);
 
-            if (currentRangedWeapon != null)
-            {
-                activeWeaponType = currentRangedWeapon.weaponType;
-            }
-            else
-            {
-                Debug.LogError("Ranged weapon component missing on active weapon!");
-            }
-        }
+            activeWeaponType = currentRangedWeapon.weaponType;
+        } 
+        Debug.Log($"Equipped weapon:  {currentWeapon.name}");
     }
     public void Attack()
     {

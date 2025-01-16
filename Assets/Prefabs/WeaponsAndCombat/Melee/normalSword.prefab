@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1712071422040711227}
   - component: {fileID: 2666189619342736766}
   - component: {fileID: 2952288100378544958}
-  - component: {fileID: 3116804017475009555}
   m_Layer: 0
   m_Name: normalSword
   m_TagString: Melee
@@ -132,45 +131,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Normal Sword
   baseDamage: 10
-  damageSpeed: 1.5
+  damageSpeed: 0.6
   attackCooldown: 1
   damageCategory: 0
   weaponType: 0
   elementalDamageType: 0
-  attackCollider: {fileID: 0}
+  meleeRange: 0.7
   player: {fileID: 0}
---- !u!58 &3116804017475009555
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8819875544241291986}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.16399819, y: 0.5455369}
-  serializedVersion: 2
-  m_Radius: 0.67495465
+  meleeCollider: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  originalColor: {r: 0, g: 0, b: 0, a: 0}

@@ -11,17 +11,11 @@ public class EnemyStats : MonoBehaviour
     //public float attackTime;
     public float attackCoolDown;
     public float attackRange;
-
-    [Header("Damage Category")]
-    public DamageCategory damageCategory;
     //public Range range;
 
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;
 
-    [Header("Defense Stats")]
-    public int physicalShield;
-    public int magicShield;
     public int currentHealth;
 
     void Start()
@@ -46,6 +40,7 @@ public class EnemyStats : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{enemyName} has been defeated!");
+        GameManager.Instance.AddEnemyKill(elementalDamageType);
         Destroy(gameObject);
     }
 

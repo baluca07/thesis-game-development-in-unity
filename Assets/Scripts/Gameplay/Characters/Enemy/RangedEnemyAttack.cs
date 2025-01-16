@@ -21,7 +21,7 @@ public class RangedEnemyAttack : EnemyAttack
     {
         stats = GetComponent<EnemyStats>();
         player = GameObject.FindGameObjectWithTag("Player");
-        damage = new Damage(stats.damageCategory, stats.elementalDamageType, stats.baseDamage);
+        damage = new Damage(stats.elementalDamageType, stats.baseDamage);
         orbitRadius = Vector3.Distance(transform.position, firePoint.transform.position);
     }
 

@@ -10,11 +10,6 @@ public class RangedWeapon : Weapon
     public float projectileRange;
     [SerializeField] GameObject projectilePrefab;
 
-    private void Start()
-    {
-        damage = new Damage(damageCategory, elementalDamageType, baseDamage);
-    }
-
     public override void Attack()
     {
         if (!isOnCooldown)
@@ -37,7 +32,7 @@ public class RangedWeapon : Weapon
 
         if (projectileScript != null)
         {
-            projectileScript.damage = damage;
+            //projectileScript.damage = damage;
             projectileScript.attackRange = projectileRange;
             projectileScript.speed = projectileSpeed;
             projectileScript.owner = Projectile.ProjectileOwner.Enemy;

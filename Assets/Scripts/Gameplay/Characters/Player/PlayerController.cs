@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveDirection;
 
-
     private void Awake()
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
@@ -35,23 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (WeaponManager.activeWeaponType == WeaponType.Sword)
-        {
-            animatior.SetBool("Melee", true);
-        }
-        else
-        {
-            animatior.SetBool("Melee", false);
-        }
-            moveDirection = move.action.ReadValue<Vector2>();
-        if (moveDirection.x > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (moveDirection.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
+        moveDirection = move.action.ReadValue<Vector2>();
         if (moveDirection != Vector2.zero)
         {
             animatior.SetBool("Run", true);
@@ -59,6 +42,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             animatior.SetBool("Run", false);
+        }
+        if (moveDirection.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (moveDirection.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 

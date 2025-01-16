@@ -12,7 +12,7 @@ public class MeleeEnemyAttack : EnemyAttack
     {
         stats = GetComponent<EnemyStats>();
         player = GameObject.FindGameObjectWithTag("Player");
-        damage = new Damage(stats.damageCategory, stats.elementalDamageType, stats.baseDamage);
+        damage = new Damage(stats.elementalDamageType, stats.baseDamage);
     }
 
    public override void Attack()
