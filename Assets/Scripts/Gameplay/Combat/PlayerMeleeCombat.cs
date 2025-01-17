@@ -7,7 +7,6 @@ public class PlayerMeleeCombat : MonoBehaviour
 {
     [SerializeField] CircleCollider2D meleeCollider;
     private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
-    [SerializeField] GameManager gameManager;
 
     [SerializeField] Animator animatior;
 
@@ -24,7 +23,6 @@ public class PlayerMeleeCombat : MonoBehaviour
         meleeCollider = GetComponent<CircleCollider2D>();
         meleeCollider.enabled = false;
         animatior = GetComponent<Animator>();
-        gameManager = GameObject.FindAnyObjectByType<GameManager>();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -94,7 +92,7 @@ public class PlayerMeleeCombat : MonoBehaviour
             {
                 hitEnemies.Add(enemy);
                 Debug.Log($"Enemy added to hitEnemies: {enemy.enemyName}");
-                enemy.TakeDamage(gameManager.currentElementalAttack.GetDamage());
+                enemy.TakeDamage(PlayerStats.Instance.currentElementalAttack.GetDamage());
                 Debug.Log($"Enemy damaged: {enemy.enemyName}");
             }
             else

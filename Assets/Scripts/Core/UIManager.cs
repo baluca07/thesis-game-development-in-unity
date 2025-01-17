@@ -4,22 +4,33 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
+
     [Header("Player Stats UI")]
-    [SerializeField] private TextMeshPro healthText;
+    [SerializeField] private TextMeshProUGUI healthText;
     //[SerializeField] private Text manaText;
-    [SerializeField] private TextMeshPro elementalTypeText;
+    [SerializeField] private TextMeshProUGUI elementalTypeText;
 
     //[Header("Enemy Stats UI")]
     //[SerializeField] private Text enemyHealthText;
 
-    public void UpdatePlayerHealth(int currentHealth, int maxHealth)
+    private void Awake()
     {
-        healthText.text = $"Health: {currentHealth}/{maxHealth}";
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
     }
 
-    public void UpdateElementalType(string elementalType)
+    public void UpdatePlayerHealth()
     {
-        elementalTypeText.text = $"Element: {elementalType}";
+        healthText.text = $"{PlayerStats.Instance.currentHealth}/{PlayerStats.Instance.maxHealth}";
+    }
+
+    public void UpdateElementalType()
+    {
+        elementalTypeText.text = $"{PlayerStats.Instance.currentElementalAttack.name}";
     }
 
     /*public void UpdatePlayerMana(int currentMana, int maxMana)

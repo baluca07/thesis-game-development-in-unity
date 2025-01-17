@@ -57,4 +57,40 @@ public class PlayerController : MonoBehaviour
     {
         rigidbodyPlayer.velocity = moveDirection.normalized * moveSpeed;
     }
+
+    public void OnSwitchToPreviousElement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int index = PlayerStats.Instance.currentElementalAttackIndex;
+            if (GameManager.Instance.elementalAttacks[index].CanActivateElemental())
+            {
+                index--;
+                if (index < 0)
+                {
+                    index = 4;
+                }
+                PlayerStats.Instance.SetCurrentElemental(index);
+                UIManager.Instance.UpdateElementalType();
+            }
+        }
+    }
+
+    public void OnSwitchToNextElement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int index = PlayerStats.Instance.currentElementalAttackIndex;
+            if (GameManager.Instance.elementalAttacks[index].CanActivateElemental())
+            {
+                index++;
+                if (index >= 5)
+                {
+                    index = 0;
+                }
+                PlayerStats.Instance.SetCurrentElemental(index);
+                UIManager.Instance.UpdateElementalType();
+            }
+        }
+    }
 }

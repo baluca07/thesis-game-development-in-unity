@@ -33,13 +33,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ChangeElementalType",
-                    "type": "Value",
-                    "id": "addcf2b9-bde5-47b9-b43d-cf23ebfb7d38",
-                    "expectedControlType": "Axis",
+                    "name": "SelectElementalBackward",
+                    "type": "Button",
+                    "id": "f249f81f-1f66-4398-b074-b26b65fc0b82",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectElementalForward",
+                    "type": "Button",
+                    "id": "6e2e73bd-e50f-40c2-9905-d42182384d2f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -177,12 +186,23 @@
                 },
                 {
                     "name": "",
-                    "id": "275c8df4-dea7-4d9d-836c-e58697b3c8ad",
-                    "path": "<Mouse>/scroll/x",
+                    "id": "3630a90a-5ada-49a0-815b-1958d9640ad0",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ChangeElementalType",
+                    "action": "SelectElementalBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e1aa7f1-6a3b-4f4a-9d2b-efcdf9990353",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectElementalForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -6,7 +6,6 @@ using static ElementalAttack;
 public class GameManager : MonoBehaviour
 {
     public List<ElementalAttack> elementalAttacks = new List<ElementalAttack>();
-    public ElementalAttack currentElementalAttack;
 
     public static GameManager Instance;
 
@@ -19,50 +18,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
-    }
-
-    private void Start()
-    {
         InitializeElementalAttacks();
-    }
 
-    private void SetCurrentElemental(int index)
-    {
-        if (elementalAttacks[index].CanActivateElemental())
-        {
-            currentElementalAttack = elementalAttacks[index];
-        }
-        else
-        {
-            Debug.Log("Elemental can't be activated");
-        }
     }
-
-    public void SetNormalElemental()
-    {
-        SetCurrentElemental(0);
-    }
-
-    public void SetFireElemental()
-    {
-        SetCurrentElemental(1);
-    }
-
-    public void SetWaterElemental()
-    {
-        SetCurrentElemental(2);
-    }
-    public void SetAirElemental()
-    {
-        SetCurrentElemental(3);
-    }
-
-    public void SetEarthrElemental()
-    {
-        SetCurrentElemental(4);
-    }
-
 
     public void MovePlayerToRoom(Transform player, Transform spawnPoint)
     {
@@ -83,12 +41,6 @@ public class GameManager : MonoBehaviour
         {
             attack.enemiesDefeated++;
         }
-    }
-
-    private void Update()
-    {
-        elementalAttackName = currentElementalAttack.name;
-        defeteatedEnemies = currentElementalAttack.enemiesDefeated;
     }
     void InitializeElementalAttacks()
     {
@@ -169,8 +121,6 @@ public class GameManager : MonoBehaviour
         elementalAttacks.Add(waterAttack);
         elementalAttacks.Add(airAtttack);
         elementalAttacks.Add(earthAtttack);
-        SetCurrentElemental(0);
-        Debug.Log(currentElementalAttack.name);
     }
 
 }

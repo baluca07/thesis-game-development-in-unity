@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance;
 
     public int maxHealth = 100;
     public int currentHealth;
+    public ElementalAttack currentElementalAttack;
+    public int currentElementalAttackIndex;
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
 
-    public UIManager uimanager;
+    }
 
     private void Start()
     {
         currentHealth = maxHealth;
-        uimanager = GameObject.FindAnyObjectByType<UIManager>();
+        SetCurrentElemental(0);
+        UIManager.Instance.UpdatePlayerHealth();
+        UIManager.Instance.UpdateElementalType();
     }
 
     public void TakeDamage(Damage damage)
@@ -24,7 +35,7 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log($"Player took {damageAmoun} damage! Current Health: {currentHealth}");
 
-        uimanager.UpdatePlayerHealth(currentHealth,maxHealth);
+        UIManager.Instance.UpdatePlayerHealth();
 
         if (currentHealth <= 0)
         {
@@ -37,5 +48,11 @@ public class PlayerStats : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }*/
+
+    public void SetCurrentElemental(int index)
+    {
+        currentElementalAttackIndex = index;
+        currentElementalAttack = (GameManager.Instance.elementalAttacks[index]);
+    }
 }
 
