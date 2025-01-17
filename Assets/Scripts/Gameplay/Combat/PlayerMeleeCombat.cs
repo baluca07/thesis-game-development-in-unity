@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMeleeCombat : MonoBehaviour
 {
+    public static PlayerMeleeCombat Instance;
+
     [SerializeField] CircleCollider2D meleeCollider;
     private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
 
-    [SerializeField] Animator animatior;
+    [SerializeField] Animator animator;
 
     public float damageSpeed = 0.4f;
 
@@ -16,31 +19,25 @@ public class PlayerMeleeCombat : MonoBehaviour
 
     public int maxAttackCounter = 3;
     private int currentAttackCounter = 0;
-    private Coroutine attackResetCoroutine;
+    public Coroutine attackResetCoroutine;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+    }
 
     private void Start()
     {
         meleeCollider = GetComponent<CircleCollider2D>();
         meleeCollider.enabled = false;
-        animatior = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            StartCoroutine(Attack());
-
-            // Reset the attack counter if needed
-            if (attackResetCoroutine != null)
-            {
-                StopCoroutine(attackResetCoroutine);
-            }
-            attackResetCoroutine = StartCoroutine(ResetAttackCounterAfterDelay());
-        }
-    }
-
-    private IEnumerator Attack()
+    public IEnumerator Attack()
     {
         float moveDistance = 0.2f;
         transform.Translate(Vector3.right * moveDistance);
@@ -59,23 +56,23 @@ public class PlayerMeleeCombat : MonoBehaviour
         if (currentAttackCounter < maxAttackCounter)
         {
             currentAttackCounter++;
-            animatior.SetInteger("AttackCounter", currentAttackCounter);
+            animator.SetInteger("AttackCounter", currentAttackCounter);
         }
         else
         {
             currentAttackCounter = 1;
-            animatior.SetInteger("AttackCounter", currentAttackCounter);
+            animator.SetInteger("AttackCounter", currentAttackCounter);
         }
     }
 
-    private IEnumerator ResetAttackCounterAfterDelay()
+    public IEnumerator ResetAttackCounterAfterDelay()
     {
         yield return new WaitForSeconds(damageSpeed);
 
         if (currentAttackCounter > 0)
         {
             currentAttackCounter = 0;
-            animatior.SetInteger("AttackCounter", currentAttackCounter);
+            animator.SetInteger("AttackCounter", currentAttackCounter);
             Debug.Log("Attack counter reset due to inactivity.");
         }
     }
