@@ -1,33 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] Transform player;
     private EnemyStats enemy;
 
-    private EnemyAttack enemyAttack;
-
-    private float lastAttackTime = 0f;
-    
     private bool isAttacking = false;
+    private bool canDash = true;
 
+    [SerializeField] float attackRange = 1.2f; // Támadási távolság
+    [SerializeField] float dashInterval = 2f; // Dash-ek közötti idõköz
+    [SerializeField] float dashDuration = 0.5f; // A dash idõtartama
+    [SerializeField] float dashSpeed = 5f; // Dash sebesség
+
+    private Animator anim;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         enemy = GetComponent<EnemyStats>();
-        enemyAttack = GetComponent<EnemyAttack>();
+        anim = GetComponent<Animator>();
     }
 
     private void ChasePlayer()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > enemy.attackRange)
+        if (Vector3.Distance(transform.position, player.position) > attackRange && !isAttacking)
         {
-            Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-            transform.position += directionToPlayer * enemy.speed * Time.deltaTime;
+            if (canDash)
+            {
+                Vector3 directionToPlayer = (player.position - transform.position).normalized;
+                Debug.Log("Dash started");
+                StartCoroutine(Dash(directionToPlayer));
+                anim.SetTrigger("Jump");
+            }
         }
         else
         {
@@ -35,35 +42,32 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private IEnumerator Dash(Vector3 direction)
+    {
+        canDash = false;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < dashDuration && Vector3.Distance(transform.position, player.position) > attackRange)
+        {
+            transform.position += direction * dashSpeed * Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Dash ended");
+        yield return new WaitForSeconds(dashInterval);
+        canDash = true;
+    }
+
     private void Update()
     {
-
         if (player != null)
         {
             TurnTowardsPlayer();
-            if (!isAttacking)
-            {
-                ChasePlayer();
-            }
-
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceToPlayer <= enemy.attackRange)
-            {
-                if (Time.time >= lastAttackTime + enemy.attackCoolDown)
-                {
-                    if (enemyAttack != null)
-                    {
-                        enemyAttack.Attack();
-                        lastAttackTime = Time.time;
-                    }
-                    else
-                    {
-                        Debug.LogError("No attack component available to perform the attack!");
-                    }
-                }
-            }
+            ChasePlayer();
         }
     }
+
     private void TurnTowardsPlayer()
     {
         if (player.transform.position.x > transform.position.x)
@@ -75,13 +79,4 @@ public class EnemyAI : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
-
-    private void FixedUpdate()
-    {
-        if (Vector3.Distance(transform.position, player.transform.position) > enemy.attackRange)
-        {
-            isAttacking = false;
-        }
-    }
 }
-

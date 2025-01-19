@@ -9,11 +9,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
+        player = PlayerStats.Instance.transform;
         InitializeCameraBounds();
     }
 
