@@ -1,59 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class MeleeEnemyAttack : EnemyAttack 
+public class MeleeEnemyAttack : EnemyAttack
 {
     private EnemyStats stats;
     private Damage damage;
 
-    [SerializeField] GameObject player;
+    private Transform player;
+    [SerializeField] float attackMoveDistance = 1f;
+    [SerializeField] float attackMoveDuration = 1f;
+
+    private CircleCollider2D circleCollider;
+
+    private bool isAttacking = false;
+
     private void Start()
     {
         stats = GetComponent<EnemyStats>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = PlayerStats.Instance.transform;
         damage = new Damage(stats.elementalDamageType, stats.baseDamage);
+        circleCollider = GetComponent<CircleCollider2D>();
     }
-
-   public override void Attack()
-    {
-        Debug.Log($"{stats.enemyName} performs a melee attack on {player.name} causing {stats.baseDamage} damage!");
-        player.GetComponent<PlayerStats>().TakeDamage(damage);
-
-        //TODO - Start attack, but only damage, when player close enough when attack ends
-    }
-
     private void Update()
     {
-        DrawArc(transform.position, stats.attackRange);
+        circleCollider.enabled = isAttacking;
     }
 
-    private void DrawArc(Vector3 center, float radius)
+    public override void Attack()
     {
-        float angleStep = 360f / 36; // Szög minden egyes vonal között
-        float currentAngle = 0f;
-
-        for (int i = 0; i < 36; i++)
+        if (!isAttacking)
         {
-            // Jelenlegi pont kiszámítása
-            Vector3 startPoint = center + new Vector3(
-                Mathf.Cos(currentAngle * Mathf.Deg2Rad) * radius,
-                Mathf.Sin(currentAngle * Mathf.Deg2Rad) * radius,
-                0f
-            );
+            StartCoroutine(PerformAttack());
+        }
+    }
 
-            // Következõ pont kiszámítása
-            currentAngle += angleStep;
-            Vector3 endPoint = center + new Vector3(
-                Mathf.Cos(currentAngle * Mathf.Deg2Rad) * radius,
-                Mathf.Sin(currentAngle * Mathf.Deg2Rad) * radius,
-                0f
-            );
+    private IEnumerator PerformAttack()
+    {
+        isAttacking = true;
+        EnemyAI.TurnTowardsPlayer(this.gameObject);
 
-            // Vonal rajzolása
-            Debug.DrawLine(startPoint, endPoint, Color.blue);
+        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < attackMoveDuration)
+        {
+            transform.position += directionToPlayer * (attackMoveDistance / attackMoveDuration) * Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isAttacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log($"Object triggered: {collision.name}");
+
+        if (collision.CompareTag("Player"))
+        {
+            PlayerStats.Instance.TakeDamage(damage);
         }
     }
 }
-
-    

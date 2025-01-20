@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    private Transform player;
     private EnemyStats enemy;
 
-    private bool isAttacking = false;
+    private bool canAttack = false;
     private bool canDash = true;
 
-    [SerializeField] float attackRange = 1.2f; // Támadási távolság
-    [SerializeField] float dashInterval = 2f; // Dash-ek közötti idõköz
-    [SerializeField] float dashDuration = 0.5f; // A dash idõtartama
-    [SerializeField] float dashSpeed = 5f; // Dash sebesség
+    [SerializeField] float attackRange = 1.2f;
+    [SerializeField] float dashInterval = 2f;
+    [SerializeField] float dashDuration = 1f;
+    [SerializeField] float dashSpeed = 1f;
+
+    private MeleeEnemyAttack enemyAttack;
 
     private Animator anim;
 
@@ -22,23 +25,22 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         enemy = GetComponent<EnemyStats>();
         anim = GetComponent<Animator>();
+        enemyAttack = GetComponent<MeleeEnemyAttack>();
     }
 
     private void ChasePlayer()
     {
-        if (Vector3.Distance(transform.position, player.position) > attackRange && !isAttacking)
+        if (!PlayerInAttackRange() && canDash)
         {
-            if (canDash)
-            {
-                Vector3 directionToPlayer = (player.position - transform.position).normalized;
-                Debug.Log("Dash started");
-                StartCoroutine(Dash(directionToPlayer));
-                anim.SetTrigger("Jump");
-            }
+            anim.SetTrigger("Jump");
+            TurnTowardsPlayer(this.gameObject);
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            Debug.Log("Dash started");
+            StartCoroutine(Dash(directionToPlayer));
         }
-        else
+        else if (PlayerInAttackRange())
         {
-            isAttacking = true;
+            anim.SetTrigger("Attack");
         }
     }
 
@@ -63,20 +65,24 @@ public class EnemyAI : MonoBehaviour
     {
         if (player != null)
         {
-            TurnTowardsPlayer();
             ChasePlayer();
         }
     }
 
-    private void TurnTowardsPlayer()
+    private bool PlayerInAttackRange()
     {
-        if (player.transform.position.x > transform.position.x)
+        return Vector3.Distance(transform.position, player.position) <= attackRange;
+    }
+
+    public static void TurnTowardsPlayer(GameObject obj)
+    {
+        if (PlayerStats.Instance.transform.position.x > obj.transform.position.x)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            obj.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }

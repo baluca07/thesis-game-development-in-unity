@@ -6,7 +6,7 @@ public class EnemyStats : MonoBehaviour
     [Header("Basic Stats")]
     public string enemyName;
     public int health;
-    public float speed;
+    //public float speed;
     public int baseDamage;
     //public float attackTime;
     public float attackCoolDown;
