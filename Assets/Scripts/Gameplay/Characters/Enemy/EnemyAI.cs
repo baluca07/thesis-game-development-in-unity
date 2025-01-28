@@ -8,8 +8,10 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
     private EnemyStats enemy;
 
-    private bool canAttack = false;
+    private bool canAttack = true;
     private bool canDash = true;
+
+    private bool takingDamage = false;
 
     [SerializeField] float attackRange = 1.2f;
     [SerializeField] float dashInterval = 2f;
@@ -20,6 +22,8 @@ public class EnemyAI : MonoBehaviour
 
     private Animator anim;
 
+    [SerializeField] ParticleSystem particle; 
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -27,29 +31,68 @@ public class EnemyAI : MonoBehaviour
         anim = GetComponent<Animator>();
         enemyAttack = GetComponent<MeleeEnemyAttack>();
     }
-
-    private void ChasePlayer()
+    private void Update()
     {
-        if (!PlayerInAttackRange() && canDash)
+        if (player != null)
         {
-            anim.SetTrigger("Jump");
-            TurnTowardsPlayer(this.gameObject);
-            Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            Debug.Log("Dash started");
-            StartCoroutine(Dash(directionToPlayer));
+            if (!PlayerInAttackRange() && canDash && !enemyAttack.isAttacking && !takingDamage)
+            {
+                anim.SetTrigger("Jump");
+            }
+            else if(canAttack && !takingDamage)
+            {
+                anim.SetTrigger("Attack");
+            }
         }
-        else if (PlayerInAttackRange())
+    }
+    private bool PlayerInAttackRange()
+    {
+        return Vector3.Distance(transform.position, player.position) <= attackRange;
+    }
+
+    public void PlayParticles()
+    {
+        particle.Play();
+    }
+
+    //Used in animaton, started by animation event.
+
+    private IEnumerator PushBackTimer()
+    {
+        canDash = false;
+        canAttack = false;
+        takingDamage = true;
+        float elapsedTime = 0f;
+
+        Vector3 direction = (transform.position - PlayerStats.Instance.transform.position).normalized;
+
+        while (elapsedTime < 1)
         {
-            anim.SetTrigger("Attack");
+            transform.position += direction * 2.5f * Time.deltaTime;
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+        Debug.Log("Pushed back");
+        canDash = true;
+        if (PlayerInAttackRange())
+        {
+            canAttack = true;
+        }
+        takingDamage = false;
+    }
+
+    public void PushBack()
+    {
+        StartCoroutine(PushBackTimer());
     }
 
     private IEnumerator Dash(Vector3 direction)
     {
+        canAttack=false;
         canDash = false;
         float elapsedTime = 0f;
 
-        while (elapsedTime < dashDuration && Vector3.Distance(transform.position, player.position) > attackRange)
+        while (elapsedTime < dashDuration && Vector3.Distance(transform.position, player.position) > attackRange && !takingDamage)
         {
             transform.position += direction * dashSpeed * Time.deltaTime;
             elapsedTime += Time.deltaTime;
@@ -59,30 +102,28 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Dash ended");
         yield return new WaitForSeconds(dashInterval);
         canDash = true;
-    }
-
-    private void Update()
-    {
-        if (player != null)
+        if (PlayerInAttackRange())
         {
-            ChasePlayer();
+            canAttack = true;
         }
     }
 
-    private bool PlayerInAttackRange()
+
+    public void MovePlayer()
     {
-        return Vector3.Distance(transform.position, player.position) <= attackRange;
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        StartCoroutine(Dash(directionToPlayer));
     }
 
-    public static void TurnTowardsPlayer(GameObject obj)
+    public void TurnTowardsPlayer()
     {
-        if (PlayerStats.Instance.transform.position.x > obj.transform.position.x)
+        if (PlayerStats.Instance.transform.position.x > transform.position.x)
         {
-            obj.transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            obj.transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }

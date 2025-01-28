@@ -6,6 +6,7 @@ using UnityEngine;
 public class MeleeEnemyAttack : EnemyAttack
 {
     private EnemyStats stats;
+    private EnemyAI ai;
     private Damage damage;
 
     private Transform player;
@@ -14,11 +15,12 @@ public class MeleeEnemyAttack : EnemyAttack
 
     private CircleCollider2D circleCollider;
 
-    private bool isAttacking = false;
+    public bool isAttacking = false;
 
     private void Start()
     {
         stats = GetComponent<EnemyStats>();
+        ai = GetComponent<EnemyAI>();
         player = PlayerStats.Instance.transform;
         damage = new Damage(stats.elementalDamageType, stats.baseDamage);
         circleCollider = GetComponent<CircleCollider2D>();
@@ -39,7 +41,6 @@ public class MeleeEnemyAttack : EnemyAttack
     private IEnumerator PerformAttack()
     {
         isAttacking = true;
-        EnemyAI.TurnTowardsPlayer(this.gameObject);
 
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
 
@@ -51,6 +52,7 @@ public class MeleeEnemyAttack : EnemyAttack
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        yield return new WaitForSeconds(1.8f);
 
         isAttacking = false;
     }
@@ -61,6 +63,7 @@ public class MeleeEnemyAttack : EnemyAttack
 
         if (collision.CompareTag("Player"))
         {
+            ai.PlayParticles();
             PlayerStats.Instance.TakeDamage(damage);
         }
     }

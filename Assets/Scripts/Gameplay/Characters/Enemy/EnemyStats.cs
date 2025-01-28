@@ -10,7 +10,6 @@ public class EnemyStats : MonoBehaviour
     public int baseDamage;
     //public float attackTime;
     public float attackCoolDown;
-    public float attackRange;
     //public Range range;
 
     [Header("Damage Type")]

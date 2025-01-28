@@ -71,8 +71,7 @@ public class PlayerMeleeCombat : MonoBehaviour
 
         if (currentAttackCounter > 0)
         {
-            currentAttackCounter = 0;
-            animator.SetInteger("AttackCounter", currentAttackCounter);
+            animator.SetInteger("AttackCounter", 0);
             Debug.Log("Attack counter reset due to inactivity.");
         }
     }

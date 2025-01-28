@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public InputActionReference move;
 
     private Vector2 moveDirection;
-    private bool isAttacking; // Támadás állapotát jelzõ változó
+    private bool isAttacking = false; // Támadás állapotát jelzõ változó
 
     private void Awake()
     {
@@ -33,7 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Csak akkor frissítjük a mozgást, ha nincs támadás
+        if (!isAttacking) // Mozgás csak akkor frissül, ha nincs támadás
+        {
             moveDirection = move.action.ReadValue<Vector2>();
 
             if (moveDirection != Vector2.zero)
@@ -53,54 +55,18 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
+        }
     }
 
     private void FixedUpdate()
     {
-        // Mozgás csak akkor történik, ha nincs támadás
-        if (!isAttacking)
+        if (!isAttacking) // Csak akkor történik mozgás, ha nincs támadás
         {
             rigidbodyPlayer.velocity = moveDirection.normalized * moveSpeed;
         }
         else
         {
-            rigidbodyPlayer.velocity = Vector2.zero; // Támadás alatt azonnal megállítjuk a mozgást
-        }
-    }
-
-    public void OnSwitchToPreviousElement(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            int index = PlayerStats.Instance.currentElementalAttackIndex;
-            if (GameManager.Instance.elementalAttacks[index].CanActivateElemental())
-            {
-                index--;
-                if (index < 0)
-                {
-                    index = 4;
-                }
-                PlayerStats.Instance.SetCurrentElemental(index);
-                UIManager.Instance.UpdateElementalType();
-            }
-        }
-    }
-
-    public void OnSwitchToNextElement(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            int index = PlayerStats.Instance.currentElementalAttackIndex;
-            if (GameManager.Instance.elementalAttacks[index].CanActivateElemental())
-            {
-                index++;
-                if (index >= 5)
-                {
-                    index = 0;
-                }
-                PlayerStats.Instance.SetCurrentElemental(index);
-                UIManager.Instance.UpdateElementalType();
-            }
+            rigidbodyPlayer.velocity = Vector2.zero; // Támadás alatt megállítjuk a mozgást
         }
     }
 
@@ -108,24 +74,20 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            isAttacking = true; // Támadás elkezdésekor megszakítjuk a mozgást
-
-            StartCoroutine(PlayerMeleeCombat.Instance.Attack());
-
-            if (PlayerMeleeCombat.Instance.attackResetCoroutine != null)
-            {
-                StopCoroutine(PlayerMeleeCombat.Instance.attackResetCoroutine);
-            }
-            PlayerMeleeCombat.Instance.attackResetCoroutine = StartCoroutine(PlayerMeleeCombat.Instance.ResetAttackCounterAfterDelay());
-
-            // Támadás végén visszaállítjuk a mozgást
-            StartCoroutine(ResetAttackStateAfterDelay(PlayerMeleeCombat.Instance.damageSpeed));
+            animator.SetTrigger("Attack"); // Támadás animáció indítása
         }
     }
 
-    private IEnumerator ResetAttackStateAfterDelay(float delay)
+    /// <summary>
+    /// Animációs események által meghívott metódusok
+    /// </summary>
+    public void DisableMovement() // Támadás elején mozgás letiltása
     {
-        yield return new WaitForSeconds(delay);
-        isAttacking = false; // Támadás végeztével engedélyezzük a mozgást
+        isAttacking = true;
+    }
+
+    public void EnableMovement() // Támadás végén mozgás engedélyezése
+    {
+        isAttacking = false;
     }
 }
