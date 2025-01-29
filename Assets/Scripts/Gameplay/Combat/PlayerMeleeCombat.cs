@@ -1,102 +1,84 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMeleeCombat : MonoBehaviour
 {
     public static PlayerMeleeCombat Instance;
 
-    [SerializeField] CircleCollider2D meleeCollider;
-    private HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
+    [Header("Combat Settings")]
+    [SerializeField] private float comboWindow = 0.5f;
+    [SerializeField] private float attackDuration = 0.4f;
+    [SerializeField] private float lungeDistance = 0.2f;
 
-    [SerializeField] Animator animator;
+    [Header("References")]
+    [SerializeField] private CircleCollider2D meleeCollider;
+    [SerializeField] private Animator animator;
 
-    public float damageSpeed = 0.4f;
+    private readonly HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
+    private Coroutine comboResetRoutine;
+    private int currentCombo;
+    private bool isAttacking;
 
-    protected bool isOnCooldown = false;
+    private void Awake() => Instance = this;
 
-    public int maxAttackCounter = 3;
-    private int currentAttackCounter = 0;
-    public Coroutine attackResetCoroutine;
-
-    private void Awake()
+    public void AttemptAttack()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (isAttacking) return;
 
+        StartCoroutine(AttackRoutine());
+        ResetComboTimer();
     }
 
-    private void Start()
+    private IEnumerator AttackRoutine()
     {
-        meleeCollider = GetComponent<CircleCollider2D>();
-        meleeCollider.enabled = false;
-        animator = GetComponent<Animator>();
-    }
+        isAttacking = true;
+        PlayerController.Instance.SetMovement(false);
 
-    public IEnumerator Attack()
-    {
-        float moveDistance = 0.2f;
-        transform.Translate(Vector3.right * moveDistance);
+        // Update combo state (1-2-3 cycle)
+        currentCombo = currentCombo < 3 ? currentCombo + 1 : 1;
+        animator.SetInteger("AttackCounter", currentCombo);
+
+        // Apply lunge effect using position translation
+        ApplyAttackLunge();
 
         meleeCollider.enabled = true;
-        IncreaseAttackCounter();
-
-        yield return new WaitForSeconds(damageSpeed);
-
+        yield return new WaitForSeconds(attackDuration);
         meleeCollider.enabled = false;
+
         hitEnemies.Clear();
+        isAttacking = false;
     }
 
-    private void IncreaseAttackCounter()
+    private void ResetComboTimer()
     {
-        if (currentAttackCounter < maxAttackCounter)
-        {
-            currentAttackCounter++;
-            animator.SetInteger("AttackCounter", currentAttackCounter);
-        }
-        else
-        {
-            currentAttackCounter = 1;
-            animator.SetInteger("AttackCounter", currentAttackCounter);
-        }
+        if (comboResetRoutine != null) StopCoroutine(comboResetRoutine);
+        comboResetRoutine = StartCoroutine(ComboResetCountdown());
     }
 
-    public IEnumerator ResetAttackCounterAfterDelay()
+    private IEnumerator ComboResetCountdown()
     {
-        yield return new WaitForSeconds(damageSpeed);
-
-        if (currentAttackCounter > 0)
-        {
-            animator.SetInteger("AttackCounter", 0);
-            Debug.Log("Attack counter reset due to inactivity.");
-        }
+        yield return new WaitForSeconds(comboWindow);
+        currentCombo = 0;
+        animator.SetInteger("AttackCounter", 0);
+        PlayerController.Instance.SetMovement(true);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void ApplyAttackLunge()
     {
-        Debug.Log($"Object triggered: {collision.name}");
+        // Use direct position translation instead of physics forces
+        Vector2 lungeDirection = transform.right * lungeDistance;
+        transform.Translate(lungeDirection, Space.World);
+    }
 
-        if (collision.CompareTag("Enemy"))
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Enemy")) return;
+
+        if (other.TryGetComponent<EnemyStats>(out var enemy) && !hitEnemies.Contains(enemy))
         {
-            EnemyStats enemy = collision.GetComponent<EnemyStats>();
-            Debug.Log($"Enemy collided: {enemy.enemyName}");
-            if (!hitEnemies.Contains(enemy))
-            {
-                hitEnemies.Add(enemy);
-                Debug.Log($"Enemy added to hitEnemies: {enemy.enemyName}");
-                enemy.TakeDamage(PlayerStats.Instance.currentElementalAttack.GetDamage());
-                Debug.Log($"Enemy damaged: {enemy.enemyName}");
-            }
-            else
-            {
-                Debug.Log($"Enemy is already hit by player: {enemy.enemyName}");
-            }
-
-            Debug.Log(hitEnemies.Count);
+            hitEnemies.Add(enemy);
+            enemy.TakeDamage(PlayerStats.Instance.currentElementalAttack.GetDamage());
         }
     }
 }

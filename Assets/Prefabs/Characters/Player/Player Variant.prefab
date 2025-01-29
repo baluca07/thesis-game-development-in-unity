@@ -116,10 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed563e3a72a2df439b89e95edbb999e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboWindow: 0.5
+  attackDuration: 0.4
+  lungeDistance: 0.2
   meleeCollider: {fileID: 0}
-  rigidbodyPlayer: {fileID: 0}
-  animatior: {fileID: 0}
-  baseDamage: 1
-  damageSpeed: 1
-  damageCategory: 0
-  elementalDamageType: 0
+  animator: {fileID: 0}

@@ -763,6 +763,16 @@ PolygonCollider2D:
       - {x: 0.13425538, y: -0.22288245}
       - {x: 0.10194157, y: 0.17529817}
   m_UseDelaunayMesh: 0
+--- !u!58 &2002422040 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1329127535731219398, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+  m_PrefabInstance: {fileID: 3205664995778245827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2002422045 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2193988498318832367, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+  m_PrefabInstance: {fileID: 3205664995778245827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2124840489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -847,6 +857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8975506632089841278, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -872,10 +886,34 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 683455218286504533, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: -5001424965390360775, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
+    - target: {fileID: 683455218286504533, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2002422045}
+    - target: {fileID: 683455218286504533, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 8463996862049910658, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
+    - target: {fileID: 723019765861722582, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2002422045}
+    - target: {fileID: 723019765861722582, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+      propertyPath: comboWindow
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 723019765861722582, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
       propertyPath: damageSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 723019765861722582, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
+      propertyPath: meleeCollider
+      value: 
+      objectReference: {fileID: 2002422040}
     - target: {fileID: 1106186153549887801, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
       propertyPath: maxHealth
       value: 110

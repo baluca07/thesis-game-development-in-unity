@@ -1,93 +1,101 @@
-using System.Collections;
-using System.Collections.Generic;
+// PlayerController.cs
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Components")]
-    [SerializeField] private Rigidbody2D rigidbodyPlayer;
+    public static PlayerController Instance;
+
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float movementLerp = 0.1f;
+
+    [Header("References")]
+    [SerializeField] private InputActionReference movement;
+    [SerializeField] private InputActionReference attack;
     [SerializeField] private Animator animator;
 
-    [Header("Movement")]
-    public float moveSpeed = 5f;
-    public InputActionReference move;
-
-    private Vector2 moveDirection;
-    private bool isAttacking = false; // Támadás állapotát jelzõ változó
+    private Rigidbody2D rb;
+    private Vector2 currentVelocity;
+    private bool canMove = true;
 
     private void Awake()
     {
-        rigidbodyPlayer = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-    }
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-    private void OnEnable()
-    {
-        move.action.Enable();
-    }
+        rb = GetComponent<Rigidbody2D>();
 
-    private void OnDisable()
-    {
-        move.action.Disable();
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (!isAttacking) // Mozgás csak akkor frissül, ha nincs támadás
+        if (canMove)
         {
-            moveDirection = move.action.ReadValue<Vector2>();
-
-            if (moveDirection != Vector2.zero)
-            {
-                animator.SetBool("Run", true);
-            }
-            else
-            {
-                animator.SetBool("Run", false);
-            }
-
-            if (moveDirection.x > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if (moveDirection.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+            UpdateAnimations();
+            UpdateRotation();
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() => Move();
+
+    private void OnEnable()
     {
-        if (!isAttacking) // Csak akkor történik mozgás, ha nincs támadás
-        {
-            rigidbodyPlayer.velocity = moveDirection.normalized * moveSpeed;
-        }
-        else
-        {
-            rigidbodyPlayer.velocity = Vector2.zero; // Támadás alatt megállítjuk a mozgást
+        //if (attack?.action != null)
+        //    attack.action.performed += OnAttack;
+        movement.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        //if (attack?.action != null)
+        //    attack.action.performed -= OnAttack;
+        movement.action.Disable();
+    }
+
+    public void SetMovement(bool state) => canMove = state;
+
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        if (PlayerMeleeCombat.Instance != null)
+            {
+            rb.velocity = Vector2.zero;
+            PlayerMeleeCombat.Instance.AttemptAttack();
         }
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
+    private void Move()
     {
-        if (context.performed)
-        {
-            animator.SetTrigger("Attack"); // Támadás animáció indítása
-        }
+        if (!canMove) return;
+
+        Vector2 input = movement.action.ReadValue<Vector2>();
+        Vector2 targetVelocity = input.normalized * moveSpeed;
+        rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, movementLerp);
     }
 
-    /// <summary>
-    /// Animációs események által meghívott metódusok
-    /// </summary>
-    public void DisableMovement() // Támadás elején mozgás letiltása
+    private void UpdateRotation()
     {
-        isAttacking = true;
+        if (!canMove) return;
+
+        Vector2 input = movement.action.ReadValue<Vector2>();
+        if (input.x != 0)
+            transform.rotation = Quaternion.Euler(0, input.x > 0 ? 0 : 180, 0);
     }
 
-    public void EnableMovement() // Támadás végén mozgás engedélyezése
+    private void UpdateAnimations()
     {
-        isAttacking = false;
+        bool isMoving = canMove && movement?.action != null &&
+                      movement.action.ReadValue<Vector2>().sqrMagnitude > 0.1f;
+        animator.SetBool("Run", isMoving);
     }
 }
