@@ -53,6 +53,8 @@ public class PlayerStats : MonoBehaviour
     {
         currentElementalAttackIndex = index;
         currentElementalAttack = (GameManager.Instance.elementalAttacks[index]);
+        UIManager.Instance.UpdateElementalType();
     }
+    
 }
 

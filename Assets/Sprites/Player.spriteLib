@@ -142,6 +142,32 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -23508893, guid: 52b533cdf638ceb469e0b980c16fba0e, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 4
+  - m_Name: projectiles
+    m_Hash: 674310572
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: fire
+      m_Hash: 417204687
+      m_Sprite: {fileID: -1902103354, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1902103354, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+    - m_Name: air
+      m_Hash: 1012971771
+      m_Sprite: {fileID: 1457201237, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1457201237, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+    - m_Name: earth
+      m_Hash: 187004640
+      m_Sprite: {fileID: -855170804, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -855170804, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+    - m_Name: water
+      m_Hash: 993203418
+      m_Sprite: {fileID: -799598830, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -799598830, guid: 40aba2428bf52af4793807c3fa9d4a89, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638724489596017297
+  m_ModificationHash: 638739371889886654
   m_Version: 1

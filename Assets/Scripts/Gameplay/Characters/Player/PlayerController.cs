@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private InputActionReference movement;
     [SerializeField] private InputActionReference attack;
+    [SerializeField] private InputActionReference setElementalForward;
+    [SerializeField] private InputActionReference setElementalBackward;
     [SerializeField] private Animator animator;
 
     private Rigidbody2D rb;
@@ -51,29 +53,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        //if (attack?.action != null)
-        //    attack.action.performed += OnAttack;
         movement.action.Enable();
+
     }
 
     private void OnDisable()
     {
-        //if (attack?.action != null)
-        //    attack.action.performed -= OnAttack;
         movement.action.Disable();
     }
 
+    //Move player
     public void SetMovement(bool state) => canMove = state;
-
-    private void OnAttack(InputAction.CallbackContext ctx)
-    {
-        if (PlayerMeleeCombat.Instance != null)
-            {
-            rb.velocity = Vector2.zero;
-            PlayerMeleeCombat.Instance.AttemptAttack();
-        }
-    }
-
     private void Move()
     {
         if (!canMove) return;
@@ -98,4 +88,53 @@ public class PlayerController : MonoBehaviour
                       movement.action.ReadValue<Vector2>().sqrMagnitude > 0.1f;
         animator.SetBool("Run", isMoving);
     }
+
+    // Set Elemental Attacks
+    private void CycleElementalAttackForward(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            int index = PlayerStats.Instance.currentElementalAttackIndex;
+            PlayerStats.Instance.SetCurrentElemental((index + 1) % 4);
+        }
+    }
+
+    private void CycleElementalAttackBackward(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            int index = PlayerStats.Instance.currentElementalAttackIndex;
+            PlayerStats.Instance.SetCurrentElemental((index - 1 + 4) % 4);
+        }
+    }
+
+    //Melee attack
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        if (PlayerMeleeCombat.Instance != null)
+        {
+            rb.velocity = Vector2.zero;
+            PlayerMeleeCombat.Instance.AttemptAttack();
+        }
+    }
+
+    // Ranged Attack
+    public void OnRangedAttack(InputAction.CallbackContext ctx)
+    {
+        if (PlayerRangedCombat.Instance != null)
+        {
+            if (ctx.started)
+            {
+                Debug.Log("Aim Started");
+                rb.velocity = Vector2.zero;
+                PlayerRangedCombat.Instance.StartAim();
+            }
+            if (ctx.canceled)
+            {
+                Debug.Log("Aim Stopped and attack");
+                PlayerRangedCombat.Instance.StopAimAndAttack();
+            }
+        }
+    }
+
 }

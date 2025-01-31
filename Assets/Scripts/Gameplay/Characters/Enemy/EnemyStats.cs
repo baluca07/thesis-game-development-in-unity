@@ -6,20 +6,20 @@ public class EnemyStats : MonoBehaviour
     [Header("Basic Stats")]
     public string enemyName;
     public int health;
-    //public float speed;
     public int baseDamage;
-    //public float attackTime;
-    public float attackCoolDown;
-    //public Range range;
+    public float attackRange = 1.2f;
 
     [Header("Damage Type")]
     public ElementalDamageType elementalDamageType;
 
     public int currentHealth;
 
+    private Animator anim;
+
     void Start()
     {
         currentHealth = health;
+        anim = GetComponent<Animator>();
     }
     public void TakeDamage(Damage damage)
     {
@@ -28,6 +28,7 @@ public class EnemyStats : MonoBehaviour
         currentHealth -= damageAmoun;
 
         Debug.Log($"{enemyName} took {damageAmoun} damage! Current Health: {currentHealth}");
+        anim.SetTrigger("Damage");
 
         if (currentHealth <= 0)
         {

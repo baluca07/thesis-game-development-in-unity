@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public List<ElementalAttack> elementalAttacks = new List<ElementalAttack>();
 
+    public ElementalAttack normalAttack = new ElementalAttack();
+
     public static GameManager Instance;
 
     [SerializeField] string elementalAttackName;
@@ -19,7 +21,8 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
         InitializeElementalAttacks();
-
+        
+        
     }
 
     public void MovePlayerToRoom(Transform player, Transform spawnPoint)
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
     }
     void InitializeElementalAttacks()
     {
-        var normalAttack = new ElementalAttack
+        normalAttack = new ElementalAttack
         {
             name = "Normal",
             type = ElementalDamageType.Normal,
@@ -116,11 +119,12 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
-        elementalAttacks.Add(normalAttack);
+        //elementalAttacks.Add(normalAttack);
         elementalAttacks.Add(fireAttack);
         elementalAttacks.Add(waterAttack);
         elementalAttacks.Add(airAtttack);
         elementalAttacks.Add(earthAtttack);
+        Debug.Log($"Elemental Attacks are initialized. Count of elemental attacks: {elementalAttacks.Count}");
     }
 
 }

@@ -13,7 +13,7 @@ public class MeleeEnemyAttack : EnemyAttack
     [SerializeField] float attackMoveDistance = 1f;
     [SerializeField] float attackMoveDuration = 1f;
 
-    private CircleCollider2D circleCollider;
+    private CircleCollider2D attackCollider;
 
     public bool isAttacking = false;
 
@@ -23,19 +23,13 @@ public class MeleeEnemyAttack : EnemyAttack
         ai = GetComponent<EnemyAI>();
         player = PlayerStats.Instance.transform;
         damage = new Damage(stats.elementalDamageType, stats.baseDamage);
-        circleCollider = GetComponent<CircleCollider2D>();
-    }
-    private void Update()
-    {
-        circleCollider.enabled = isAttacking;
+        attackCollider = GetComponent<CircleCollider2D>();
     }
 
     public override void Attack()
     {
-        if (!isAttacking)
-        {
-            StartCoroutine(PerformAttack());
-        }
+        if (isAttacking) { return; }
+        StartCoroutine(PerformAttack());
     }
 
     private IEnumerator PerformAttack()
@@ -59,12 +53,16 @@ public class MeleeEnemyAttack : EnemyAttack
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"Object triggered: {collision.name}");
+        //Debug.Log($"Object triggered: {collision.name}");
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && collision is PolygonCollider2D)
         {
             ai.PlayParticles();
             PlayerStats.Instance.TakeDamage(damage);
         }
     }
+
+    public void EnableAttackCollider() { attackCollider.enabled = true; }
+    public void DisableAttackCollider() { attackCollider.enabled = false; }
+
 }
