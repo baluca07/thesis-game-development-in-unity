@@ -78,6 +78,7 @@ public class PlayerRangedCombat : MonoBehaviour
         anim.SetTrigger("Shoot");
         ShootProjectile();
         StartCoroutine(CooldownTimer());
+        UIManager.Instance.StartCountRangedCooldown(attackCoolDown);
     }
 
     private void Aim()
