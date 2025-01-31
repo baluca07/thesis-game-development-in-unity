@@ -37,6 +37,7 @@ public class MeleeEnemyAttack : EnemyAttack
         isAttacking = true;
 
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        directionToPlayer.z = 0f;
 
         float elapsedTime = 0f;
 
