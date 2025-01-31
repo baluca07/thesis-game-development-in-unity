@@ -28,8 +28,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4889180522786801646}
   - {fileID: 4350117806972695003}
+  - {fileID: 4889180522786801646}
   m_Father: {fileID: 8325949046157793005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 8926151246314478948}
   - component: {fileID: 2985267520341208192}
   - component: {fileID: 5085512057384828110}
+  - component: {fileID: 4694061246244728434}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -68,8 +69,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1202362319121690111}
   - {fileID: 3505482750189645405}
+  - {fileID: 1202362319121690111}
   - {fileID: 3584342715214020283}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,6 +142,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4694061246244728434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928212357155747105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94010ecaed2bbd0449723066f9eb6af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 8597313665754411336}
+  elementalTypeText: {fileID: 731690652738471851}
+  timerText: {fileID: 2775161902402428329}
+  timerFill: {fileID: 1180148101791209383}
 --- !u!1 &3667814603833920641
 GameObject:
   m_ObjectHideFlags: 0

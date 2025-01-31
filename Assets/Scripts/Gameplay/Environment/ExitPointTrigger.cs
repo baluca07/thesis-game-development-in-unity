@@ -12,6 +12,7 @@ public class ExitPointTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Enetered");
         if (other.CompareTag("Player"))
         {
            

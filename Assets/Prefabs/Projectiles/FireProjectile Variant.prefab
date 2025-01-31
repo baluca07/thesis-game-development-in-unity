@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4696095994663930010, guid: 69cdc9299bfd33d4198beb65f1ea24c0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3583943860995187974, guid: 69cdc9299bfd33d4198beb65f1ea24c0, type: 3}
       propertyPath: m_Name
       value: FireProjectile Variant

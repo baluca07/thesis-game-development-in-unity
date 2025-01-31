@@ -108,7 +108,7 @@ public class PlayerRangedCombat : MonoBehaviour
     {
         Vector3 aimEulerAngles = aim.rotation.eulerAngles;
 
-        Quaternion normalizedRotation = aim.localToWorldMatrix.rotation.normalized;
+        Quaternion normalizedRotation = aim.localToWorldMatrix.rotation;
 
         GameObject projectile = Instantiate(projectilePrefabs[PlayerStats.Instance.currentElementalAttackIndex], firePoint.position, normalizedRotation);
         Projectile projectileScript = projectile.GetComponent<Projectile>();
