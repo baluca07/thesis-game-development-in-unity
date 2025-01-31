@@ -1,0 +1,615 @@
+fileFormatVersion: 2
+guid: 52b533cdf638ceb469e0b980c16fba0e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HandsAndFaces_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 895
+        width: 97
+        height: 91
+      alignment: 9
+      pivot: {x: 0.30531067, y: 0.92658144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40785c89b2784547abeff6d22e76fd8
+      internalID: -1682895885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_1
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 901
+        width: 97
+        height: 90
+      alignment: 9
+      pivot: {x: 0.65142506, y: 0.94297826}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61760dd5cca105248b8face58b5b7262
+      internalID: 1320740434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_2
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 835
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5a8b40cc3922574cbb94bedd3fb2d3a
+      internalID: 870942466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_3
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 898
+        width: 89
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d834af72471b44d46b2684db686b6439
+      internalID: 527605189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_4
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 899
+        width: 89
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e1b87dd45826646b898357c3635e88
+      internalID: 434421010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_5
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 777
+        width: 105
+        height: 104
+      alignment: 9
+      pivot: {x: 0.6398879, y: 0.923699}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eda58f99d30ae7478b5c55585ee9a20
+      internalID: -1864790588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_6
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 782
+        width: 105
+        height: 104
+      alignment: 9
+      pivot: {x: 0.3701041, y: 0.94387525}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f22e6f10c21e14f4792f9b0d1762da96
+      internalID: -1340198411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_7
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 699
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d8638ba773773c4a89b63bcaf4bae42
+      internalID: -192145938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 806
+        width: 89
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b22205c0c7275ed4b863ca40fea3af0c
+      internalID: -23508893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_9
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 797
+        width: 89
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90da6c91448672c40a4133fc52dc1015
+      internalID: -1493475428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_10
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 667
+        width: 104
+        height: 80
+      alignment: 9
+      pivot: {x: 0.68158525, y: 0.8934349}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aee188cabca3a8549b672cda0aa3294c
+      internalID: -893553252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_11
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 672
+        width: 105
+        height: 81
+      alignment: 9
+      pivot: {x: 0.3201442, y: 0.87562466}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd080a886f566364880077227d2ba937
+      internalID: 373684741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_12
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 552
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f54b45b46495e4da1c3c14522bef7a
+      internalID: -815253692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_13
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 640
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d4bc419c512cd847b70e39759acf1b6
+      internalID: -380683488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_14
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 566
+        width: 77
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4863746, y: 0.8934349}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64ad2e710fb99d24b81d2949ef4432dc
+      internalID: 446882935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_15
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 571
+        width: 77
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4863747, y: 0.9065491}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3617d423b7fb82644b150f2079612ac5
+      internalID: 637938319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_16
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 493
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6a8aa2e07278143824971298f263dc
+      internalID: 1300185994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_17
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 463
+        width: 80
+        height: 71
+      alignment: 9
+      pivot: {x: 0.3426261, y: 0.95808345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4a12bb1ee2dd049abb42756d23a180
+      internalID: -503457219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_18
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 468
+        width: 80
+        height: 71
+      alignment: 9
+      pivot: {x: 0.59180146, y: 0.95808345}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f5e856b14be07419885da767038e14
+      internalID: 286796364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_19
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 396
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51686150c30f8ca4bb0abcb1a9ebf594
+      internalID: 389136336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HandsAndFaces_20
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 341
+        width: 188
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f4ae365d712e146ae9b5235aad0f49
+      internalID: 351597948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      HandsAndFaces_0: -1682895885
+      HandsAndFaces_1: 1320740434
+      HandsAndFaces_10: -893553252
+      HandsAndFaces_11: 373684741
+      HandsAndFaces_12: -815253692
+      HandsAndFaces_13: -380683488
+      HandsAndFaces_14: 446882935
+      HandsAndFaces_15: 637938319
+      HandsAndFaces_16: 1300185994
+      HandsAndFaces_17: -503457219
+      HandsAndFaces_18: 286796364
+      HandsAndFaces_19: 389136336
+      HandsAndFaces_2: 870942466
+      HandsAndFaces_20: 351597948
+      HandsAndFaces_3: 527605189
+      HandsAndFaces_4: 434421010
+      HandsAndFaces_5: -1864790588
+      HandsAndFaces_6: -1340198411
+      HandsAndFaces_7: -192145938
+      HandsAndFaces_8: -23508893
+      HandsAndFaces_9: -1493475428
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

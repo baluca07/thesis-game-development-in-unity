@@ -3,19 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Melee
+  - Weapon
+  - Ranged
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Room
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - DamageZone
+  - Projectile
+  - PlayerAttack
+  - Enemy
   - 
   - 
   - 
