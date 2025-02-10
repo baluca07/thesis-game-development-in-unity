@@ -232,17 +232,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1542879674555800621, guid: fe20063f6c8ba2241bc5f3af3761ba45, type: 3}
   m_PrefabInstance: {fileID: 288626659}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &412024625 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 731690652738471851, guid: d6d309226e38c3a4aa1c0dc73d5e1c3f, type: 3}
-  m_PrefabInstance: {fileID: 3647567222319394911}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &436706633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 1105982755933953933, guid: 3e9dfbc1efeb9b540a7b74826ce9c411, type: 3}
       propertyPath: elementalTypeText
       value: 
-      objectReference: {fileID: 412024625}
+      objectReference: {fileID: 0}
     - target: {fileID: 1865694263522123879, guid: 3e9dfbc1efeb9b540a7b74826ce9c411, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -964,6 +953,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8750494611031200837, guid: d6d309226e38c3a4aa1c0dc73d5e1c3f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750494611031200837, guid: d6d309226e38c3a4aa1c0dc73d5e1c3f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750494611031200837, guid: d6d309226e38c3a4aa1c0dc73d5e1c3f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -976,7 +977,7 @@ SceneRoots:
   - {fileID: 1519239644}
   - {fileID: 1305212731}
   - {fileID: 3205664995778245827}
-  - {fileID: 3647567222319394911}
   - {fileID: 1052413234}
   - {fileID: 2043592751}
   - {fileID: 124888010}
+  - {fileID: 3647567222319394911}

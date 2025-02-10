@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3be0f5a2856b0d4b92463faaf294118
+guid: ea6fe88f3ee482f42ba5aca2c8b30b5d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,17 +93,56 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WaterSlime_0
+      name: FireType_0
       rect:
         serializedVersion: 2
-        x: 93
-        y: 82
-        width: 428
-        height: 335
+        x: 136
+        y: 143
+        width: 644
+        height: 740
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,71 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 152db4e8aa4664445b7b00b369f0d2c8
-      internalID: -1740564624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WaterSlime_1
-      rect:
-        serializedVersion: 2
-        x: 738
-        y: 69
-        width: 327
-        height: 456
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3544b0d618f1e2740be395703b37f9e5
-      internalID: 1675792901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WaterSlime_2
-      rect:
-        serializedVersion: 2
-        x: 1298
-        y: 80
-        width: 426
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8d4eb472aadd444d9dbc550d22a9d09
-      internalID: -3941580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WaterSlime_3
-      rect:
-        serializedVersion: 2
-        x: 1942
-        y: 80
-        width: 522
-        height: 297
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c8306070467d7af4d92a3005cb0c77ea
-      internalID: 581200381
+      spriteID: 0a8f3342dd4279e45aa7609bd217e160
+      internalID: -23587359
       vertices: []
       indices: 
       edges: []
@@ -191,10 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WaterSlime_0: -1740564624
-      WaterSlime_1: 1675792901
-      WaterSlime_2: -3941580
-      WaterSlime_3: 581200381
+      FireType_0: -23587359
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

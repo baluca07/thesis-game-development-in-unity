@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Player Stats UI")]
     [SerializeField] private TextMeshProUGUI healthText;
     //[SerializeField] private Text manaText;
-    [SerializeField] private TextMeshProUGUI elementalTypeText;
+    [SerializeField] private Image elementalIcon;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private Image timerFill;
 
@@ -33,7 +33,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateElementalType()
     {
-        elementalTypeText.text = $"{PlayerStats.Instance.currentElementalAttack.name}";
+        UISpriteResolver resolver = elementalIcon.GetComponent<UISpriteResolver>();
+        resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
     }
 
     public void StartCountRangedCooldown(float cooldown)

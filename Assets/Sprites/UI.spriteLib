@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: elementIcon
+    m_Hash: 520424567
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Fire
+      m_Hash: 955033329
+      m_Sprite: {fileID: -23587359, guid: ea6fe88f3ee482f42ba5aca2c8b30b5d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -23587359, guid: ea6fe88f3ee482f42ba5aca2c8b30b5d, type: 3}
+    - m_Name: Earth
+      m_Hash: 182737380
+      m_Sprite: {fileID: 571814744, guid: b7e2fca39cbfd2c45b35b5945813f6de, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 571814744, guid: b7e2fca39cbfd2c45b35b5945813f6de, type: 3}
+    - m_Name: Air
+      m_Hash: 70123035
+      m_Sprite: {fileID: 1138607220, guid: 1b9ffa5cef80d3f40a96aa8004b2846b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1138607220, guid: 1b9ffa5cef80d3f40a96aa8004b2846b, type: 3}
+    - m_Name: Water
+      m_Hash: 988953566
+      m_Sprite: {fileID: 12433638, guid: f84ef33fb764a8248bf97e53b1655aad, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 12433638, guid: f84ef33fb764a8248bf97e53b1655aad, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 4
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638747950458232600
+  m_Version: 1

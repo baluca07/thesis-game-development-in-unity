@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a88ced87a8eeb0741b86d9bd020ad796
+guid: 1b9ffa5cef80d3f40a96aa8004b2846b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,89 +93,65 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FireSlime_0
+      name: AirType_0
       rect:
         serializedVersion: 2
-        x: 93
-        y: 80
-        width: 428
-        height: 335
+        x: 180
+        y: 99
+        width: 694
+        height: 792
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5f93acf99e5b1f489e1b13e4fccbd13
-      internalID: -567084886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireSlime_1
-      rect:
-        serializedVersion: 2
-        x: 739
-        y: 65
-        width: 327
-        height: 457
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9425cb7e162d79245b0382138871b6a0
-      internalID: -1037514955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireSlime_2
-      rect:
-        serializedVersion: 2
-        x: 1297
-        y: 80
-        width: 426
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44ae050d35f84cd4ca0dd6bd343aeec7
-      internalID: 1576799784
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireSlime_3
-      rect:
-        serializedVersion: 2
-        x: 1948
-        y: 78
-        width: 518
-        height: 297
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2fd2d05580cd74940a89d921def8a28a
-      internalID: 1366313567
+      spriteID: 4912aa85caddae24099ff95bcc78513e
+      internalID: 1138607220
       vertices: []
       indices: 
       edges: []
@@ -191,10 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FireSlime_0: -567084886
-      FireSlime_1: -1037514955
-      FireSlime_2: 1576799784
-      FireSlime_3: 1366313567
+      AirType_0: 1138607220
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

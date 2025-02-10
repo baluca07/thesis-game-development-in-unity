@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bb9d21c6f2c5fa5408136e3fdc79a60f
+guid: d3be0f5a2856b0d4b92463faaf294118
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,16 +93,55 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EarthSlime_0
+      name: WaterSlime_0
       rect:
         serializedVersion: 2
-        x: 92
+        x: 93
         y: 82
-        width: 427
+        width: 428
         height: 335
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -111,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ece28e566e1809744bc5a4f342f15046
-      internalID: 377457584
+      spriteID: 152db4e8aa4664445b7b00b369f0d2c8
+      internalID: -1740564624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EarthSlime_1
+      name: WaterSlime_1
       rect:
         serializedVersion: 2
-        x: 737
+        x: 738
         y: 69
-        width: 328
-        height: 457
+        width: 327
+        height: 456
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 730d0aa108700ed45a27e28dd7fdcfbf
-      internalID: -178098913
+      spriteID: 3544b0d618f1e2740be395703b37f9e5
+      internalID: 1675792901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EarthSlime_2
+      name: WaterSlime_2
       rect:
         serializedVersion: 2
-        x: 1301
-        y: 76
+        x: 1298
+        y: 80
         width: 426
         height: 325
       alignment: 0
@@ -153,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d92967bc6f7b5ac43ac9d9b298b2e5a0
-      internalID: -875630487
+      spriteID: a8d4eb472aadd444d9dbc550d22a9d09
+      internalID: -3941580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EarthSlime_3
+      name: WaterSlime_3
       rect:
         serializedVersion: 2
-        x: 1945
-        y: 81
-        width: 519
-        height: 298
+        x: 1942
+        y: 80
+        width: 522
+        height: 297
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 671147a36f9887d4e9789632774c95fb
-      internalID: -1468905975
+      spriteID: c8306070467d7af4d92a3005cb0c77ea
+      internalID: 581200381
       vertices: []
       indices: 
       edges: []
@@ -191,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      EarthSlime_0: 377457584
-      EarthSlime_1: -178098913
-      EarthSlime_2: -875630487
-      EarthSlime_3: -1468905975
+      WaterSlime_0: -1740564624
+      WaterSlime_1: 1675792901
+      WaterSlime_2: -3941580
+      WaterSlime_3: 581200381
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

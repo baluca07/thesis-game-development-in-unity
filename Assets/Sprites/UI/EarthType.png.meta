@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8c33c2a50ce46ed45bfb3b7fd725f774
+guid: b7e2fca39cbfd2c45b35b5945813f6de
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,17 +93,56 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AirSlime_0
+      name: EarthType_0
       rect:
         serializedVersion: 2
-        x: 92
-        y: 84
-        width: 427
-        height: 334
+        x: 50
+        y: 55
+        width: 844
+        height: 677
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,71 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a57549f802293c04abee5b15f534361e
-      internalID: -96215633
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AirSlime_1
-      rect:
-        serializedVersion: 2
-        x: 739
-        y: 69
-        width: 327
-        height: 456
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 816daf4e33793c94388150d2425ccea4
-      internalID: -1770633416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AirSlime_2
-      rect:
-        serializedVersion: 2
-        x: 1303
-        y: 75
-        width: 426
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a3d459d08e60184a89f062090c42611
-      internalID: -1783896234
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AirSlime_3
-      rect:
-        serializedVersion: 2
-        x: 1944
-        y: 82
-        width: 518
-        height: 298
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fb02ee18e4da12418380c7f94e0a02d
-      internalID: 1435580762
+      spriteID: 8e7aee39be4b54c499dbaae4e1e5d207
+      internalID: 571814744
       vertices: []
       indices: 
       edges: []
@@ -191,10 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AirSlime_0: -96215633
-      AirSlime_1: -1770633416
-      AirSlime_2: -1783896234
-      AirSlime_3: 1435580762
+      EarthType_0: 571814744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
