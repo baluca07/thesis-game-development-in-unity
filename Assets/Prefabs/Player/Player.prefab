@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1061048690991744005
 Transform:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: c4f18d441be3ea344af51eb61293c3f7, type: 3}
+  m_Sprite: {fileID: -514861750, guid: 5d405acfe88cbd043be03174043e3980, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -289,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3009947483927047492, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       propertyPath: m_Sprite
@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6550403962154160949, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2290710118312221232, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
     - {fileID: 1785635438760260832, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
@@ -362,9 +366,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       insertIndex: 5
-      addedObject: {fileID: 723019765861722582}
-    - targetCorrespondingSourceObject: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
-      insertIndex: 6
       addedObject: {fileID: 887458045889100777}
     - targetCorrespondingSourceObject: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       insertIndex: -1
@@ -384,11 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7c873e1248bf54ca9dd5eb65d796c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1329127535731219398 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1605851853493765724, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
-  m_PrefabInstance: {fileID: 304876651703246234}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &2193988498318832367 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1894255508173565813, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
@@ -399,23 +395,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
   m_PrefabInstance: {fileID: 304876651703246234}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &723019765861722582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3314500089964914826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed563e3a72a2df439b89e95edbb999e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  comboWindow: 0.4
-  attackDuration: 0.3
-  lungeDistance: 0.2
-  meleeCollider: {fileID: 1329127535731219398}
-  animator: {fileID: 2193988498318832367}
 --- !u!114 &887458045889100777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +433,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1023
+    m_Bits: 1015
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
