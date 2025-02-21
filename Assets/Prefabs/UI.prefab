@@ -155,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 8597313665754411336}
   elementalIcon: {fileID: 2775577604944270683}
-  timerText: {fileID: 0}
   timerFill: {fileID: 1180148101791209383}
 --- !u!1 &2891043043893569302
 GameObject:
@@ -263,7 +262,7 @@ RectTransform:
   m_GameObject: {fileID: 3578782704118434216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.66414, y: 1.66414, z: 1.66414}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1975824512054124243}
@@ -293,9 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a57d9f8069f6764995a869f2644afa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteResolver: {fileID: 0}
-  image: {fileID: 0}
-  currentSprite: {fileID: 0}
+  spriteResolver: {fileID: 8070925578030614555}
+  image: {fileID: 2775577604944270683}
+  currentSprite: {fileID: 6014663853716462412}
 --- !u!114 &2775577604944270683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1138607220, guid: 1b9ffa5cef80d3f40a96aa8004b2846b, type: 3}
+  m_Sprite: {fileID: -23587359, guid: ea6fe88f3ee482f42ba5aca2c8b30b5d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -478,7 +477,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0

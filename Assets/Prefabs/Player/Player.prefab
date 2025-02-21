@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6550403962154160949, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       propertyPath: m_Mass
-      value: 0.12752122
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6550403962154160949, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       propertyPath: m_BodyType
@@ -373,6 +373,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3992807676048496460}
+    - targetCorrespondingSourceObject: {fileID: 3009631564642317584, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2491747893987005109}
   m_SourcePrefab: {fileID: 100100000, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}
 --- !u!114 &683455218286504533 stripped
 MonoBehaviour:
@@ -447,7 +450,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -480,6 +483,18 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &2491747893987005109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3314500089964914826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef84723cff14c2438e2e03df5dbf0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4637811297802272997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4929176042118667647, guid: cf07fd985a0f96d42a4d0082f69f451e, type: 3}

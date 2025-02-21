@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     //[SerializeField] private Text manaText;
     [SerializeField] private Image elementalIcon;
-    [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private Image timerFill;
 
     //[Header("Enemy Stats UI")]
@@ -44,18 +43,14 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator CountRangedCooldown(float cooldown)
     {
-        timerText.gameObject.SetActive(true);
         float timer = cooldown;
 
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            timerText.text = "" + (int)timer;
             timerFill.fillAmount = timer / cooldown;
             yield return null; // Wait for the next frame
         }
-
-        timerText.gameObject.SetActive(false);
     }
 
     /*public void UpdatePlayerMana(int currentMana, int maxMana)
