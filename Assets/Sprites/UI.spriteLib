@@ -19,26 +19,47 @@ MonoBehaviour:
     m_OverrideEntries:
     - m_Name: Fire
       m_Hash: 955033329
-      m_Sprite: {fileID: -23587359, guid: ea6fe88f3ee482f42ba5aca2c8b30b5d, type: 3}
+      m_Sprite: {fileID: -5008834152459159321, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -23587359, guid: ea6fe88f3ee482f42ba5aca2c8b30b5d, type: 3}
+      m_SpriteOverride: {fileID: -5008834152459159321, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
     - m_Name: Earth
       m_Hash: 182737380
-      m_Sprite: {fileID: 571814744, guid: b7e2fca39cbfd2c45b35b5945813f6de, type: 3}
+      m_Sprite: {fileID: -4333306969318049741, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 571814744, guid: b7e2fca39cbfd2c45b35b5945813f6de, type: 3}
+      m_SpriteOverride: {fileID: -4333306969318049741, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
     - m_Name: Air
       m_Hash: 70123035
-      m_Sprite: {fileID: 1138607220, guid: 1b9ffa5cef80d3f40a96aa8004b2846b, type: 3}
+      m_Sprite: {fileID: 1124349415155246037, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 1138607220, guid: 1b9ffa5cef80d3f40a96aa8004b2846b, type: 3}
+      m_SpriteOverride: {fileID: 1124349415155246037, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
     - m_Name: Water
       m_Hash: 988953566
-      m_Sprite: {fileID: 12433638, guid: f84ef33fb764a8248bf97e53b1655aad, type: 3}
+      m_Sprite: {fileID: 1708238758517574298, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 12433638, guid: f84ef33fb764a8248bf97e53b1655aad, type: 3}
+      m_SpriteOverride: {fileID: 1708238758517574298, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 4
+  - m_Name: header
+    m_Hash: 779266241
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Label
+      m_Hash: 258375660
+      m_Sprite: {fileID: -1101305716854575175, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1101305716854575175, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
+    - m_Name: HealthBarBG
+      m_Hash: 473235883
+      m_Sprite: {fileID: -5035721476210066714, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5035721476210066714, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
+    - m_Name: HealthBar
+      m_Hash: 176953765
+      m_Sprite: {fileID: -129930950072144372, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -129930950072144372, guid: aed7bfc08cbdf184d8ea595811d0aa02, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638747950458232600
+  m_ModificationHash: 638757632732193346
   m_Version: 1
