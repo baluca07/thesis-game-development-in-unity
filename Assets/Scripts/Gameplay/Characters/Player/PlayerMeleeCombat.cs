@@ -13,7 +13,7 @@ public class PlayerMeleeCombat : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private CircleCollider2D meleeCollider;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator anim;
 
     private readonly HashSet<EnemyStats> hitEnemies = new HashSet<EnemyStats>();
     private Coroutine comboResetRoutine;
@@ -21,6 +21,13 @@ public class PlayerMeleeCombat : MonoBehaviour
     private bool isAttacking;
 
     private void Awake() => Instance = this;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        meleeCollider = GetComponent<CircleCollider2D>();
+
+    }
 
     public void AttemptAttack()
     {
@@ -37,7 +44,7 @@ public class PlayerMeleeCombat : MonoBehaviour
 
         // Update combo state (1-2-3 cycle)
         currentCombo = currentCombo < 3 ? currentCombo + 1 : 1;
-        animator.SetInteger("AttackCounter", currentCombo);
+        anim.SetInteger("AttackCounter", currentCombo);
 
         // Apply lunge effect using position translation
         ApplyAttackLunge();
@@ -60,7 +67,7 @@ public class PlayerMeleeCombat : MonoBehaviour
     {
         yield return new WaitForSeconds(comboWindow);
         currentCombo = 0;
-        animator.SetInteger("AttackCounter", 0);
+        anim.SetInteger("AttackCounter", 0);
         PlayerController.Instance.SetMovement(true);
     }
 

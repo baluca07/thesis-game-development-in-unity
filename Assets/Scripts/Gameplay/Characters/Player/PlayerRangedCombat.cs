@@ -37,6 +37,8 @@ public class PlayerRangedCombat : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+
+        aim.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -60,8 +62,6 @@ public class PlayerRangedCombat : MonoBehaviour
 
         if(originalPlayerRotation.y == 0) facingRight = true ;
         else facingRight = false ;
-
-        Debug.Log("Facing Right: " + facingRight);
 
         anim.SetTrigger("Aim");
         isAiming = true;

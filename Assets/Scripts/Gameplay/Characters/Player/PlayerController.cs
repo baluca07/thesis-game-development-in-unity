@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Set Elemental Attacks
-    private void CycleElementalAttackForward(InputAction.CallbackContext ctx)
+    public void CycleElementalAttackForward(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CycleElementalAttackBackward(InputAction.CallbackContext ctx)
+    public void CycleElementalAttackBackward(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
@@ -109,12 +109,20 @@ public class PlayerController : MonoBehaviour
     }
 
     //Melee attack
-    private void OnAttack(InputAction.CallbackContext ctx)
+    public void OnAttack(InputAction.CallbackContext ctx)
     {
+        Debug.Log("Melee attack");
         if (PlayerMeleeCombat.Instance != null)
         {
-            rb.velocity = Vector2.zero;
-            PlayerMeleeCombat.Instance.AttemptAttack();
+            if (ctx.performed)
+            {
+                rb.velocity = Vector2.zero;
+                PlayerMeleeCombat.Instance.AttemptAttack();
+            }
+        }
+        else
+        {
+            Debug.Log("PlayerMeleeCombat.Instance is missing");
         }
     }
 
