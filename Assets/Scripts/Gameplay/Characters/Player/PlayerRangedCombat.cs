@@ -51,7 +51,12 @@ public class PlayerRangedCombat : MonoBehaviour
 
     public void StartAim()
     {
-        if (isOnCooldown)
+        if (PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
+        {
+            Debug.Log("This type of attack does not unlocked yet");
+            return;
+        }
+        else if (isOnCooldown)
         {
             Debug.Log("Ranged attack is on cooldown");
             return;

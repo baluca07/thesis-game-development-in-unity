@@ -37,29 +37,28 @@ MonoBehaviour:
       m_Sprite: {fileID: -6591438523910562472, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -6591438523910562472, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
+    - m_Name: FireDisabled
+      m_Hash: 871382608
+      m_Sprite: {fileID: 1672331088, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1672331088, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+    - m_Name: EarthDisabled
+      m_Hash: 987527917
+      m_Sprite: {fileID: 1764343202, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1764343202, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+    - m_Name: AirDisabled
+      m_Hash: 390881526
+      m_Sprite: {fileID: -68013767, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -68013767, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+    - m_Name: WaterDisabled
+      m_Hash: 934314246
+      m_Sprite: {fileID: -1646456489, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1646456489, guid: c1767dc150b1de1408000fe4596674e3, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 4
-  - m_Name: header
-    m_Hash: 779266241
-    m_CategoryList: []
-    m_OverrideEntries:
-    - m_Name: Label
-      m_Hash: 258375660
-      m_Sprite: {fileID: 7703598495015371017, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 7703598495015371017, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
-    - m_Name: HealthBarBG
-      m_Hash: 473235883
-      m_Sprite: {fileID: -710845000317024951, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -710845000317024951, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
-    - m_Name: HealthBar
-      m_Hash: 176953765
-      m_Sprite: {fileID: 5882022661337862265, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 5882022661337862265, guid: 8a264fddb7ed38f4c8043ab85443bfbe, type: 3}
-    m_FromMain: 0
-    m_EntryOverrideCount: 3
+    m_EntryOverrideCount: 8
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638758249293922002
+  m_ModificationHash: 638758406931531653
   m_Version: 1

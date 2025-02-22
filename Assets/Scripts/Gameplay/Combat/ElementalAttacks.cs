@@ -7,6 +7,7 @@ public class ElementalAttack
     public ElementalDamageType type;
     public float baseDamage;
     public int enemiesDefeated=0;
+    public int currentLevel = 0;
     public class ElementalLevel
     {
         public int requiredKills;
@@ -29,12 +30,7 @@ public class ElementalAttack
                 break; // Ha a következõ szinthez nincs elég kill, kilépünk
             }
         }
-        return new Damage(type,baseDamage+bonusDamage);
-    }
-
-    public bool CanActivateElemental()
-    {
-        return enemiesDefeated >= levels[0].requiredKills;
+        return new Damage(type, baseDamage + bonusDamage);
     }
 }
 

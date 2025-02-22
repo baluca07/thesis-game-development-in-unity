@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth;
     public ElementalAttack currentElementalAttack;
     public int currentElementalAttackIndex;
+
     private void Awake()
     {
         if (Instance == null)
@@ -23,8 +24,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = maxHealth;
         SetCurrentElemental(0);
-        UIManager.Instance.UpdatePlayerHealth();
-        UIManager.Instance.UpdateElementalType();
+        UIManager.Instance.UpdatePlayerHealthFill();   
     }
 
     public void TakeDamage(Damage damage)
@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log($"Player took {damageAmoun} damage! Current Health: {currentHealth}");
 
-        UIManager.Instance.UpdatePlayerHealth();
+        UIManager.Instance.UpdatePlayerHealthFill();
 
         if (currentHealth <= 0)
         {
@@ -53,7 +53,8 @@ public class PlayerStats : MonoBehaviour
     {
         currentElementalAttackIndex = index;
         currentElementalAttack = (GameManager.Instance.elementalAttacks[index]);
-        UIManager.Instance.UpdateElementalType();
+        UIManager.Instance.UpdateElementalTypeIcon();
+        UIManager.Instance.UpdateElementalLevelText();
     }
     
 }

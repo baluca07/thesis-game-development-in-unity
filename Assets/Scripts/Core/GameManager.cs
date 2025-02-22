@@ -20,9 +20,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
         InitializeElementalAttacks();
-        
-        
+    }
+
+    private void Update()
+    {
+        PlayerStats.Instance.currentElementalAttack.enemiesDefeated = defeteatedEnemies;
     }
 
     public void MovePlayerToRoom(Transform player, Transform spawnPoint)
@@ -52,9 +56,10 @@ public class GameManager : MonoBehaviour
             name = "Normal",
             type = ElementalDamageType.Normal,
             baseDamage = 5,
+            currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 10, damageBonus = 0 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
@@ -64,10 +69,11 @@ public class GameManager : MonoBehaviour
         {
             name = "Fire",
             type = ElementalDamageType.Fire,
-            baseDamage = 10,
+            baseDamage = 0,
+            currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 0, damageBonus = 0 }, //for test
+            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
             new ElementalLevel { requiredKills = 10, damageBonus = 0 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -79,10 +85,11 @@ public class GameManager : MonoBehaviour
         {
             name = "Water",
             type = ElementalDamageType.Water,
-            baseDamage = 8,
+            baseDamage = 0,
+            currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 0, damageBonus = 0 }, //for test
+            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
             new ElementalLevel { requiredKills = 10, damageBonus = 0 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -94,11 +101,12 @@ public class GameManager : MonoBehaviour
         {
             name = "Air",
             type = ElementalDamageType.Air,
-            baseDamage = 8,
+            baseDamage = 0,
+            currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 0, damageBonus = 0 }, //for test
-            new ElementalLevel { requiredKills = 10, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
@@ -109,17 +117,17 @@ public class GameManager : MonoBehaviour
         {
             name = "Earth",
             type = ElementalDamageType.Earth,
-            baseDamage = 8,
+            baseDamage = 0,
+            currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 0, damageBonus = 0 }, //for test
+            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
             new ElementalLevel { requiredKills = 10, damageBonus = 0 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
-        //elementalAttacks.Add(normalAttack);
         elementalAttacks.Add(fireAttack);
         elementalAttacks.Add(waterAttack);
         elementalAttacks.Add(airAtttack);

@@ -7,12 +7,16 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [Header("Player Stats UI")]
-    [SerializeField] private TextMeshProUGUI healthText;
+    [Header("Header UI")]
+    [SerializeField] private Image healthFill;
+    [SerializeField] private Image levelFill;
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI damageText;
     //[SerializeField] private Text manaText;
     [SerializeField] private Image elementalIcon;
     [SerializeField] private Image timerFill;
 
+    //[Header("Quest UI")]
     //[Header("Enemy Stats UI")]
     //[SerializeField] private Text enemyHealthText;
 
@@ -22,18 +26,56 @@ public class UIManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
     }
 
-    public void UpdatePlayerHealth()
+    public void UpdatePlayerHealthFill()
     {
-        healthText.text = $"{PlayerStats.Instance.currentHealth}/{PlayerStats.Instance.maxHealth}";
+        healthFill.fillAmount = PlayerStats.Instance.currentHealth/ PlayerStats.Instance.maxHealth;
+    }
+    public void UpdateLevelFill()
+    {
+        if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
+        {
+            levelFill.fillAmount = (float)PlayerStats.Instance.currentElementalAttack.enemiesDefeated / PlayerStats.Instance.currentElementalAttack.levels[PlayerStats.Instance.currentElementalAttack.currentLevel + 1].requiredKills;
+        }
+        else
+        {
+            levelFill.fillAmount = 1f;
+        }
     }
 
-    public void UpdateElementalType()
+    public void UpdateElementalTypeIcon()
     {
         UISpriteResolver resolver = elementalIcon.GetComponent<UISpriteResolver>();
         resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
+        if(PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
+        {
+            resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name + "Disabled");
+        }
+        else
+        {
+            resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
+        }
+        UpdateElementalLevelText();
+    }
+
+    public void UpdateElementalLevelText()
+    {
+        if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
+        {
+            levelText.text = $"LVL {PlayerStats.Instance.currentElementalAttack.currentLevel}";
+        }
+        else
+        {
+            levelText.text = "MAX";
+        }
+        UpdateLevelFill();
+        UpdateDamageText();
+    }
+
+    public void UpdateDamageText()
+    {
+        damageText.text = $"DMG: {PlayerStats.Instance.currentElementalAttack.GetDamage().amount}";
     }
 
     public void StartCountRangedCooldown(float cooldown)
@@ -52,6 +94,7 @@ public class UIManager : MonoBehaviour
             yield return null; // Wait for the next frame
         }
     }
+
 
     /*public void UpdatePlayerMana(int currentMana, int maxMana)
     {
