@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] GameObject PartilcePrefab;
     public enum ProjectileOwner
     {
         Enemy,
@@ -31,6 +32,7 @@ public class Projectile : MonoBehaviour
         // Check if the projectile has exceeded the attack range
         if (Vector3.Distance(startPosition, transform.position) >= attackRange)
         {
+            Instantiate(PartilcePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Debug.Log("Projectile destroyed: exceeded attack range");
         }
@@ -52,6 +54,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
+            Instantiate(PartilcePrefab, transform.position, Quaternion.identity);
             EnemyStats enemy = collision.GetComponent<EnemyStats>();
             Debug.Log($"Enemy collided: {enemy.enemyName}");
            

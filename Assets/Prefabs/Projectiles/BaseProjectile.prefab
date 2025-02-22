@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa71fa89a4ff62a44b28a687e409061c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PartilcePrefab: {fileID: 7818437156394499714, guid: ac9a283c7ba3f1c45a757cdec0bc2d34, type: 3}
   owner: 0
   attackRange: 0
   speed: 0

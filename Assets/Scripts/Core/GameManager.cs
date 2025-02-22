@@ -80,11 +80,11 @@ public class GameManager : MonoBehaviour
             name = "Fire",
             type = ElementalDamageType.Fire,
             baseDamage = 0,
-            currentLevel = 0,
+            currentLevel = 1,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
