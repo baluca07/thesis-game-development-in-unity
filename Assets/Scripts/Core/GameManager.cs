@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    [SerializeField] string elementalAttackName;
-    [SerializeField] int defeteatedEnemies;
 
     private void Awake()
     {
@@ -24,10 +22,6 @@ public class GameManager : MonoBehaviour
         InitializeElementalAttacks();
     }
 
-    private void Update()
-    {
-        PlayerStats.Instance.currentElementalAttack.enemiesDefeated = defeteatedEnemies;
-    }
 
     public void MovePlayerToRoom(Transform player, Transform spawnPoint)
     {
