@@ -41,9 +41,24 @@ public class GameManager : MonoBehaviour
         if (attack != null)
         {
             attack.enemiesDefeated++;
+            UIManager.Instance.UpdateLevelFill();
+            UpdateElementalAttackLevel(attack);
         }
     }
-    void InitializeElementalAttacks()
+    private void UpdateElementalAttackLevel(ElementalAttack attack)
+    {
+        if (attack.currentLevel < attack.levels.Count - 1)
+        {
+            if (attack.enemiesDefeated >= attack.levels[attack.currentLevel + 1].requiredKills)
+            {
+                attack.currentLevel++;
+                Debug.Log($"{attack.name} attack leveled up to level {attack.currentLevel}!");
+                UIManager.Instance.SetLevelBar(attack.levels[attack.currentLevel].requiredKills, attack.levels[attack.currentLevel+1].requiredKills);
+                UIManager.Instance.UpdateElementalLevelText();
+            }
+        }
+    }
+    private void InitializeElementalAttacks()
     {
         normalAttack = new ElementalAttack
         {
@@ -53,7 +68,8 @@ public class GameManager : MonoBehaviour
             currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 10, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
@@ -68,7 +84,8 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 10, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
@@ -84,7 +101,8 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 10, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
@@ -100,6 +118,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -116,7 +135,8 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 10, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 0 },
+            new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }

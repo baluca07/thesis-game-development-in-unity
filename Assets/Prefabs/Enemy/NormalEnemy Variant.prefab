@@ -21,6 +21,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3624534957999504188, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: enemyName
+      value: Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3624534957999504188, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: attackRange
       value: 3
       objectReference: {fileID: 0}
@@ -126,7 +130,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: UVModule.sprites.Array.data[2].sprite
       value: 
       objectReference: {fileID: -1574131292, guid: b23c115d3b8096d49b6a39d89610953b, type: 3}
+    - target: {fileID: 861997496334039116, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: enemyName
+      value: EarthSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 861997496334039116, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: elementalDamageType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1577049970815340154, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_SpriteHash
       value: 461199105

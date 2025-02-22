@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Base Slime
   health: 50
-  baseDamage: 5
+  baseDamage: 2
   attackRange: 1.2
   elementalDamageType: 0
   currentHealth: 0

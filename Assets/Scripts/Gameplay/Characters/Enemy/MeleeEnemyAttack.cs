@@ -52,6 +52,7 @@ public class MeleeEnemyAttack : EnemyAttack
         isAttacking = false;
     }
 
+    //TODO: only attack collider get player
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log($"Object triggered: {collision.name}");

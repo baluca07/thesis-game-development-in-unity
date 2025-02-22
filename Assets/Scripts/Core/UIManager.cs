@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [Header("Header UI")]
-    [SerializeField] private Image healthFill;
-    [SerializeField] private Image levelFill;
+    [SerializeField] private Slider healthFill;
+    [SerializeField] private Slider levelFill;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI damageText;
     //[SerializeField] private Text manaText;
@@ -28,20 +28,32 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        healthFill.minValue = 0;
+        healthFill.maxValue = PlayerStats.Instance.maxHealth;
+    }
+
     public void UpdatePlayerHealthFill()
     {
-        healthFill.fillAmount = PlayerStats.Instance.currentHealth/ PlayerStats.Instance.maxHealth;
+        healthFill.value = PlayerStats.Instance.currentHealth;
     }
     public void UpdateLevelFill()
     {
         if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
         {
-            levelFill.fillAmount = (float)PlayerStats.Instance.currentElementalAttack.enemiesDefeated / PlayerStats.Instance.currentElementalAttack.levels[PlayerStats.Instance.currentElementalAttack.currentLevel + 1].requiredKills;
+            levelFill.value = PlayerStats.Instance.currentElementalAttack.enemiesDefeated;
         }
         else
         {
-            levelFill.fillAmount = 1f;
+            levelFill.value = levelFill.maxValue;
         }
+    }
+
+    public void SetLevelBar(int min, int max)
+    {
+        levelFill.minValue = min;
+        levelFill.maxValue = max;
     }
 
     public void UpdateElementalTypeIcon()
@@ -51,10 +63,21 @@ public class UIManager : MonoBehaviour
         if(PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
         {
             resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name + "Disabled");
+            SetLevelBar(0,5);
+            UpdateLevelFill();
+        }
+        else if(PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
+        {
+            resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
+            SetLevelBar(PlayerStats.Instance.currentElementalAttack.levels[PlayerStats.Instance.currentElementalAttack.currentLevel].requiredKills,
+                PlayerStats.Instance.currentElementalAttack.levels[PlayerStats.Instance.currentElementalAttack.currentLevel + 1].requiredKills);
+            UpdateLevelFill();
         }
         else
         {
             resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
+            levelFill.value = levelFill.maxValue;
+            UpdateLevelFill();
         }
         UpdateElementalLevelText();
     }
