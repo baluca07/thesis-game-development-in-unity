@@ -109,7 +109,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 1000
-      height: 851
+      height: 850
     spriteID: 4d14b9c74e1ddc0429e6351b01c7b9f7
     spriteBone: []
     spriteOutline: []
@@ -130,7 +130,7 @@ ScriptedImporter:
       x: 4
       y: 863
       width: 1000
-      height: 848
+      height: 850
     spriteID: 12468dc1d20a7f9428723b786e079ac4
     spriteBone: []
     spriteOutline: []
@@ -151,7 +151,7 @@ ScriptedImporter:
       x: 1012
       y: 4
       width: 1000
-      height: 848
+      height: 850
     spriteID: f83712f9d54004145918baf82d65dd24
     spriteBone: []
     spriteOutline: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       x: 1012
       y: 860
       width: 1000
-      height: 848
+      height: 850
     spriteID: 1693bbea75fb904499bb5d8f8fc709fa
     spriteBone: []
     spriteOutline: []
