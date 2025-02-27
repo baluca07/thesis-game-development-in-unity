@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5859965780301599426}
   - component: {fileID: 3429767852060888677}
   m_Layer: 3
-  m_Name: EntryPoint
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,8 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337516ed0f1d7a541ba8d31e5adde229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  targetRoom: {fileID: 0}
+  otherRoomSpawnPoint: {fileID: 0}
 --- !u!1 &7538220944483839874
 GameObject:
   m_ObjectHideFlags: 0

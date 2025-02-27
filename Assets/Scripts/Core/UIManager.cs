@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     {
         healthFill.minValue = 0;
         healthFill.maxValue = PlayerStats.Instance.maxHealth;
+        healthFill.value = PlayerStats.Instance.currentHealth;
     }
 
     public void UpdatePlayerHealthFill()
