@@ -25,6 +25,10 @@ PrefabInstance:
       value: Slime
       objectReference: {fileID: 0}
     - target: {fileID: 3624534957999504188, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: baseDamage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3624534957999504188, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: attackRange
       value: 3
       objectReference: {fileID: 0}
@@ -41,16 +45,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -242987041, guid: b23c115d3b8096d49b6a39d89610953b, type: 3}
     - target: {fileID: 5449461579539570812, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449461579539570812, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.599
+      value: -1.8707821
       objectReference: {fileID: 0}
     - target: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.012
+      value: -0.45698655
       objectReference: {fileID: 0}
     - target: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -116,7 +124,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 703
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

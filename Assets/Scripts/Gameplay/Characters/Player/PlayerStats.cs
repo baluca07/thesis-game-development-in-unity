@@ -23,8 +23,8 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        UIManager.Instance.UpdatePlayerHealthFill();
         SetCurrentElemental(0);
-        UIManager.Instance.UpdatePlayerHealthFill();   
     }
 
     public void TakeDamage(Damage damage)
@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("Game Over!");
+            GameManager.Instance.GameOver();
         }
     }
 

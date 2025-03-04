@@ -15,9 +15,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
         else
+        {
             Destroy(gameObject);
+        }
 
         InitializeElementalAttacks();
     }
@@ -41,7 +47,11 @@ public class GameManager : MonoBehaviour
         if (attack != null)
         {
             attack.enemiesDefeated++;
-            UIManager.Instance.UpdateLevelFill();
+            Debug.Log($"{PlayerStats.Instance.currentElementalAttack.type}");
+            /*if (PlayerStats.Instance.currentElementalAttack.type == type)
+            { 
+                UIManager.Instance.UpdateLevelFill(); 
+            }*/
             UpdateElementalAttackLevel(attack);
         }
     }
@@ -53,7 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 attack.currentLevel++;
                 Debug.Log($"{attack.name} attack leveled up to level {attack.currentLevel}!");
-                UIManager.Instance.SetLevelBar(attack.levels[attack.currentLevel].requiredKills, attack.levels[attack.currentLevel+1].requiredKills);
+                UIManager.Instance.SetLevelBar(attack.levels[attack.currentLevel].requiredKills, attack.levels[attack.currentLevel + 1].requiredKills);
                 UIManager.Instance.UpdateElementalLevelText();
             }
         }
@@ -64,22 +74,22 @@ public class GameManager : MonoBehaviour
         {
             name = "Normal",
             type = ElementalDamageType.Normal,
-            baseDamage = 5,
+            baseDamage = 5f,
             currentLevel = 0,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 0, damageBonus = 0 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
+        Debug.Log($"Current level: {normalAttack.currentLevel} {normalAttack.baseDamage} {normalAttack.type}");
         var fireAttack = new ElementalAttack
         {
             name = "Fire",
             type = ElementalDamageType.Fire,
-            baseDamage = 0,
+            baseDamage = 0f,
             currentLevel = 1,
             levels = new List<ElementalLevel>
         {
@@ -96,7 +106,7 @@ public class GameManager : MonoBehaviour
         {
             name = "Water",
             type = ElementalDamageType.Water,
-            baseDamage = 0,
+            baseDamage = 0f,
             currentLevel = 0,
             levels = new List<ElementalLevel>
         {
@@ -113,7 +123,7 @@ public class GameManager : MonoBehaviour
         {
             name = "Air",
             type = ElementalDamageType.Air,
-            baseDamage = 0,
+            baseDamage = 0f,
             currentLevel = 0,
             levels = new List<ElementalLevel>
         {
@@ -125,17 +135,17 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
-        
+
         var earthAtttack = new ElementalAttack
         {
             name = "Earth",
             type = ElementalDamageType.Earth,
-            baseDamage = 0,
+            baseDamage = 0f,
             currentLevel = 0,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
+            new ElementalLevel { requiredKills = 1, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -149,5 +159,20 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Elemental Attacks are initialized. Count of elemental attacks: {elementalAttacks.Count}");
     }
 
+    public void GameOver()
+    {
+        UIManager.Instance.ActivateGameOverScreen();
+        Time.timeScale = 0;
+        PlayerController.Instance.OnDisable();
+        Debug.Log("Game Over!");
+    }
+    public void ResetGame()
+    {
+        // Reload the current scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+        );
+        Time.timeScale = 1;
+    }
 }
 

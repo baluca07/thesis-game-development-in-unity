@@ -18,18 +18,8 @@ public class ElementalAttack
 
     public Damage GetDamage()
     {
-        int bonusDamage = 0;
-        foreach (var level in levels)
-        {
-            if (enemiesDefeated >= level.requiredKills)
-            {
-                bonusDamage = level.damageBonus;
-            }
-            else
-            {
-                break; // Ha a következõ szinthez nincs elég kill, kilépünk
-            }
-        }
+        Debug.Log($"Current level: {currentLevel} {baseDamage} {type}");
+        int bonusDamage = levels[currentLevel].damageBonus;
         return new Damage(type, baseDamage + bonusDamage);
     }
 }

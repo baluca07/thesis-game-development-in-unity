@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
@@ -17,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference setElementalForward;
     [SerializeField] private InputActionReference setElementalBackward;
     [SerializeField] private Animator animator;
+
 
     private Rigidbody2D rb;
     private Vector2 currentVelocity;
@@ -51,15 +51,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() => Move();
 
-    private void OnEnable()
+    public void OnEnable()
     {
         movement.action.Enable();
-
+        attack.action.Enable();
+        setElementalForward.action.Enable();
+        setElementalBackward.action.Enable();
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         movement.action.Disable();
+        attack.action.Disable();
+        setElementalForward.action.Disable();
+        setElementalBackward.action.Disable();
     }
 
     //Move player

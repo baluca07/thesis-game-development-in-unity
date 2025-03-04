@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 
     //[Header("Quest UI")]
     //[Header("Enemy Stats UI")]
+    [Header("Screens")]
+    [SerializeField] private GameObject gameOverScreen;
     //[SerializeField] private Text enemyHealthText;
 
     private void Awake()
@@ -33,6 +35,7 @@ public class UIManager : MonoBehaviour
         healthFill.minValue = 0;
         healthFill.maxValue = PlayerStats.Instance.maxHealth;
         healthFill.value = PlayerStats.Instance.currentHealth;
+        DeactivateGameOverScreen();
     }
 
     public void UpdatePlayerHealthFill()
@@ -117,6 +120,16 @@ public class UIManager : MonoBehaviour
             timerFill.fillAmount = timer / cooldown;
             yield return null; // Wait for the next frame
         }
+    }
+
+    public void ActivateGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+    }
+
+    public void DeactivateGameOverScreen()
+    {
+        gameOverScreen.SetActive(false);
     }
 
 
