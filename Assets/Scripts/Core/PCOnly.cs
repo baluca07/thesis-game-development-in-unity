@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PCOnlyObject : MonoBehaviour
+{
+    void Start()
+    {
+        #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+            gameObject.SetActive(true);
+        #else
+            gameObject.SetActive(false);
+        #endif
+    }
+}
