@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CanBeDisabledButtons : MonoBehaviour
+public class CanBeDisabledButton : MonoBehaviour
 {
     public float disabledAlpha = 0.7f;
 
@@ -12,13 +12,16 @@ public class CanBeDisabledButtons : MonoBehaviour
     [SerializeField] private TextMeshProUGUI buttonText;
 
     [SerializeField] private bool iteractableAtStart = true;
-    private void Start()
+    private void Awake()
     {
         button = GetComponent<Button>();
 
+        if (button == null) Debug.Log("Missing button!");
+        if (buttonText == null) Debug.Log("Missing button-text!");
+
         if (iteractableAtStart)
         {
-            SetActive();
+            SetInteractable();
         }
         else
         {
@@ -31,7 +34,7 @@ public class CanBeDisabledButtons : MonoBehaviour
         button.interactable = false;
         buttonText.alpha = disabledAlpha;
     }
-    public void SetActive()
+    public void SetInteractable()
     {
         button.interactable = true;
         buttonText.alpha = 1;

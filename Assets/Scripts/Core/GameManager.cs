@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        InitializeElementalAttacks();
     }
 
 
@@ -68,14 +66,14 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    private void InitializeElementalAttacks()
+    public void InitializeElementalAttacks(int normalLevel, int fireLevel, int waterLevel, int airLevel, int earthLevel)
     {
         normalAttack = new ElementalAttack
         {
             name = "Normal",
             type = ElementalDamageType.Normal,
             baseDamage = 5f,
-            currentLevel = 0,
+            currentLevel = normalLevel,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
@@ -84,13 +82,13 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
-        Debug.Log($"Current level: {normalAttack.currentLevel} {normalAttack.baseDamage} {normalAttack.type}");
+        Debug.Log($"{normalAttack.type}: {normalAttack.currentLevel} lvl");
         var fireAttack = new ElementalAttack
         {
             name = "Fire",
             type = ElementalDamageType.Fire,
             baseDamage = 0f,
-            currentLevel = 1,
+            currentLevel = fireLevel,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
@@ -107,7 +105,7 @@ public class GameManager : MonoBehaviour
             name = "Water",
             type = ElementalDamageType.Water,
             baseDamage = 0f,
-            currentLevel = 0,
+            currentLevel = waterLevel,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
@@ -124,7 +122,7 @@ public class GameManager : MonoBehaviour
             name = "Air",
             type = ElementalDamageType.Air,
             baseDamage = 0f,
-            currentLevel = 0,
+            currentLevel = airLevel,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
@@ -141,7 +139,7 @@ public class GameManager : MonoBehaviour
             name = "Earth",
             type = ElementalDamageType.Earth,
             baseDamage = 0f,
-            currentLevel = 0,
+            currentLevel = earthLevel,
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
@@ -156,7 +154,18 @@ public class GameManager : MonoBehaviour
         elementalAttacks.Add(waterAttack);
         elementalAttacks.Add(airAtttack);
         elementalAttacks.Add(earthAtttack);
-        Debug.Log($"Elemental Attacks are initialized. Count of elemental attacks: {elementalAttacks.Count}");
+
+        PlayerPrefs.SetInt("NormalAttack",0);
+        PlayerPrefs.SetInt("FireAttack",0);
+        PlayerPrefs.SetInt("WaterAttack",0);
+        PlayerPrefs.SetInt("AirAttack",0);
+        PlayerPrefs.SetInt("EarthAttack",0);
+        
+        Debug.Log($"Elemental Attacks are initialized.");
+        foreach (ElementalAttack attack in elementalAttacks)
+        {
+            Debug.Log($"{attack.type}: {attack.currentLevel} lvl");
+        }
     }
 
     public void GameOver()
@@ -168,11 +177,11 @@ public class GameManager : MonoBehaviour
     }
     public void ResetGame()
     {
-        // Reload the current scene
+        /* TODO - Fix this
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
         );
-        Time.timeScale = 1;
+        Time.timeScale = 1;*/
     }
 }
 
