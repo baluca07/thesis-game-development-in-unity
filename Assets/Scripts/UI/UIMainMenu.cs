@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIMainMenu : MonoBehaviour
 {
     public CanBeDisabledButton loadButton;
-    public string playerPrefsKey = "SavedGame"; //Save with PlayerPrefs.SetString("SavedGame",0)
+    public string playerPrefsKey = "SavedGame"; //Save with PlayerPrefs.SetString("SavedGame",date)
 
     void Start()
     {

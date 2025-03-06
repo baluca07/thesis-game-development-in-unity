@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelector.unity
     guid: 4ea1bfe55324b374fac98af193d0c1ae
+  - enabled: 1
+    path: Assets/Scenes/Dungeon1.unity
+    guid: 14b6617d3d754c249806ac21149936bb
+  - enabled: 1
+    path: Assets/Scenes/Dungeon2.unity
+    guid: db4ab60644e36c24a9e1ffd4e4267c2a
+  - enabled: 1
+    path: Assets/Scenes/LevelsOfDungeon1.unity
+    guid: 3e4e9fbfd26f1374b9a9c3845411d322
+  - enabled: 1
+    path: Assets/Scenes/LevelsOfDungeon2.unity
+    guid: 71d5a229b6bf4814cbf86d7db3ee89f6
   m_configObjects: {}

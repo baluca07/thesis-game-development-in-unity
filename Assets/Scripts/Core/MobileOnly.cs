@@ -6,11 +6,11 @@ public class MobileOnlyObject : MonoBehaviour
 {
     void Start()
     {
-        #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
             gameObject.SetActive(true);
-        #else
-            gameObject.SetActive(false);
-        #endif
+#else
+        gameObject.SetActive(false);
+#endif
     }
 }
 

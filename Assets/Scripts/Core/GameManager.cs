@@ -183,5 +183,25 @@ public class GameManager : MonoBehaviour
         );
         Time.timeScale = 1;*/
     }
+
+    public void CompleteLevel(int dungeonIndex, int levelIndex)
+    {
+        PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Completed", 1);
+        SaveGame();
+    }
+
+    public void CompleteDungeon(int dungeonIndex)
+    {
+        PlayerPrefs.SetInt("Dungeon" + dungeonIndex, 1);
+        SaveGame();
+    }
+
+    public void SaveGame()
+    {
+        Debug.Log("Saving game...");
+        PlayerPrefs.SetString("SavedGame", System.DateTime.Now.ToString("yyyy/MM/dd HH-mm-ss"));
+        PlayerPrefs.Save();
+        Debug.Log("Saved!");
+    }
 }
 

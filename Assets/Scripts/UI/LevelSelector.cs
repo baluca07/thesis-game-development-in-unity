@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -12,22 +13,34 @@ public class LevelSelector : MonoBehaviour
 
     void UpdateButtons()
     {
-        for (int i = 0; i < levelButtons.Length; i++)
+        for (int i = 2; i < levelButtons.Length + 2; i++)
         {
-            if (i == 0 || PlayerPrefs.GetInt("Level" + i + "Completed") == 1)
+            if (PlayerPrefs.GetInt("Level" + i + "Completed") == 1)
             {
-                levelButtons[i].SetInteractable();
+                Debug.Log($"Level {i} id completed, button set active");
+                levelButtons[i-2].SetInteractable();
             }
             else
             {
-                levelButtons[i].SetDisabled();
+                levelButtons[i-2].SetDisabled();
             }
         }
     }
 
-    public void CompleteLevel(int levelIndex)
+    public void LoadDungeon(int dungeonIndex)
     {
-        PlayerPrefs.SetInt("Level" + levelIndex + "Completed", 1);
-        UpdateButtons();
+ #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+        SceneManager.LoadScene("Dungeon" + dungeonIndex);
+#else
+        SceneManager.LoadScene("LevelsOfDungeon" + dungeonIndex);
+#endif         
     }
+
+#if UNITY_ANDROID || UNITY_IOS
+    public void LoadLevel(int dungeonIndex, int levelIndex){
+        SceneManager.LoadScene("Dungeon" + dungeonIndex);
+        //TODO int level = set spawnpoint
+    }
+#endif
+
 }
