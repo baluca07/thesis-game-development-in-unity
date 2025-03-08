@@ -6,10 +6,15 @@ public class UIButtons : MonoBehaviour
 {
     public void Replay()
     {
-        GameManager.Instance.ResetGame();
+        GameManager.Instance.ResetLevel();
     }
     public void DummyButtonCheck()
     {
         Debug.Log("Button clicked");
+    }
+
+    public void ContinueGame()
+    {
+        GameManager.Instance.ContinueGame();
     }
 }

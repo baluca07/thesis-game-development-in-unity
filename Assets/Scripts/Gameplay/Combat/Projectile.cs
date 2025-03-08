@@ -62,15 +62,5 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
             Debug.Log($"Enemy damaged: {enemy.enemyName}");
         }
-
-        if (collision.CompareTag("Player"))
-        {
-            PlayerStats player = collision.GetComponent<PlayerStats>();
-            Debug.Log($"Player collided.");
-
-            player.TakeDamage(damage);
-            Destroy(gameObject);
-            Debug.Log($"Player Damaged");
-        }
     }
 }

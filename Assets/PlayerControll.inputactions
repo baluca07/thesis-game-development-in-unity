@@ -1,5 +1,5 @@
 {
-    "name": "InputActions",
+    "name": "PlayerControll",
     "maps": [
         {
             "name": "Player",
@@ -203,6 +203,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "SelectElementalForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "25f18255-6fbd-413a-9f53-8929dd482110",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "f1a6d8ac-2207-4c5d-8c07-9d954e30d8fe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "df74cbe9-88d8-4148-a433-8c046a40dfd8",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

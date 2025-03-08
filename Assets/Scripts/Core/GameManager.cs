@@ -170,12 +170,36 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        PlayerController.Instance.OnDisable();
         UIManager.Instance.ActivateGameOverScreen();
         Time.timeScale = 0;
-        PlayerController.Instance.OnDisable();
         Debug.Log("Game Over!");
     }
-    public void ResetGame()
+
+    public void Win()
+    {
+        PlayerController.Instance.OnDisable();
+        UIManager.Instance.ActivateWinScreen();
+        Time.timeScale = 0;
+        Debug.Log("Player Win!");
+    }
+
+    public void Pause()
+    {
+        PlayerController.Instance.OnDisable();
+        UIManager.Instance.ActivatePauseScreen();
+        Time.timeScale = 0;
+        Debug.Log("Game Paused");
+    }
+
+    public void ContinueGame()
+    {
+        UIManager.Instance.DeactivatePauseScreen();
+        Time.timeScale = 1;
+        Debug.Log("Game Continued");
+        PlayerController.Instance.OnEnable();
+    }
+    public void ResetLevel()
     {
         /* TODO - Fix this
         UnityEngine.SceneManagement.SceneManager.LoadScene(

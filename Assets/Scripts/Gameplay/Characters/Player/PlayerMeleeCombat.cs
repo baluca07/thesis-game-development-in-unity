@@ -49,9 +49,9 @@ public class PlayerMeleeCombat : MonoBehaviour
         // Apply lunge effect using position translation
         ApplyAttackLunge();
 
-        // meleeCollider.enabled = true;
+        meleeCollider.enabled = true;
         yield return new WaitForSeconds(attackDuration);
-        // meleeCollider.enabled = false;
+        meleeCollider.enabled = false;
 
         hitEnemies.Clear();
         isAttacking = false;

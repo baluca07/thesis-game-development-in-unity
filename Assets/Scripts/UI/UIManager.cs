@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     [Header("Screens")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject pauseScreen;
     //[SerializeField] private Text enemyHealthText;
 
     private void Awake()
@@ -137,5 +139,23 @@ public class UIManager : MonoBehaviour
     public void ActivateWinScreen()
     {
         winScreen.SetActive(true);
+    }
+
+    public void ActivatePauseScreen()
+    {
+        pauseScreen.SetActive(true);
+    }
+
+    public void DeactivatePauseScreen()
+    {
+        pauseScreen.SetActive(false);
+    }
+
+    public void PauseGame(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            GameManager.Instance.Pause();
+        }
     }
 }

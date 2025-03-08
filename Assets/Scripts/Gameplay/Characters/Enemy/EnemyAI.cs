@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
 
     private Animator anim;
 
-    [SerializeField] ParticleSystem particle; 
+    [SerializeField] ParticleSystem particle;
 
     private void Start()
     {

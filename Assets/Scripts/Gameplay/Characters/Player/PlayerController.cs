@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
         attack.action.Enable();
         setElementalForward.action.Enable();
         setElementalBackward.action.Enable();
+        Debug.Log("Disabled Player actions");
     }
 
     public void OnDisable()
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
         attack.action.Disable();
         setElementalForward.action.Disable();
         setElementalBackward.action.Disable();
+        Debug.Log("Disabled Player actions");
     }
 
     //Move player
