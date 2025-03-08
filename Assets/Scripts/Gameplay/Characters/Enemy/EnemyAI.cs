@@ -22,6 +22,8 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] ParticleSystem particle;
 
+    [SerializeField] Rigidbody2D rb;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -114,5 +116,10 @@ public class EnemyAI : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    public void StopSliding()
+    {
+        rb.velocity = Vector3.zero;
     }
 }

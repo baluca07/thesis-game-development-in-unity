@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5449461579539570812, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449461579539570812, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
