@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
     public void SetCurrentElemental(int index)
     {
         currentElementalAttackIndex = index;
-        Debug.Log(index);
+        Debug.Log($"Set elemental to index:{ index}");
         currentElementalAttack = (GameManager.Instance.elementalAttacks[index]);
         UIManager.Instance.UpdateElementalTypeIcon();
         UIManager.Instance.UpdateElementalLevelText();

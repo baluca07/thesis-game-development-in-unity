@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public RoomController currentRoom;
 
+    private DynamicIsometricCameraFollow cameraController;
     private void Awake()
     {
         if (Instance == null)
@@ -24,6 +26,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //Just for testing
+        InitializeElementalAttacks(0,0,0,0,0);
+    }
+
+    private void Start()
+    {
+        //just for testing
+        EnterLevel();
     }
 
 
@@ -226,6 +236,23 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("SavedGame", System.DateTime.Now.ToString("yyyy/MM/dd HH-mm-ss"));
         PlayerPrefs.Save();
         Debug.Log("Saved!");
+    }
+
+    public void EnterLevel()
+    {
+        cameraController = Camera.main.GetComponent<DynamicIsometricCameraFollow>();
+        if (cameraController == null)
+        {
+            Debug.LogError("DynamicIsometricCameraFollow script not found on the main camera.");
+        }
+        if (currentRoom == null)
+        {
+            Debug.LogError("Current room is missing!");
+        }
+        else
+        {
+            cameraController.UpdateBoundaries();
+        }
     }
 }
 

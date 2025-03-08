@@ -10,15 +10,6 @@ public class DynamicIsometricCameraFollow : MonoBehaviour
     private Vector2 boundaryMin;
     private Vector2 boundaryMax;
 
-    [SerializeField] private Transform startRoomMin;
-    [SerializeField] private Transform startRoomMax;
-
-    void Start()
-    {
-        // Initialize first 
-        UpdateBoundaries(new Vector2(startRoomMin.position.x, startRoomMin.position.y), new Vector2(startRoomMax.position.x, startRoomMax.position.y)); // Példa értékek, ezt módosítsd a saját szobádhoz
-    }
-
     void LateUpdate()
     {
         if (player == null)
@@ -37,9 +28,12 @@ public class DynamicIsometricCameraFollow : MonoBehaviour
         transform.position = smoothedPosition;
 
     }
-    public void UpdateBoundaries(Vector2 newMin, Vector2 newMax)
+    public void UpdateBoundaries()
     {
-        boundaryMin = newMin;
-        boundaryMax = newMax;
+        Debug.Log($"Updated camera boundaries: {GameManager.Instance.currentRoom.name}");
+        boundaryMin = new Vector2(GameManager.Instance.currentRoom.minBoundary.position.x,
+                                    GameManager.Instance.currentRoom.minBoundary.position.y);
+        boundaryMax = new Vector2(GameManager.Instance.currentRoom.maxBoundary.position.x,
+                                    GameManager.Instance.currentRoom.maxBoundary.position.y);
     }
 }

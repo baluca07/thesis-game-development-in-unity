@@ -23,6 +23,6 @@ public class RoomBoundaryTrigger : MonoBehaviour
     }
     public void UpdateBoundariesToCurrent()
     {
-        cameraController.UpdateBoundaries(roomBoundaryMin, roomBoundaryMax);
+        cameraController.UpdateBoundaries();
     }
 }
