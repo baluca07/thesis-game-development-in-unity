@@ -9,7 +9,7 @@ public class PCOnlyObject : MonoBehaviour
         #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             gameObject.SetActive(true);
         #else
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         #endif
     }
 }

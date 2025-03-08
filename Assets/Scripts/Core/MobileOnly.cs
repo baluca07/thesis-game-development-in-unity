@@ -7,9 +7,9 @@ public class MobileOnlyObject : MonoBehaviour
     void Start()
     {
 #if UNITY_ANDROID || UNITY_IOS
-            gameObject.SetActive(true);
+        gameObject.SetActive(true);
 #else
-        gameObject.SetActive(false);
+        Destroy(gameObject);
 #endif
     }
 }

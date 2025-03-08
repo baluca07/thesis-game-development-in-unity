@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider levelFill;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI damageText;
-    //[SerializeField] private Text manaText;
+
     [SerializeField] private Image elementalIcon;
     [SerializeField] private Image timerFill;
 
@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     //[Header("Enemy Stats UI")]
     [Header("Screens")]
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject winScreen;
     //[SerializeField] private Text enemyHealthText;
 
     private void Awake()
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
         healthFill.maxValue = PlayerStats.Instance.maxHealth;
         healthFill.value = PlayerStats.Instance.currentHealth;
         DeactivateGameOverScreen();
+        winScreen.SetActive(false);
     }
 
     public void UpdatePlayerHealthFill()
@@ -132,14 +134,8 @@ public class UIManager : MonoBehaviour
         gameOverScreen.SetActive(false);
     }
 
-
-    /*public void UpdatePlayerMana(int currentMana, int maxMana)
+    public void ActivateWinScreen()
     {
-        manaText.text = $"Mana: {currentMana}/{maxMana}";
-    }*/
-
-    /*public void UpdateEnemyHealth(int currentHealth, int maxHealth)
-    {
-        enemyHealthText.text = $"Enemy Health: {currentHealth}/{maxHealth}";
-    }*/
+        winScreen.SetActive(true);
+    }
 }

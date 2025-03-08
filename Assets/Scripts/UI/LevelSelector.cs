@@ -37,6 +37,10 @@ public class LevelSelector : MonoBehaviour
     }
 
 #if UNITY_ANDROID || UNITY_IOS
+    public void BackToDungeons()
+    {
+        SceneManager.LoadScene("LevelSelector");
+    }
     public void LoadLevel(int dungeonIndex, int levelIndex){
         SceneManager.LoadScene("Dungeon" + dungeonIndex);
         //TODO int level = set spawnpoint
