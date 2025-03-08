@@ -62,13 +62,13 @@ public class RoomController : MonoBehaviour
         GameManager.Instance.currentRoom = this;
         Debug.Log("Player spawned in room: " + gameObject.name);
         GameManager.Instance.EnterRoom();
-        UIManager.Instance.UpdateQuestEnemies();
         if (!roomCleared)
         {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             LockDoors();
 #endif
             SpawnEnemies();
+            UIManager.Instance.UpdateQuestEnemies(enemyCount);
         }
     }
 
@@ -85,13 +85,14 @@ public class RoomController : MonoBehaviour
     public void EnemyDefeated()
     {
         enemies.RemoveAt(enemies.Count - 1);
-        UIManager.Instance.UpdateQuestEnemies();
+        UIManager.Instance.UpdateQuestEnemies(enemies.Count);
         if (enemies.Count == 0)
         {
 #if UNITY_ANDROID || UNITY_IOS
             GameManager.Instance.CompleteLevel(DungeonController.Instance.dungeonID, RoomID);
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             OpenDoors();
+            DungeonController.Instance.AddRoom();
             UIManager.Instance.UpdateQuestRooms();
 #endif
             roomCleared = true;
