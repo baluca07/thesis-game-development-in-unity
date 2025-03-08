@@ -6,10 +6,10 @@ public class PCOnlyObject : MonoBehaviour
 {
     void Start()
     {
-        #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             gameObject.SetActive(true);
-        #else
-            Destroy(gameObject);
-        #endif
+#else
+        Destroy(gameObject);
+#endif
     }
 }

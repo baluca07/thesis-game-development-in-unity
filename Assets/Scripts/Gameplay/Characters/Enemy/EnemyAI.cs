@@ -30,6 +30,7 @@ public class EnemyAI : MonoBehaviour
         enemy = GetComponent<EnemyStats>();
         anim = GetComponent<Animator>();
         enemyAttack = GetComponent<MeleeEnemyAttack>();
+        rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {

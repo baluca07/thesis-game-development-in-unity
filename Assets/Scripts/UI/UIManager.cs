@@ -17,7 +17,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image elementalIcon;
     [SerializeField] private Image timerFill;
 
-    //[Header("Quest UI")]
+    [Header("Quest UI")]
+    [SerializeField] private TextMeshProUGUI enemies;
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+    [SerializeField] private TextMeshProUGUI rooms;
+#endif
+
     //[Header("Enemy Stats UI")]
     [Header("Screens")]
     [SerializeField] private GameObject gameOverScreen;
@@ -122,9 +127,19 @@ public class UIManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
             timerFill.fillAmount = timer / cooldown;
-            yield return null; // Wait for the next frame
+            yield return null;
         }
     }
+    public void UpdateQuestEnemies()
+    {
+        enemies.text = $"Remained Enemies: {GameManager.Instance.currentRoom.enemies.Count}/{GameManager.Instance.currentRoom.enemyCount}";
+    }
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+    public void UpdateQuestRooms()
+    {
+        rooms.text = $"Remained Rooms: {DungeonController.Instance.clearedRooms}/{DungeonController.Instance.roomsCount}";
+    }
+#endif
 
     public void ActivateGameOverScreen()
     {

@@ -41,6 +41,7 @@ public class EnemyStats : MonoBehaviour
     {
         Debug.Log($"{enemyName} has been defeated!");
         GameManager.Instance.AddEnemyKill(elementalDamageType);
+        GameManager.Instance.currentRoom.EnemyDefeated();
         Destroy(gameObject);
     }
 

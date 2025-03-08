@@ -30,12 +30,6 @@ public class GameManager : MonoBehaviour
         InitializeElementalAttacks(0,0,0,0,0);
     }
 
-    private void Start()
-    {
-        //just for testing
-        EnterLevel();
-    }
-
 
     public void MovePlayerToRoom(Transform player, Transform spawnPoint)
     {
@@ -56,10 +50,10 @@ public class GameManager : MonoBehaviour
         {
             attack.enemiesDefeated++;
             Debug.Log($"{PlayerStats.Instance.currentElementalAttack.type}");
-            /*if (PlayerStats.Instance.currentElementalAttack.type == type)
+            if (PlayerStats.Instance.currentElementalAttack.type == type)
             { 
                 UIManager.Instance.UpdateLevelFill(); 
-            }*/
+            }
             UpdateElementalAttackLevel(attack);
         }
     }
@@ -86,7 +80,7 @@ public class GameManager : MonoBehaviour
             currentLevel = normalLevel,
             levels = new List<ElementalLevel>
         {
-            new ElementalLevel { requiredKills = 10, damageBonus = 10 },
+            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
@@ -102,7 +96,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
+            new ElementalLevel { requiredKills = 1, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -119,7 +113,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
+            new ElementalLevel { requiredKills = 1, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -136,7 +130,7 @@ public class GameManager : MonoBehaviour
             levels = new List<ElementalLevel>
         {
             new ElementalLevel { requiredKills = 0, damageBonus = 0 },
-            new ElementalLevel { requiredKills = 5, damageBonus = 10 },
+            new ElementalLevel { requiredKills = 1, damageBonus = 10 },
             new ElementalLevel { requiredKills = 10, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
@@ -218,11 +212,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;*/
     }
 
+#if UNITY_ANDROID || UNITY_IOS
     public void CompleteLevel(int dungeonIndex, int levelIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Completed", 1);
         SaveGame();
     }
+#endif
 
     public void CompleteDungeon(int dungeonIndex)
     {
@@ -238,7 +234,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Saved!");
     }
 
-    public void EnterLevel()
+    public void EnterRoom()
     {
         cameraController = Camera.main.GetComponent<DynamicIsometricCameraFollow>();
         if (cameraController == null)

@@ -19,8 +19,7 @@ public class ElementalAttack
     public Damage GetDamage()
     {
         Debug.Log($"Current level: {currentLevel} {baseDamage} {type}");
-        //int bonusDamage = levels[currentLevel].damageBonus;
-        int bonusDamage = 0;
+        int bonusDamage = levels[currentLevel].damageBonus;
         return new Damage(type, baseDamage + bonusDamage);
     }
 }
