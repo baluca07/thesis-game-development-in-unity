@@ -41,9 +41,13 @@ public class LevelSelector : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelector");
     }
-    public void LoadLevel(int dungeonIndex, int levelIndex){
+    public void LoadLevel(string parameters)
+    {
+        string[] parts = parameters.Split(',');
+        int dungeonIndex = int.Parse(parts[0]);
+        int levelIndex = int.Parse(parts[1]);
+        GameManager.Instance.SetSpawnpoint(dungeonIndex, levelIndex);
         SceneManager.LoadScene("Dungeon" + dungeonIndex);
-        //TODO int level = set spawnpoint
     }
 #endif
 

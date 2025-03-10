@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public RoomController currentRoom;
 
     private DynamicIsometricCameraFollow cameraController;
+    public Vector2 playerSpawnpoint = new Vector2(0,0);
     private void Awake()
     {
         if (Instance == null)
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+#if UNITY_ANDROID || UNITY_IOS
+        InitializeMobileLevelSpawnpoints();
+#endif
         //Just for testing
         InitializeElementalAttacks(0,0,0,0,0);
     }
@@ -171,7 +175,28 @@ public class GameManager : MonoBehaviour
             Debug.Log($"{attack.type}: {attack.currentLevel} lvl");
         }
     }
+ #if UNITY_ANDROID || UNITY_IOS
 
+    public Dictionary<int, Dictionary<int, Vector2>> mobileSpawnpoints = new Dictionary<int, Dictionary<int, Vector2>>();
+    public void InitializeMobileLevelSpawnpoints()
+    {
+        Debug.Log("Initialite mobile spawnpoints...");
+        mobileSpawnpoints.Clear();
+        Dictionary<int, Vector2> dungeon1Levels = new Dictionary<int, Vector2>();
+        dungeon1Levels.Add(1, new Vector2(-4f, -2f));
+        dungeon1Levels.Add(2, new Vector2(10.5f, 7.5f));
+        dungeon1Levels.Add(3, new Vector2(-14.5f, 5.5f));
+        Debug.Log($"Initialized {dungeon1Levels.Count} level to dungeon1");
+        mobileSpawnpoints.Add(1, dungeon1Levels);
+        Debug.Log($"Initilaized {mobileSpawnpoints.Count} mobile dungeon");
+    }
+
+    public void SetSpawnpoint(int dungeonID, int levelID)
+    {
+        playerSpawnpoint =  mobileSpawnpoints[dungeonID][levelID];
+        Debug.LogWarning($"PlayerSpawnpoint set to: {playerSpawnpoint}");
+    }
+#endif
     public void GameOver()
     {
         PlayerController.Instance.OnDisable();
@@ -232,6 +257,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetString("SavedGame", System.DateTime.Now.ToString("yyyy/MM/dd HH-mm-ss"));
         PlayerPrefs.Save();
         Debug.Log("Saved!");
+    }
+
+    public void SpawnPlayer()
+    {
+        PlayerController.Instance.transform.position = playerSpawnpoint;
+        Debug.Log($"Player spawned to {PlayerController.Instance.transform}");
     }
 
     public void EnterRoom()

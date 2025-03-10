@@ -76,29 +76,34 @@ public class RoomController : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         GatherDoors();
 #endif
+        //CheckForPlayer();
+        
+    }
+
+    public void CheckForPlayer()
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) Debug.LogError("Player not found");
         playerCollider = player.GetComponent<PolygonCollider2D>();
 
-        if(playerCollider == null) Debug.LogError("Missing player collider!");
+        if (playerCollider == null) Debug.LogError("Missing player collider!");
         if (floor.bounds.Intersects(playerCollider.bounds))
         {
-            EnterRoom();
-            UIManager.Instance.UpdateQuestEnemies(enemyCount,0);
-        }
-    }
-
-    private void EnterRoom()
-    {
-        GameManager.Instance.currentRoom = this;
-        Debug.Log("Player spawned in room: " + gameObject.name);
-        GameManager.Instance.EnterRoom();
-        if (!roomCleared)
-        {
+            GameManager.Instance.currentRoom = this;
+            Debug.Log("Player spawned in room: " + gameObject.name);
+            GameManager.Instance.EnterRoom();
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-            LockDoors();
-#endif
+            if (!roomCleared)
+            {
+                LockDoors();
+                SpawnEnemies();
+                UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
+            }
+#elif UNITY_ANDROID || UNITY_IOS
             SpawnEnemies();
+            UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
+#endif
+
         }
     }
 
@@ -119,13 +124,14 @@ public class RoomController : MonoBehaviour
         if (currentEnemies == 0)
         {
 #if UNITY_ANDROID || UNITY_IOS
-            GameManager.Instance.CompleteLevel(DungeonController.Instance.dungeonID, RoomID);
+            GameManager.Instance.CompleteLevel(DungeonController.Instance.dungeonID, roomID);
+            GameManager.Instance.Win();
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             OpenDoors();
             DungeonController.Instance.AddRoom();
             UIManager.Instance.UpdateQuestRooms();
-#endif
             roomCleared = true;
+#endif
         }
     }
 
@@ -136,6 +142,5 @@ public class RoomController : MonoBehaviour
         Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnpoint.position, Quaternion.identity);
         currentEnemies++;
     }
-
 
 }

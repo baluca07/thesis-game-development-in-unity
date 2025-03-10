@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DungeonController : MonoBehaviour
 {
     public int dungeonID;
-
-    [SerializeField] private RoomController[] rooms;
-
-    public int clearedRooms = 0;
-    public int roomsCount = 0;
-
     public static DungeonController Instance;
-
+    [SerializeField] private RoomController[] rooms;
     private void Awake()
     {
         if (Instance == null)
@@ -25,14 +20,17 @@ public class DungeonController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     private void Start()
     {
+        GameManager.Instance.SpawnPlayer();
         GatherRooms();
+        StartCoroutine(SearchPlayer());
+        
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         roomsCount = rooms.Length;
         UIManager.Instance.UpdateQuestRooms();
+#endif
     }
-
     private void GatherRooms()
     {
         List<RoomController> roomList = new List<RoomController>();
@@ -56,7 +54,21 @@ public class DungeonController : MonoBehaviour
         Debug.Log($"Dungeon{dungeonID} has {rooms.Length} rooms");
     }
 
+    private IEnumerator SearchPlayer()
+    {
+        yield return new WaitForSeconds(2f);
+        foreach (RoomController room in rooms)
+        {
+            room.CheckForPlayer();
+        }
+    }
 
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+
+
+    public int clearedRooms = 0;
+    public int roomsCount = 0;
+    
     public void AddRoom()
     {
         clearedRooms++;
@@ -67,4 +79,5 @@ public class DungeonController : MonoBehaviour
             UIManager.Instance.ActivateWinScreen();
         }
     }
+#endif
 }
