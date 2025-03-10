@@ -11852,11 +11852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8149932078398910518, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.89
+      value: -4.24
       objectReference: {fileID: 0}
     - target: {fileID: 8149932078398910518, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.61
+      value: -1.92
       objectReference: {fileID: 0}
     - target: {fileID: 8149932078398910518, guid: 4439462e71559de44b06e267f5b4f843, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19748,7 +19748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4383401117426970561, guid: 0c8ab629dc5714741a6de4698a12f68c, type: 3}
       propertyPath: enemyCount
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4383401117426970561, guid: 0c8ab629dc5714741a6de4698a12f68c, type: 3}
       propertyPath: doors.Array.data[1]
