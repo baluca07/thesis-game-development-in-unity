@@ -8,6 +8,8 @@ TagManager:
   - Melee
   - Weapon
   - Ranged
+  - Room
+  - Door
   layers:
   - Default
   - TransparentFX

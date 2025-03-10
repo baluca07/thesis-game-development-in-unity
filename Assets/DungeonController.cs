@@ -28,9 +28,34 @@ public class DungeonController : MonoBehaviour
 
     private void Start()
     {
+        GatherRooms();
         roomsCount = rooms.Length;
         UIManager.Instance.UpdateQuestRooms();
     }
+
+    private void GatherRooms()
+    {
+        List<RoomController> roomList = new List<RoomController>();
+
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Room"))
+            {
+                RoomController roomController = child.GetComponent<RoomController>();
+                if (roomController != null)
+                {
+                    roomList.Add(roomController);
+                }
+                else
+                {
+                    Debug.LogWarning("Room object '" + child.name + "' has 'Room' tag but no RoomController component.");
+                }
+            }
+        }
+        rooms = roomList.ToArray();
+        Debug.Log($"Dungeon{dungeonID} has {rooms.Length} rooms");
+    }
+
 
     public void AddRoom()
     {

@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class ExitPointTrigger : MonoBehaviour
 {
-    [Tooltip("The spawn point where the player should be moved when entering this door.")]
     public Transform otherRoomSpawnPoint;
-    public RoomBoundaryTrigger targetRoom;
+    public RoomController targetRoom;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {      
             GameManager.Instance.MovePlayerToRoom(other.transform, otherRoomSpawnPoint);
-            targetRoom.UpdateBoundariesToCurrent();
+            Debug.Log($"Player moved to Room{targetRoom.roomID}");
         }
     }
 }

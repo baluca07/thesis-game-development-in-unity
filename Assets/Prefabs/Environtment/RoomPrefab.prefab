@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 4383401117426970561}
   m_Layer: 3
   m_Name: RoomPrefab
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -709,14 +709,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf678582cb24c144d8f4b824fd362275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomID: 1
   minBoundary: {fileID: 5745095278882268991}
   maxBoundary: {fileID: 5167040459881577622}
   floor: {fileID: 1204619384751164779}
   doors:
   - {fileID: 9118269923941326231}
   - {fileID: 8948014453754907629}
-  RoomID: 1
-  enemyCount: 2
+  enemyCount: 3
   enemySpawnpoints:
   - {fileID: 276375795900510255}
   - {fileID: 6524990490269034648}
@@ -734,6 +734,7 @@ MonoBehaviour:
   - {fileID: 3676506181444434885, guid: 28cca2f539fba414ca991527f598548e, type: 3}
   - {fileID: 6983410937366982520, guid: 22f467d6b9a2ea34a87d1f5083d3a898, type: 3}
   spawnParticlesPrefab: {fileID: 4158519886043464475, guid: a809f11e7a63b314c8ef13745f4cb0d6, type: 3}
+  enemies: []
   roomCleared: 0
 --- !u!1 &7174884672780707354
 GameObject:
@@ -912,6 +913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6136669833372792750}
+  - component: {fileID: 8315228679909770846}
   m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
@@ -936,6 +938,18 @@ Transform:
   - {fileID: 5859756483710992192}
   m_Father: {fileID: 4699297129717973839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8315228679909770846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361237647299472650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31706990ed7246d418c7d8eecc7b3a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7599058214614414966
 GameObject:
   m_ObjectHideFlags: 0

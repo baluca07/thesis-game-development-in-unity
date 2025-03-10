@@ -130,9 +130,10 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
     }
-    public void UpdateQuestEnemies(int enemyCount)
+    public void UpdateQuestEnemies(int maxEnemyCount, int currentEnemyCount)
     {
-        enemies.text = $"Remained Enemies: {enemyCount}";
+        enemies.text = $"Remained Enemies: {currentEnemyCount}/{maxEnemyCount}";
+        Debug.Log($"Updated Quest: remained enemies {maxEnemyCount}");
     }
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
     public void UpdateQuestRooms()
