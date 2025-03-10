@@ -64,13 +64,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5792981627475006581, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.11764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792981627475006581, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.42745098
+      objectReference: {fileID: 0}
     - target: {fileID: 6303064068610106045, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7766519
+      value: -1.8349962
       objectReference: {fileID: 0}
     - target: {fileID: 6303064068610106045, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05678904
+      value: -0.20218366
       objectReference: {fileID: 0}
     - target: {fileID: 6303064068610106045, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_LocalPosition.z

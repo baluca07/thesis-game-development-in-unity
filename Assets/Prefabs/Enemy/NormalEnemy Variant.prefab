@@ -1,5 +1,87 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4610664152655080913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6497072593285907744}
+  - component: {fileID: 2300841639442530766}
+  m_Layer: 8
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6497072593285907744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610664152655080913}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1797514864171546374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2300841639442530766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610664152655080913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.5036232, g: 0.8867924, b: 0.04601282, a: 1}
+  m_Intensity: 2
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 0.7917699
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &8516434636453893835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,11 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8707821
+      value: -0.93897796
       objectReference: {fileID: 0}
     - target: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.45698655
+      value: 1.1357064
       objectReference: {fileID: 0}
     - target: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -102,12 +184,20 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 5f412e935cb39a94f8700c2b453d2a04, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6497072593285907744}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 774359188620605621, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 440042826286023007}
   m_SourcePrefab: {fileID: 100100000, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+--- !u!4 &1797514864171546374 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7981075702143721933, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+  m_PrefabInstance: {fileID: 8516434636453893835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8975506632089841278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 774359188620605621, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}

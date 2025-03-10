@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_SpriteHash
       value: 759341492
       objectReference: {fileID: 0}
+    - target: {fileID: 1577049970815340154, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_CategoryHash
+      value: 0.0018480977
+      objectReference: {fileID: 0}
     - target: {fileID: 2459386738370807107, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: RotationModule.enabled
       value: 0
@@ -116,13 +120,25 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e82e4989986e8bc4085568d6e557f1e8, type: 2}
+    - target: {fileID: 5792981627475006581, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792981627475006581, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792981627475006581, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.10980392
+      objectReference: {fileID: 0}
     - target: {fileID: 6303064068610106045, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.599
+      value: -1.2090108
       objectReference: {fileID: 0}
     - target: {fileID: 6303064068610106045, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.012
+      value: 0.38084182
       objectReference: {fileID: 0}
     - target: {fileID: 6303064068610106045, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -167,6 +183,10 @@ PrefabInstance:
     - target: {fileID: 9168955965782214297, guid: 28cca2f539fba414ca991527f598548e, type: 3}
       propertyPath: m_SpriteHash
       value: 658054879
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168955965782214297, guid: 28cca2f539fba414ca991527f598548e, type: 3}
+      propertyPath: m_CategoryHash
+      value: 0.0018480977
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
