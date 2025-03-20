@@ -1,6 +1,7 @@
 // PlayerController.cs
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 currentVelocity;
     private bool canMove = true;
+    private Vector2 moveInput;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
         if (animator == null)
             animator = GetComponent<Animator>();
+
+
     }
 
     private void Update()
@@ -75,24 +79,43 @@ public class PlayerController : MonoBehaviour
     {
         if (!canMove) return;
 
-        Vector2 input = movement.action.ReadValue<Vector2>();
-        Vector2 targetVelocity = input.normalized * moveSpeed;
+        /*input = movement.action.ReadValue<Vector2>();
+        if(input != Vector2.zero)
+        {
+            Debug.Log(input);
+        }*/
+        Vector2 targetVelocity = moveInput.normalized * moveSpeed;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, movementLerp);
+    }
+
+    public void MoveInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            if (!canMove) return;
+
+            Debug.Log("Player want to move!");
+            if (moveInput != Vector2.zero)
+            {
+                Debug.Log(moveInput);
+            }
+            moveInput = ctx.ReadValue<Vector2>();
+        }
     }
 
     private void UpdateRotation()
     {
         if (!canMove) return;
 
-        Vector2 input = movement.action.ReadValue<Vector2>();
-        if (input.x != 0)
-            transform.rotation = Quaternion.Euler(0, input.x > 0 ? 0 : 180, 0);
+        //Vector2 input = movement.action.ReadValue<Vector2>();
+        if (moveInput.x != 0)
+            transform.rotation = Quaternion.Euler(0, moveInput.x > 0 ? 0 : 180, 0);
     }
 
     private void UpdateAnimations()
     {
         bool isMoving = canMove && movement?.action != null &&
-                      movement.action.ReadValue<Vector2>().sqrMagnitude > 0.1f;
+                      moveInput.sqrMagnitude > 0.1f;
         animator.SetBool("Run", isMoving);
     }
 
