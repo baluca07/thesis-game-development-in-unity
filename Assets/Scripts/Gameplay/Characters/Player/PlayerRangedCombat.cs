@@ -80,10 +80,7 @@ public class PlayerRangedCombat : MonoBehaviour
 
         isAiming = false;
         aim.gameObject.SetActive(false);
-        anim.SetTrigger("Shoot");
-        ShootProjectile();
-        StartCoroutine(CooldownTimer());
-        UIManager.Instance.StartCountRangedCooldown(attackCoolDown);
+        ShootProjectile(PlayerStats.Instance.currentElementalAttackIndex);
     }
 
     private void Aim()
@@ -109,22 +106,25 @@ public class PlayerRangedCombat : MonoBehaviour
         transform.localScale = new Vector3(shouldFlip ? -1 : 1, 1, 1);
     }
 
-    private void ShootProjectile()
+    private void ShootProjectile(int elementalAttackIndex)
     {
+        anim.SetTrigger("Shoot");
         Vector3 aimEulerAngles = aim.rotation.eulerAngles;
 
         Quaternion normalizedRotation = aim.localToWorldMatrix.rotation;
 
-        GameObject projectile = Instantiate(projectilePrefabs[PlayerStats.Instance.currentElementalAttackIndex], firePoint.position, normalizedRotation);
+        GameObject projectile = Instantiate(projectilePrefabs[elementalAttackIndex], firePoint.position, normalizedRotation);
         Projectile projectileScript = projectile.GetComponent<Projectile>();
 
         if (projectileScript != null)
         {
-            projectileScript.damage = PlayerStats.Instance.currentElementalAttack.GetDamage();
+            projectileScript.damage = GameManager.Instance.elementalAttacks[elementalAttackIndex].GetDamage();
             projectileScript.attackRange = projectileRange;
             projectileScript.speed = projectileSpeed;
             projectileScript.owner = Projectile.ProjectileOwner.Player; // Corrected to Player
         }
+        StartCoroutine(CooldownTimer());
+        UIManager.Instance.StartCountRangedCooldown(attackCoolDown);
     }
 
     private IEnumerator CooldownTimer()
@@ -147,5 +147,22 @@ public class PlayerRangedCombat : MonoBehaviour
         // Reset the player's rotation to the original state
         transform.rotation = originalPlayerRotation;
         transform.localScale = new Vector3(1, 1, 1); // Reset scale to default
+    }
+
+    public void FireAttack()
+    {
+        ShootProjectile(0);
+    }
+    public void WaterAttack()
+    {
+        ShootProjectile(1);
+    }
+    public void AirAttack()
+    {
+        ShootProjectile(2);
+    }
+    public void EarthAttack()
+    {
+        ShootProjectile(3);
     }
 }

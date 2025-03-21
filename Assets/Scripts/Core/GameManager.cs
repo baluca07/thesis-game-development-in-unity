@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         InitializeMobileLevelSpawnpoints();
 #endif
         //Just for testing
-        InitializeElementalAttacks(0,0,0,0,0);
+        InitializeElementalAttacks(0,1,0,0,0);
     }
 
 

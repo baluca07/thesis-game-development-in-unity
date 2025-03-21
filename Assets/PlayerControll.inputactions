@@ -49,6 +49,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FireAttack",
+                    "type": "Button",
+                    "id": "20cd13ce-9eac-4a5c-823b-277d666ae7c8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "WaterAttack",
+                    "type": "Button",
+                    "id": "f3cdb273-21b2-4965-8425-e904a18f0666",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AirAttack",
+                    "type": "Button",
+                    "id": "a9939bc4-660a-4652-96e8-6af5d6513093",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EarthAttack",
+                    "type": "Button",
+                    "id": "07e4f8f9-9115-4b13-85d2-3a59f3063e76",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -157,7 +193,7 @@
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Mobile;KeyboardMouse",
+                    "groups": ";Mobile",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -190,7 +226,7 @@
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Mobile;KeyboardMouse",
+                    "groups": ";Mobile",
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -214,6 +250,50 @@
                     "processors": "",
                     "groups": ";KeyboardMouse",
                     "action": "SelectElementalForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3fda42a9-b8cb-426d-92c7-38de101f3c2a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mobile",
+                    "action": "FireAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51278ad4-3975-4eb0-b20d-95f2166ca7a5",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mobile",
+                    "action": "WaterAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebf86dae-c13f-4ec3-a8ec-be6d39ef98f1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mobile",
+                    "action": "AirAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe548745-b8b1-4487-b046-bfd433519c60",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mobile",
+                    "action": "EarthAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

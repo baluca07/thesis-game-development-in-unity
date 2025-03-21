@@ -1,4 +1,5 @@
 // PlayerController.cs
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
@@ -175,4 +176,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void FireAttack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            PlayerRangedCombat.Instance.FireAttack();
+        }
+    }
+
+    public void WaterAttack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            PlayerRangedCombat.Instance.WaterAttack();
+        }
+    }
+    public void AirAttack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            PlayerRangedCombat.Instance.AirAttack();
+        }
+    }
+    public void EarthAttack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            PlayerRangedCombat.Instance.EarthAttack();
+        }
+    }
 }
