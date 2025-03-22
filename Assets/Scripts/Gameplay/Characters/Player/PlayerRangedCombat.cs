@@ -51,27 +51,18 @@ public class PlayerRangedCombat : MonoBehaviour
 
     public void StartAim()
     {
-        if (PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
+        if (CanUseElementalRangedAttack())
         {
-            Debug.Log("This type of attack does not unlocked yet");
-            return;
+            originalPlayerRotation = transform.rotation;
+
+            if (originalPlayerRotation.y == 0) facingRight = true;
+            else facingRight = false;
+
+            anim.SetTrigger("Aim");
+            isAiming = true;
+            aim.gameObject.SetActive(true);
+            PlayerController.Instance.SetMovement(false);
         }
-        else if (isOnCooldown)
-        {
-            Debug.Log("Ranged attack is on cooldown");
-            return;
-        }
-
-        // Store the original rotation before aiming
-        originalPlayerRotation = transform.rotation;
-
-        if(originalPlayerRotation.y == 0) facingRight = true ;
-        else facingRight = false ;
-
-        anim.SetTrigger("Aim");
-        isAiming = true;
-        aim.gameObject.SetActive(true);
-        PlayerController.Instance.SetMovement(false);
     }
 
     public void StopAimAndAttack()
@@ -80,6 +71,7 @@ public class PlayerRangedCombat : MonoBehaviour
 
         isAiming = false;
         aim.gameObject.SetActive(false);
+        anim.SetTrigger("Shoot");
         ShootProjectile(PlayerStats.Instance.currentElementalAttackIndex);
     }
 
@@ -88,27 +80,21 @@ public class PlayerRangedCombat : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
 
-        // Get direction to aim
         Vector3 aimDirection = (mousePosition - aim.transform.position).normalized;
 
-        // Calculate rotation angle
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        // Determine if we need to flip
         bool shouldFlip;
         if (facingRight) shouldFlip = mousePosition.x < transform.position.x;
         else shouldFlip = mousePosition.x > transform.position.x;
 
-        // Apply correct rotation while handling flipping
         aim.transform.rotation = Quaternion.Euler(0, 0, shouldFlip ? angle + 180 : angle);
 
-        // Flip player (but not the aim object)
         transform.localScale = new Vector3(shouldFlip ? -1 : 1, 1, 1);
     }
 
     private void ShootProjectile(int elementalAttackIndex)
     {
-        anim.SetTrigger("Shoot");
         Vector3 aimEulerAngles = aim.rotation.eulerAngles;
 
         Quaternion normalizedRotation = aim.localToWorldMatrix.rotation;
@@ -144,25 +130,48 @@ public class PlayerRangedCombat : MonoBehaviour
 
     private void RestoreOriginalRotation()
     {
-        // Reset the player's rotation to the original state
         transform.rotation = originalPlayerRotation;
-        transform.localScale = new Vector3(1, 1, 1); // Reset scale to default
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void FireAttack()
     {
-        ShootProjectile(0);
+        if(CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(0));
     }
     public void WaterAttack()
     {
-        ShootProjectile(1);
+        if (CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(1));
     }
     public void AirAttack()
     {
-        ShootProjectile(2);
+        if (CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(2));
     }
     public void EarthAttack()
     {
-        ShootProjectile(3);
+        if (CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(3));
     }
+
+    private IEnumerator MobileShootAnimation(int elementalAttackIndex)
+    {
+        anim.SetTrigger("Aim");
+        yield return new WaitForSeconds(0.5f);
+        anim.SetTrigger("Shoot");
+        ShootProjectile(elementalAttackIndex);
+    }
+
+    private bool CanUseElementalRangedAttack()
+    {
+        if (PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
+        {
+            Debug.Log("This type of attack does not unlocked yet");
+            return false;
+        }
+        else if (isOnCooldown)
+        {
+            Debug.Log("Ranged attack is on cooldown");
+            return false;
+        }
+        return true;
+    }
+
 }
