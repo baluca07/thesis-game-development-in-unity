@@ -154,6 +154,7 @@ public class PlayerRangedCombat : MonoBehaviour
 
     private IEnumerator CooldownTimer()
     {
+        aim.gameObject.SetActive(false);
         isOnCooldown = true;
         yield return new WaitForSeconds(attackCoolDown);
         isOnCooldown = false;

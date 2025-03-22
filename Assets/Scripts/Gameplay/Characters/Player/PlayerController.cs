@@ -136,7 +136,6 @@ public class PlayerController : MonoBehaviour
     //Melee attack
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         Debug.Log("Melee attack");
         if (PlayerMeleeCombat.Instance != null)
         {
@@ -150,7 +149,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("PlayerMeleeCombat.Instance is missing");
         }
-#endif
     }
 
     // Ranged Attack
@@ -176,31 +174,40 @@ public class PlayerController : MonoBehaviour
 
     public void FireAttack(InputAction.CallbackContext ctx)
     {
+#if UNITY_ANDROID || UNITY_IOS
+
         if (ctx.performed)
         {
             PlayerRangedCombat.Instance.FireAttack();
         }
+#endif
     }
 
     public void WaterAttack(InputAction.CallbackContext ctx)
     {
+#if UNITY_ANDROID || UNITY_IOS
         if (ctx.performed)
         {
             PlayerRangedCombat.Instance.WaterAttack();
         }
+#endif
     }
     public void AirAttack(InputAction.CallbackContext ctx)
     {
+#if UNITY_ANDROID || UNITY_IOS
         if (ctx.performed)
         {
             PlayerRangedCombat.Instance.AirAttack();
         }
+#endif
     }
     public void EarthAttack(InputAction.CallbackContext ctx)
     {
+#if UNITY_ANDROID || UNITY_IOS
         if (ctx.performed)
         {
             PlayerRangedCombat.Instance.EarthAttack();
         }
+#endif
     }
 }

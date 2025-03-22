@@ -138,7 +138,7 @@ public class RoomController : MonoBehaviour
     private IEnumerator spawnCounter(Transform spawnpoint)
     {
         Instantiate(spawnParticlesPrefab, spawnpoint.position, Quaternion.identity);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnpoint.position, Quaternion.identity);
         currentEnemies++;
     }

@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
 
     public ElementalAttack normalAttack = new ElementalAttack();
 
-    public static GameManager Instance;
 
     public RoomController currentRoom;
 
     private DynamicIsometricCameraFollow cameraController;
     public Vector2 playerSpawnpoint = new Vector2(0,0);
+
+    public static GameManager Instance;
     private void Awake()
     {
         if (Instance == null)
@@ -53,12 +54,16 @@ public class GameManager : MonoBehaviour
         if (attack != null)
         {
             attack.enemiesDefeated++;
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             Debug.Log($"{PlayerStats.Instance.currentElementalAttack.type}");
             if (PlayerStats.Instance.currentElementalAttack.type == type)
             { 
                 UIManager.Instance.UpdateLevelFill(); 
             }
             attack.LevelUp();
+#elif UNITY_ANDROID || UNITY_IOS
+            attack.LevelUp();
+#endif
         }
     }
     public void InitializeElementalAttacks(int normalLevel, int fireLevel, int waterLevel, int airLevel, int earthLevel)
@@ -162,7 +167,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"{attack.type}: {attack.currentLevel} lvl");
         }
     }
- #if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
 
     public Dictionary<int, Dictionary<int, Vector2>> mobileSpawnpoints = new Dictionary<int, Dictionary<int, Vector2>>();
     public void InitializeMobileLevelSpawnpoints()
@@ -228,6 +233,11 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel(int dungeonIndex, int levelIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Completed", 1);
+        int score = CalculateScore(500,0);
+        PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Score", score);
+        UIManager.Instance.UpdateWinScore(score);
+        int stars = StarDisplay.Instance.CalculateStars(score);
+        StarDisplay.Instance.DisplayStars(stars);
         SaveGame();
     }
 #endif
@@ -235,7 +245,43 @@ public class GameManager : MonoBehaviour
     public void CompleteDungeon(int dungeonIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex, 1);
+        int score = CalculateScore(180, 0);
+        PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Score", score);
+        UIManager.Instance.UpdateWinScore(score);
         SaveGame();
+    }
+    public int CalculateScore(float elapsedTime, int damageTaken)
+    {
+        int idealTime = 180;
+        int maxTimeScore = 1000;
+        int timePenalty = 10;
+
+        int maxDamageScore = 1000;
+        int damagePenalty = 5;
+
+        int timeScore;
+
+        if (elapsedTime <= idealTime)
+        {
+            timeScore = maxTimeScore;
+        }
+        else
+        {
+            timeScore = maxTimeScore - (int)((elapsedTime - idealTime) * timePenalty);
+            if (timeScore < 0)
+            {
+                timeScore = 0;
+            }
+        }
+
+        int damageScore = maxDamageScore - (damageTaken * damagePenalty);
+        if (damageScore < 0)
+        {
+            damageScore = 0;
+        }
+
+        int finalScore = timeScore + damageScore;
+        return finalScore;
     }
 
     public void SaveGame()

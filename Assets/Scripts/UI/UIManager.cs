@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rooms;
 #endif
 
+    [Header("WinSceen")]
+    [SerializeField] private TextMeshProUGUI winScore;
+
 
     //[Header("Enemy Stats UI")]
     [Header("Screens")]
@@ -64,7 +67,6 @@ public class UIManager : MonoBehaviour
         }
 #endif
     }
-
     public void UpdatePlayerHealthFill()
     {
         healthFill.value = PlayerStats.Instance.currentHealth;
@@ -117,6 +119,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateElementalLevelText()
     {
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
         {
             levelText.text = $"LVL {PlayerStats.Instance.currentElementalAttack.currentLevel}";
@@ -127,6 +130,7 @@ public class UIManager : MonoBehaviour
         }
         UpdateLevelFill();
         UpdateDamageText();
+#endif
     }
 
     public void UpdateDamageText()
@@ -199,5 +203,10 @@ public class UIManager : MonoBehaviour
         {
             GameManager.Instance.Pause();
         }
+    }
+
+    public void UpdateWinScore(int score)
+    {
+        winScore.text = score.ToString();
     }
 }
