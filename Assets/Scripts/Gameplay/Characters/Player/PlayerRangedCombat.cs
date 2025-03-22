@@ -43,10 +43,10 @@ public class PlayerRangedCombat : MonoBehaviour
 
     private void Update()
     {
-        if (isAiming)
-        {
-            Aim();
-        }
+        if (isAiming) Aim();
+#if UNITY_ANDROID || UNITY_IOS
+        if(CanUseElementalRangedAttack())  Aim();
+#endif
     }
 
     public void StartAim()
@@ -77,6 +77,8 @@ public class PlayerRangedCombat : MonoBehaviour
 
     private void Aim()
     {
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
 
@@ -91,6 +93,37 @@ public class PlayerRangedCombat : MonoBehaviour
         aim.transform.rotation = Quaternion.Euler(0, 0, shouldFlip ? angle + 180 : angle);
 
         transform.localScale = new Vector3(shouldFlip ? -1 : 1, 1, 1);
+#elif UNITY_ANDROID || UNITY_IOS
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject nearestEnemy = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject potentialEnemy in enemies)
+        {
+            Vector3 directionToTarget = potentialEnemy.transform.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                nearestEnemy = potentialEnemy;
+            }
+        }
+
+        if (nearestEnemy != null)
+        {
+            Vector3 aimDirection = (nearestEnemy.transform.position - aim.transform.position).normalized;
+            float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+
+            aim.transform.rotation = Quaternion.Euler(0, 0, angle);
+            aim.gameObject.SetActive(true);
+        }
+        else
+        {
+            // If no enemies are found, you might want to set a default aim direction
+            aim.transform.rotation = Quaternion.identity; // Or any other default rotation
+        }
+#endif
     }
 
     private void ShootProjectile(int elementalAttackIndex)
@@ -116,8 +149,14 @@ public class PlayerRangedCombat : MonoBehaviour
     private IEnumerator CooldownTimer()
     {
         isOnCooldown = true;
+#if UNITY_ANDROID || UNITY_IOS
+        aim.gameObject.SetActive(false);
+#endif
         yield return new WaitForSeconds(attackCoolDown);
         isOnCooldown = false;
+#if UNITY_ANDROID || UNITY_IOS
+        aim.gameObject.SetActive(true);
+#endif
     }
 
     public void EnableMovement()
