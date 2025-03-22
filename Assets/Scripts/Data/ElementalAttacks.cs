@@ -22,5 +22,19 @@ public class ElementalAttack
         int bonusDamage = levels[currentLevel].damageBonus;
         return new Damage(type, baseDamage + bonusDamage);
     }
+
+    public void LevelUp()
+    {
+        if (currentLevel < levels.Count - 1)
+        {
+            if (enemiesDefeated >= levels[currentLevel + 1].requiredKills)
+            {
+                currentLevel++;
+                Debug.Log($"{name} attack leveled up to level {currentLevel}!");
+                UIManager.Instance.SetLevelBar(levels[currentLevel].requiredKills, levels[currentLevel + 1].requiredKills);
+                UIManager.Instance.UpdateElementalLevelText();
+            }
+        }
+    }
 }
 
