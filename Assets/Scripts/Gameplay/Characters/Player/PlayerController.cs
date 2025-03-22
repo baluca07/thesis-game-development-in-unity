@@ -80,6 +80,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!canMove) return;
 
+        /*input = movement.action.ReadValue<Vector2>();
+        if(input != Vector2.zero)
+        {
+            Debug.Log(input);
+        }*/
         Vector2 targetVelocity = moveInput.normalized * moveSpeed;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, movementLerp);
     }
@@ -88,9 +93,13 @@ public class PlayerController : MonoBehaviour
     {
         if (ctx.performed)
         {
-            Debug.Log("MoveInput() performed!");
             if (!canMove) return;
 
+            Debug.Log("Player want to move!");
+            if (moveInput != Vector2.zero)
+            {
+                Debug.Log(moveInput);
+            }
             moveInput = ctx.ReadValue<Vector2>();
         }
     }
@@ -99,6 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!canMove) return;
 
+        //Vector2 input = movement.action.ReadValue<Vector2>();
         if (moveInput.x != 0)
             transform.rotation = Quaternion.Euler(0, moveInput.x > 0 ? 0 : 180, 0);
     }
@@ -113,30 +123,25 @@ public class PlayerController : MonoBehaviour
     // Set Elemental Attacks
     public void CycleElementalAttackForward(InputAction.CallbackContext ctx)
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (ctx.performed)
         {
             int index = PlayerStats.Instance.currentElementalAttackIndex;
             PlayerStats.Instance.SetCurrentElemental((index + 1) % 4);
         }
-#endif
     }
 
     public void CycleElementalAttackBackward(InputAction.CallbackContext ctx)
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (ctx.performed)
         {
             int index = PlayerStats.Instance.currentElementalAttackIndex;
             PlayerStats.Instance.SetCurrentElemental((index - 1 + 4) % 4);
         }
-#endif
     }
 
     //Melee attack
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         Debug.Log("Melee attack");
         if (PlayerMeleeCombat.Instance != null)
         {
@@ -150,13 +155,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("PlayerMeleeCombat.Instance is missing");
         }
-#endif
     }
 
     // Ranged Attack
     public void OnRangedAttack(InputAction.CallbackContext ctx)
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (PlayerRangedCombat.Instance != null)
         {
             if (ctx.started)
@@ -171,7 +174,6 @@ public class PlayerController : MonoBehaviour
                 PlayerRangedCombat.Instance.StopAimAndAttack();
             }
         }
-#endif
     }
 
     public void FireAttack(InputAction.CallbackContext ctx)

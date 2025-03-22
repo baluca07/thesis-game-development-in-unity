@@ -18,7 +18,9 @@ public class PlayerRangedCombat : MonoBehaviour
 
     private bool isOnCooldown = false;
     private bool isAiming = false;
-    private Quaternion originalPlayerRotation;
+    private Quaternion originalPlayerRotation; // Store the original rotation
+
+    private bool facingRight = true;
 
     private void Awake()
     {
@@ -37,27 +39,19 @@ public class PlayerRangedCombat : MonoBehaviour
         anim = GetComponent<Animator>();
 
         aim.gameObject.SetActive(false);
-
     }
 
     private void Update()
     {
         if (isAiming) Aim();
 #if UNITY_ANDROID || UNITY_IOS
-        if ((CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[0]) ||
-            CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[1]) ||
-            CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[2]) ||
-            CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[3]))
-            && !isOnCooldown)   Aim();
+        if(CanUseElementalRangedAttack())  Aim();
 #endif
     }
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-
-    private bool facingRight = true;
 
     public void StartAim()
     {
-        if (CanUseElementalRangedAttack(PlayerStats.Instance.currentElementalAttack))
+        if (CanUseElementalRangedAttack())
         {
             originalPlayerRotation = transform.rotation;
 
@@ -80,7 +74,7 @@ public class PlayerRangedCombat : MonoBehaviour
         anim.SetTrigger("Shoot");
         ShootProjectile(PlayerStats.Instance.currentElementalAttackIndex);
     }
-#endif
+
     private void Aim()
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
@@ -155,8 +149,14 @@ public class PlayerRangedCombat : MonoBehaviour
     private IEnumerator CooldownTimer()
     {
         isOnCooldown = true;
+#if UNITY_ANDROID || UNITY_IOS
+        aim.gameObject.SetActive(false);
+#endif
         yield return new WaitForSeconds(attackCoolDown);
         isOnCooldown = false;
+#if UNITY_ANDROID || UNITY_IOS
+        aim.gameObject.SetActive(true);
+#endif
     }
 
     public void EnableMovement()
@@ -175,19 +175,19 @@ public class PlayerRangedCombat : MonoBehaviour
 
     public void FireAttack()
     {
-        if (CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[0])) StartCoroutine(MobileShootAnimation(0));
+        if(CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(0));
     }
     public void WaterAttack()
     {
-        if (CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[1])) StartCoroutine(MobileShootAnimation(1));
+        if (CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(1));
     }
     public void AirAttack()
     {
-        if (CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[2])) StartCoroutine(MobileShootAnimation(2));
+        if (CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(2));
     }
     public void EarthAttack()
     {
-        if (CanUseElementalRangedAttack(GameManager.Instance.elementalAttacks[3])) StartCoroutine(MobileShootAnimation(3));
+        if (CanUseElementalRangedAttack()) StartCoroutine(MobileShootAnimation(3));
     }
 
     private IEnumerator MobileShootAnimation(int elementalAttackIndex)
@@ -198,20 +198,16 @@ public class PlayerRangedCombat : MonoBehaviour
         ShootProjectile(elementalAttackIndex);
     }
 
-    private bool CanUseElementalRangedAttack(ElementalAttack currentAttack)
+    private bool CanUseElementalRangedAttack()
     {
-        if (currentAttack.currentLevel == 0)
+        if (PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
         {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             Debug.Log("This type of attack does not unlocked yet");
-#endif
             return false;
         }
         else if (isOnCooldown)
         {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             Debug.Log("Ranged attack is on cooldown");
-#endif
             return false;
         }
         return true;

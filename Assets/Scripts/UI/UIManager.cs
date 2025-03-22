@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -16,15 +14,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI damageText;
 
-    [SerializeField] private List<Image> timerFills = new List<Image>();
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+    [SerializeField] private Image elementalIcon;
+    [SerializeField] private Image timerFill;
+#elif UNITY_ANDROID || UNITY_IOS
+    [SerializeField] private Image[] timerFills = new Image[4];
+#endif
     [Header("Quest UI")]
     [SerializeField] private TextMeshProUGUI enemies;
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-    [Header("PC Objects")]    
-    [SerializeField] private Image elementalIcon;
     [SerializeField] private TextMeshProUGUI rooms;
-#endif
+
 
 
     //[Header("Enemy Stats UI")]
@@ -52,14 +52,17 @@ public class UIManager : MonoBehaviour
 
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         elementalIcon = GameObject.Find("ElementalType").GetComponent<Image>();
+        timerFill = GameObject.Find("TimerFill").GetComponent<Image>();
         rooms = GameObject.Find("Rooms").GetComponent<TextMeshProUGUI>();
 #elif UNITY_ANDROID || UNITY_IOS
         Image[] allImage = FindObjectsOfType<Image>();
+        int i = 0;
         foreach (Image image in allImage)
         {
             if(image.name == "TimerFill")
             {
-                timerFills.Add(image);
+                timerFills[i]=image;
+                i++;
             }
         }
 #endif
@@ -87,9 +90,9 @@ public class UIManager : MonoBehaviour
         levelFill.maxValue = max;
     }
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
     public void UpdateElementalTypeIcon()
     {
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         UISpriteResolver resolver = elementalIcon.GetComponent<UISpriteResolver>();
         resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
         if(PlayerStats.Instance.currentElementalAttack.currentLevel == 0)
@@ -112,8 +115,8 @@ public class UIManager : MonoBehaviour
             UpdateLevelFill();
         }
         UpdateElementalLevelText();
-    }
 #endif
+    }
 
     public void UpdateElementalLevelText()
     {
@@ -146,13 +149,14 @@ public class UIManager : MonoBehaviour
         while (timer > 0)
         {
             timer -= Time.deltaTime;
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+            timerFill.fillAmount = timer / cooldown;
+#elif UNITY_ANDROID || UNITY_IOS
             foreach (var timerFill in timerFills)
             {
-                if (timerFill != null)
-                {
-                    timerFill.fillAmount = timer / cooldown;
-                }
+                timerFill.fillAmount = timer / cooldown;
             }
+#endif
             yield return null;
         }
     }

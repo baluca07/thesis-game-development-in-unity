@@ -24,9 +24,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = maxHealth;
         UIManager.Instance.UpdatePlayerHealthFill();
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SetCurrentElemental(0);
-#endif
     }
 
     public void TakeDamage(Damage damage)
@@ -53,13 +51,11 @@ public class PlayerStats : MonoBehaviour
 
     public void SetCurrentElemental(int index)
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         currentElementalAttackIndex = index;
         Debug.Log($"Set elemental to index:{ index}");
         currentElementalAttack = (GameManager.Instance.elementalAttacks[index]);
         UIManager.Instance.UpdateElementalTypeIcon();
         UIManager.Instance.UpdateElementalLevelText();
-#endif
     }
     
 }

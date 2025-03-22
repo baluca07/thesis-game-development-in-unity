@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MobileOnlyObject : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
 #if UNITY_ANDROID || UNITY_IOS
         gameObject.SetActive(true);

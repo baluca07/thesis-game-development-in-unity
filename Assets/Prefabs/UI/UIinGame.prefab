@@ -426,10 +426,10 @@ RectTransform:
   m_Children:
   - {fileID: 771647360025918620}
   - {fileID: 2134064656965691041}
-  - {fileID: 561372841588629337}
   - {fileID: 6313117318722130270}
   - {fileID: 8438504373759272967}
   - {fileID: 8941321467458853204}
+  - {fileID: 561372841588629337}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -522,7 +522,6 @@ MonoBehaviour:
   - {fileID: 788263551928976897}
   - {fileID: 5933249497008159948}
   enemies: {fileID: 8547324966352085686}
-  rooms: {fileID: 0}
   gameOverScreen: {fileID: 3541463475712768072}
   winScreen: {fileID: 7289393585766060551}
   pauseScreen: {fileID: 1016351039935770124}

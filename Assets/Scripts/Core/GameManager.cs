@@ -58,7 +58,20 @@ public class GameManager : MonoBehaviour
             { 
                 UIManager.Instance.UpdateLevelFill(); 
             }
-            attack.LevelUp();
+            UpdateElementalAttackLevel(attack);
+        }
+    }
+    private void UpdateElementalAttackLevel(ElementalAttack attack)
+    {
+        if (attack.currentLevel < attack.levels.Count - 1)
+        {
+            if (attack.enemiesDefeated >= attack.levels[attack.currentLevel + 1].requiredKills)
+            {
+                attack.currentLevel++;
+                Debug.Log($"{attack.name} attack leveled up to level {attack.currentLevel}!");
+                UIManager.Instance.SetLevelBar(attack.levels[attack.currentLevel].requiredKills, attack.levels[attack.currentLevel + 1].requiredKills);
+                UIManager.Instance.UpdateElementalLevelText();
+            }
         }
     }
     public void InitializeElementalAttacks(int normalLevel, int fireLevel, int waterLevel, int airLevel, int earthLevel)
