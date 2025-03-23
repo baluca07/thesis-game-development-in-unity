@@ -298,56 +298,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "UIControll",
-            "id": "25f18255-6fbd-413a-9f53-8929dd482110",
-            "actions": [
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "f1a6d8ac-2207-4c5d-8c07-9d954e30d8fe",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "df74cbe9-88d8-4148-a433-8c046a40dfd8",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";KeyboardMouse",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d979094c-3765-4508-a48d-83c464e1cfaa",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mobile",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "818dc8aa-3a7e-4f33-ba41-f4b18fe5155f",
-                    "path": "<Touchscreen>/{Back}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mobile",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": [
