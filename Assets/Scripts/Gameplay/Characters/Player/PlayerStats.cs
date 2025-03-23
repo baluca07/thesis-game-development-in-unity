@@ -11,6 +11,8 @@ public class PlayerStats : MonoBehaviour
     public ElementalAttack currentElementalAttack;
     public int currentElementalAttackIndex;
 
+    [SerializeField] Animator anim;
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,6 +26,7 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth = maxHealth;
         UIManager.Instance.UpdatePlayerHealthFill();
+        anim = GetComponent<Animator>();
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SetCurrentElemental(0);
 #endif
@@ -40,6 +43,8 @@ public class PlayerStats : MonoBehaviour
         UIManager.Instance.UpdatePlayerHealthFill();
 
         SessionController.Instance.AddTakenDamage(damageAmount);
+
+        anim.SetTrigger("Damage");
 
         if (currentHealth <= 0)
         {
