@@ -31,13 +31,15 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(Damage damage)
     {
-        int damageAmoun = damage.CalculateDamageOnPlayer(this);
+        int damageAmount = damage.CalculateDamageOnPlayer(this);
 
-        currentHealth -= damageAmoun;
+        currentHealth -= damageAmount;
 
-        Debug.Log($"Player took {damageAmoun} damage! Current Health: {currentHealth}");
+        Debug.Log($"Player took {damageAmount} damage! Current Health: {currentHealth}");
 
         UIManager.Instance.UpdatePlayerHealthFill();
+
+        SessionController.Instance.AddTakenDamage(damageAmount);
 
         if (currentHealth <= 0)
         {

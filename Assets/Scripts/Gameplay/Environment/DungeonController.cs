@@ -25,6 +25,7 @@ public class DungeonController : MonoBehaviour
         GameManager.Instance.SpawnPlayer();
         GatherRooms();
         StartCoroutine(SearchPlayer());
+        SessionController.Instance.StartSession();
         
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         roomsCount = rooms.Length;
@@ -56,7 +57,7 @@ public class DungeonController : MonoBehaviour
 
     private IEnumerator SearchPlayer()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         foreach (RoomController room in rooms)
         {
             room.CheckForPlayer();
@@ -76,7 +77,6 @@ public class DungeonController : MonoBehaviour
         {
             Debug.Log("Dungeon Completed");
             GameManager.Instance.CompleteDungeon(dungeonID);
-            UIManager.Instance.ActivateWinScreen();
         }
     }
 #endif

@@ -12,7 +12,17 @@ public class RoomController : MonoBehaviour
 
     [SerializeField] private CompositeCollider2D floor;
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+#if UNITY_ANDROID || UNITY_IOS
+    [Header("Calculate Score")]
+    public int maxDamageScore = 5000;
+    public int damagePenalty = 5;
+    public int idealTime = 180;
+    public int maxTimeScore = 5000;
+    public int timePenalty = 10;
+
+    public int[] StarScores = new int[2];
+
+#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
     [SerializeField] private DoorLocker[] doors;
 
     private void GatherDoors()
@@ -75,9 +85,13 @@ public class RoomController : MonoBehaviour
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         GatherDoors();
+#elif UNITY_ANDROID || UNITY_IOS
+        StarScores[0] = Mathf.RoundToInt((maxDamageScore + maxTimeScore) * 0.2f);
+        StarScores[1] = Mathf.RoundToInt((maxDamageScore + maxTimeScore) * 0.7f);
+        Debug.Log($"Star scores in room {roomID}: {StarScores[0]}, {StarScores[1]}");
 #endif
         //CheckForPlayer();
-        
+
     }
 
     public void CheckForPlayer()
@@ -125,7 +139,6 @@ public class RoomController : MonoBehaviour
         {
 #if UNITY_ANDROID || UNITY_IOS
             GameManager.Instance.CompleteLevel(DungeonController.Instance.dungeonID, roomID);
-            GameManager.Instance.Win();
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             OpenDoors();
             DungeonController.Instance.AddRoom();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static ElementalAttack;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Vector2 playerSpawnpoint = new Vector2(0,0);
 
     public static GameManager Instance;
+
     private void Awake()
     {
         if (Instance == null)
@@ -195,6 +197,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.ActivateGameOverScreen();
         Time.timeScale = 0;
         Debug.Log("Game Over!");
+        SessionController.Instance.EndSession();
     }
 
     public void Win()
@@ -203,6 +206,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.ActivateWinScreen();
         Time.timeScale = 0;
         Debug.Log("Player Win!");
+        SessionController.Instance.EndSession();
     }
 
     public void Pause()
@@ -233,55 +237,33 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel(int dungeonIndex, int levelIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Completed", 1);
-        int score = CalculateScore(500,0);
+        int score = SessionController.Instance.CalculateScore();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Score", score);
-        UIManager.Instance.UpdateWinScore(score);
+        UIManager.Instance.UpdateWinScreenData(SessionController.Instance.killedEnemiesCount, 
+                                                SessionController.Instance.dealtDamage, 
+                                                SessionController.Instance.takenDamage, 
+                                                SessionController.Instance.sessionTime, 
+                                                score);
         int stars = StarDisplay.Instance.CalculateStars(score);
+        PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Stars", stars);
         StarDisplay.Instance.DisplayStars(stars);
         SaveGame();
+        Win();
     }
 #endif
 
     public void CompleteDungeon(int dungeonIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex, 1);
-        int score = CalculateScore(180, 0);
+        int score = SessionController.Instance.CalculateScore();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Score", score);
-        UIManager.Instance.UpdateWinScore(score);
+        UIManager.Instance.UpdateWinScreenData(SessionController.Instance.killedEnemiesCount,
+                                                SessionController.Instance.dealtDamage,
+                                                SessionController.Instance.takenDamage,
+                                                SessionController.Instance.sessionTime, 
+                                                score);
         SaveGame();
-    }
-    public int CalculateScore(float elapsedTime, int damageTaken)
-    {
-        int idealTime = 180;
-        int maxTimeScore = 1000;
-        int timePenalty = 10;
-
-        int maxDamageScore = 1000;
-        int damagePenalty = 5;
-
-        int timeScore;
-
-        if (elapsedTime <= idealTime)
-        {
-            timeScore = maxTimeScore;
-        }
-        else
-        {
-            timeScore = maxTimeScore - (int)((elapsedTime - idealTime) * timePenalty);
-            if (timeScore < 0)
-            {
-                timeScore = 0;
-            }
-        }
-
-        int damageScore = maxDamageScore - (damageTaken * damagePenalty);
-        if (damageScore < 0)
-        {
-            damageScore = 0;
-        }
-
-        int finalScore = timeScore + damageScore;
-        return finalScore;
+        Win();
     }
 
     public void SaveGame()
@@ -314,5 +296,7 @@ public class GameManager : MonoBehaviour
             cameraController.UpdateBoundaries();
         }
     }
+
+
 }
 

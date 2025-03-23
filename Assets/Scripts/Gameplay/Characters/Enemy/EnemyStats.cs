@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using static GameManager;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -23,11 +24,12 @@ public class EnemyStats : MonoBehaviour
     }
     public void TakeDamage(Damage damage)
     {
-        int damageAmoun = damage.CalculateDamageOnEnemy(this);
+        int damageAmount = damage.CalculateDamageOnEnemy(this);
 
-        currentHealth -= damageAmoun;
+        currentHealth -= damageAmount;
 
-        Debug.Log($"{enemyName} took {damageAmoun} damage! Current Health: {currentHealth}");
+        Debug.Log($"{enemyName} took {damageAmount} damage! Current Health: {currentHealth}");
+        SessionController.Instance.AddDealtDamage(damageAmount);
         anim.SetTrigger("Damage");
 
         if (currentHealth <= 0)
@@ -41,6 +43,9 @@ public class EnemyStats : MonoBehaviour
     {
         Debug.Log($"{enemyName} has been defeated!");
         GameManager.Instance.AddEnemyKill(elementalDamageType);
+        SessionController.Instance.IncrementKilledEnemies();
+
+
         GameManager.Instance.currentRoom.EnemyDefeated();
         Destroy(gameObject);
     }

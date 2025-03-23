@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,14 +29,19 @@ public class UIManager : MonoBehaviour
 
     [Header("WinSceen")]
     [SerializeField] private TextMeshProUGUI winScore;
+    [SerializeField] private TextMeshProUGUI winTime;
+    [SerializeField] private TextMeshProUGUI winDamageTaken;
+    [SerializeField] private TextMeshProUGUI winDamageDealt;
+    [SerializeField] private TextMeshProUGUI winKilledEnemies;
 
 
     //[Header("Enemy Stats UI")]
+    //[SerializeField] private Text enemyHealthText;
+
     [Header("Screens")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject pauseScreen;
-    //[SerializeField] private Text enemyHealthText;
 
     private void Awake()
     {
@@ -205,8 +211,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateWinScore(int score)
+    public void UpdateWinScreenData(int killedEnemies, int damageDealt, int damageTaken, float time, int score)
     {
+        winKilledEnemies.text = killedEnemies.ToString();
+        winDamageDealt.text = damageDealt.ToString();
+        winDamageTaken.text = damageTaken.ToString();
+        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+        winTime.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         winScore.text = score.ToString();
     }
 }

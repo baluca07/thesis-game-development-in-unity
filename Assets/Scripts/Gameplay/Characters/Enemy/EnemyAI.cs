@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
 
         while (elapsedTime < 0.5f)
         {
-            transform.position += direction * 2.5f * Time.deltaTime;
+            transform.position += direction * 0.5f * Time.deltaTime;
             elapsedTime += Time.deltaTime;
             yield return null;
         }
