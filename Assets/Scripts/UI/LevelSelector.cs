@@ -15,9 +15,9 @@ public class LevelSelector : MonoBehaviour
     {
         for (int i = 2; i < levelButtons.Length + 2; i++)
         {
-            if (PlayerPrefs.GetInt("Level" + i + "Completed") == 1)
+            if (PlayerPrefs.GetInt("Dungeon" + (i - 1) + "Completed") == 1)
             {
-                Debug.Log($"Level {i} id completed, button set active");
+                Debug.Log($"Level {(i - 1)} id completed, following button set active");
                 levelButtons[i-2].SetInteractable();
             }
             else
@@ -35,20 +35,5 @@ public class LevelSelector : MonoBehaviour
         SceneManager.LoadScene("LevelsOfDungeon" + dungeonIndex);
 #endif         
     }
-
-#if UNITY_ANDROID || UNITY_IOS
-    public void BackToDungeons()
-    {
-        SceneManager.LoadScene("LevelSelector");
-    }
-    public void LoadLevel(string parameters)
-    {
-        string[] parts = parameters.Split(',');
-        int dungeonIndex = int.Parse(parts[0]);
-        int levelIndex = int.Parse(parts[1]);
-        GameManager.Instance.SetSpawnpoint(dungeonIndex, levelIndex);
-        SceneManager.LoadScene("Dungeon" + dungeonIndex);
-    }
-#endif
 
 }

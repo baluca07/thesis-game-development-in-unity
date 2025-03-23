@@ -1973,10 +1973,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2011559750807887800, guid: 55b049320a0a5d24d9eb45a3ce5074e7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 533293689379731353}
-    - target: {fileID: 2011559750807887800, guid: 55b049320a0a5d24d9eb45a3ce5074e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -2076,7 +2072,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8924438753893735943, guid: 55b049320a0a5d24d9eb45a3ce5074e7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 533293689379731353}
+      addedObject: {fileID: 374149192638026000}
   m_SourcePrefab: {fileID: 100100000, guid: 55b049320a0a5d24d9eb45a3ce5074e7, type: 3}
 --- !u!224 &1986652660674038463 stripped
 RectTransform:
@@ -2088,7 +2084,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8924438753893735943, guid: 55b049320a0a5d24d9eb45a3ce5074e7, type: 3}
   m_PrefabInstance: {fileID: 5392732349881766031}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &533293689379731353
+--- !u!114 &374149192638026000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2097,17 +2093,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3535092899905867400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5279cd02ccdd9ae479b88ada705c2394, type: 3}
+  m_Script: {fileID: 11500000, guid: 06e8d7e7d2f0a424b88c5e27471c8e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonIndex: 0
   levelButtons:
-  - {fileID: 7261155913950884741}
-  - {fileID: 4368404682053016990}
-  - {fileID: 2169770407857357357}
-  - {fileID: 7289065772118787876}
-  - {fileID: 2407974400018208415}
-  - {fileID: 3393784374094263880}
-  - {fileID: 5299148000173791623}
+  - {fileID: 7677089041079252386}
+  - {fileID: 8273415636194553298}
+  Starts: []
 --- !u!224 &6361044357328448836 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1337619272069119435, guid: 55b049320a0a5d24d9eb45a3ce5074e7, type: 3}

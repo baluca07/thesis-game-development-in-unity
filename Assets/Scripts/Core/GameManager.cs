@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
 
     public void CompleteDungeon(int dungeonIndex)
     {
-        PlayerPrefs.SetInt("Dungeon" + dungeonIndex, 1);
+        PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Completed", 1);
         int score = SessionController.Instance.CalculateScore();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Score", score);
         UIManager.Instance.UpdateWinScreenData(SessionController.Instance.killedEnemiesCount,
