@@ -13,7 +13,6 @@ public class StarDisplay : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         else

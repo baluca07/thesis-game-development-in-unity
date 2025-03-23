@@ -332,7 +332,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430535631599567788}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 17472a43-5fb0-47b3-8ba7-2ccd85c609da
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d,/Keyboard/upArrow,/Keyboard/leftArrow,/Keyboard/downArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -403,6 +415,70 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f1a6d8ac-2207-4c5d-8c07-9d954e30d8fe
     m_ActionName: UI/Pause[/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1430535631599567788}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: FireAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 20cd13ce-9eac-4a5c-823b-277d666ae7c8
+    m_ActionName: Player/FireAttack
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1430535631599567788}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: WaterAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f3cdb273-21b2-4965-8425-e904a18f0666
+    m_ActionName: Player/WaterAttack
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1430535631599567788}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: AirAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a9939bc4-660a-4652-96e8-6af5d6513093
+    m_ActionName: Player/AirAttack
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1430535631599567788}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: EarthAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 07e4f8f9-9115-4b13-85d2-3a59f3063e76
+    m_ActionName: Player/EarthAttack
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -427,6 +503,7 @@ MonoBehaviour:
   setElementalForward: {fileID: -1579953609984506173, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
   setElementalBackward: {fileID: -5307001546234481271, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
   animator: {fileID: 0}
+  inputSystem: {fileID: 5534484869582000839}
 --- !u!114 &6916530840894273205
 MonoBehaviour:
   m_ObjectHideFlags: 0
