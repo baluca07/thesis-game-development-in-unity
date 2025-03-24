@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] private PlayerInput inputSystem;
 
     [Header("Header UI")]
     [SerializeField] private Slider healthFill;
@@ -55,11 +54,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-        inputSystem.defaultControlScheme = "KeyboardMouse";
-#elif UNITY_ANDROID || UNITY_IOS
-        inputSystem.defaultControlScheme = "Mobile";
-#endif
         healthFill.minValue = 0;
         healthFill.maxValue = PlayerStats.Instance.maxHealth;
         healthFill.value = PlayerStats.Instance.currentHealth;

@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference setElementalForward;
     [SerializeField] private InputActionReference setElementalBackward;
     [SerializeField] private Animator animator;
-    [SerializeField] private PlayerInput inputSystem;
 
 
     private Rigidbody2D rb;
@@ -42,11 +41,6 @@ public class PlayerController : MonoBehaviour
 
         if (animator == null)
             animator = GetComponent<Animator>();
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-        inputSystem.defaultControlScheme = "KeyboardMouse";
-#elif UNITY_ANDROID || UNITY_IOS
-        inputSystem.defaultControlScheme = "Mobile";
-#endif
 
     }
 
