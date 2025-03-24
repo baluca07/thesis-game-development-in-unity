@@ -73,7 +73,7 @@ public class SessionController : MonoBehaviour {
         dealtDamage += damage;
     }
 
-    public void AddTakenDamage(int damage)gs
+    public void AddTakenDamage(int damage)
     {
         takenDamage += damage;
     }
