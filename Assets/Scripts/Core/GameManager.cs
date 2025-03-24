@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using static ElementalAttack;
 
 public class GameManager : MonoBehaviour
@@ -194,6 +195,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         PlayerController.Instance.OnDisable();
+        int score = SessionController.Instance.CalculateScore();
+        UIManager.Instance.UpdateGameOverScreenData(SessionController.Instance.killedEnemiesCount,
+                                                SessionController.Instance.dealtDamage,
+                                                SessionController.Instance.takenDamage,
+                                                SessionController.Instance.sessionTime,
+                                                score);
         UIManager.Instance.ActivateGameOverScreen();
         Time.timeScale = 0;
         Debug.Log("Game Over!");

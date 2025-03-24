@@ -35,6 +35,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winDamageDealt;
     [SerializeField] private TextMeshProUGUI winKilledEnemies;
 
+    [Header("GammeOverSceen")]
+    [SerializeField] private TextMeshProUGUI loseScore;
+    [SerializeField] private TextMeshProUGUI loseTime;
+    [SerializeField] private TextMeshProUGUI loseDamageTaken;
+    [SerializeField] private TextMeshProUGUI loseDamageDealt;
+    [SerializeField] private TextMeshProUGUI loseKilledEnemies;
+    [SerializeField] private TextMeshProUGUI loseClearedRoom;
 
     //[Header("Enemy Stats UI")]
     //[SerializeField] private Text enemyHealthText;
@@ -220,5 +227,18 @@ public class UIManager : MonoBehaviour
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
         winTime.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         winScore.text = score.ToString();
+    }
+
+    public void UpdateGameOverScreenData(int killedEnemies, int damageDealt, int damageTaken, float time, int score)
+    {
+        loseKilledEnemies.text = killedEnemies.ToString();
+        loseDamageDealt.text = damageDealt.ToString();
+        loseDamageTaken.text = damageTaken.ToString();
+        TimeSpan timeSpan = TimeSpan.FromSeconds(time);
+        loseTime.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+        loseClearedRoom.text = DungeonController.Instance.clearedRooms.ToString();
+#endif
+        loseScore.text = score.ToString();
     }
 }
