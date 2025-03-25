@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
         if (animator == null)
             animator = GetComponent<Animator>();
+        OnEnable();
 
     }
 

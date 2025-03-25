@@ -22,11 +22,9 @@ public class UIManager : MonoBehaviour
     [Header("Quest UI")]
     [SerializeField] private TextMeshProUGUI enemies;
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
     [Header("PC Objects")]    
     [SerializeField] private Image elementalIcon;
     [SerializeField] private TextMeshProUGUI rooms;
-#endif
 
     [Header("WinSceen")]
     [SerializeField] private TextMeshProUGUI winScore;
@@ -35,7 +33,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI winDamageDealt;
     [SerializeField] private TextMeshProUGUI winKilledEnemies;
 
-    [Header("GammeOverSceen")]
+    [Header("GameOverSceen")]
     [SerializeField] private TextMeshProUGUI loseScore;
     [SerializeField] private TextMeshProUGUI loseTime;
     [SerializeField] private TextMeshProUGUI loseDamageTaken;
@@ -43,13 +41,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI loseKilledEnemies;
     [SerializeField] private TextMeshProUGUI loseClearedRoom;
 
-    //[Header("Enemy Stats UI")]
-    //[SerializeField] private Text enemyHealthText;
-
     [Header("Screens")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject pauseScreen;
+
+    [Header("InputSystem")]
+    [SerializeField] private InputAction pauseAction;
 
     private void Awake()
     {
@@ -66,6 +64,7 @@ public class UIManager : MonoBehaviour
         healthFill.value = PlayerStats.Instance.currentHealth;
         DeactivateGameOverScreen();
         winScreen.SetActive(false);
+        pauseAction = InputSystem.actions.FindAction("Pause");
 
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         elementalIcon = GameObject.Find("ElementalType").GetComponent<Image>();
@@ -80,6 +79,14 @@ public class UIManager : MonoBehaviour
             }
         }
 #endif
+    }
+
+    private void Update()
+    {
+        if (pauseAction.WasPerformedThisFrame())
+        {
+            GameManager.Instance.Pause(); ;
+        }
     }
     public void UpdatePlayerHealthFill()
     {
@@ -209,14 +216,6 @@ public class UIManager : MonoBehaviour
     public void DeactivatePauseScreen()
     {
         pauseScreen.SetActive(false);
-    }
-
-    public void PauseGame(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started)
-        {
-            GameManager.Instance.Pause();
-        }
     }
 
     public void UpdateWinScreenData(int killedEnemies, int damageDealt, int damageTaken, float time, int score)

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public RoomController currentRoom;
 
     private DynamicIsometricCameraFollow cameraController;
-    public Vector2 playerSpawnpoint = new Vector2(0,0);
+    public Vector2 actualPlayerSpawnpoint = new Vector2(0,0);
 
     public static GameManager Instance;
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void MovePlayerToRoom(Transform player, Transform spawnPoint)
+    public void MovePlayerToRoomAndSpawnEnemies(Transform player, Transform spawnPoint, RoomController room)
     {
         if (spawnPoint == null)
         {
@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour
         }
 
         player.position = spawnPoint.position;
+        currentRoom = room;
+        UpdateCameraBoundaries();
+        if (!currentRoom.roomCleared)
+        {
+            currentRoom.SpawnEnemies();
+        }
         Debug.Log($"Player moved to {spawnPoint.position} by GameManager!");
     }
 
@@ -188,9 +194,15 @@ public class GameManager : MonoBehaviour
 
     public void SetSpawnpoint(int dungeonID, int levelID)
     {
-        playerSpawnpoint =  mobileSpawnpoints[dungeonID][levelID];
-        Debug.LogWarning($"PlayerSpawnpoint set to: {playerSpawnpoint}");
+        actualPlayerSpawnpoint =  mobileSpawnpoints[dungeonID][levelID];
+        Debug.LogWarning($"PlayerSpawnpoint set to: {actualPlayerSpawnpoint}");
     }
+#elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+    public void SetSpawnpoint()
+        {
+            actualPlayerSpawnpoint = DungeonController.Instance.playerSpawnpointForDungeon;
+            Debug.LogWarning($"PlayerSpawnpoint set to: {actualPlayerSpawnpoint}");
+        }
 #endif
     public void GameOver()
     {
@@ -283,11 +295,11 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        PlayerController.Instance.transform.position = playerSpawnpoint;
+        PlayerController.Instance.transform.position = actualPlayerSpawnpoint;
         Debug.Log($"Player spawned to {PlayerController.Instance.transform}");
     }
 
-    public void EnterRoom()
+    public void UpdateCameraBoundaries()
     {
         cameraController = Camera.main.GetComponent<DynamicIsometricCameraFollow>();
         if (cameraController == null)

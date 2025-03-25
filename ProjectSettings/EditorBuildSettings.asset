@@ -24,4 +24,4 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelsOfDungeon2.unity
     guid: 71d5a229b6bf4814cbf86d7db3ee89f6
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 73a675f4a4848b9459b35d723ab0eb5f, type: 3}

@@ -8,6 +8,8 @@ public class DungeonController : MonoBehaviour
     public int dungeonID;
     public static DungeonController Instance;
     [SerializeField] private RoomController[] rooms;
+
+    public Vector2 playerSpawnpointForDungeon;
     private void Awake()
     {
         if (Instance == null)

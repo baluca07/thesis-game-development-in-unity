@@ -34,6 +34,8 @@ public class SessionController : MonoBehaviour {
 
     public void StartSession()
     {
+        Time.timeScale = 1;
+
         killedEnemiesCount = 0;
         sessionTime = 0;
         dealtDamage = 0;

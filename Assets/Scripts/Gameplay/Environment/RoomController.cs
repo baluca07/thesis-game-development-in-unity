@@ -90,7 +90,6 @@ public class RoomController : MonoBehaviour
         StarScores[1] = Mathf.RoundToInt((maxDamageScore + maxTimeScore) * 0.7f);
         Debug.Log($"Star scores in room {roomID}: {StarScores[0]}, {StarScores[1]}");
 #endif
-        //CheckForPlayer();
 
     }
 
@@ -105,7 +104,7 @@ public class RoomController : MonoBehaviour
         {
             GameManager.Instance.currentRoom = this;
             Debug.Log("Player spawned in room: " + gameObject.name);
-            GameManager.Instance.EnterRoom();
+            GameManager.Instance.UpdateCameraBoundaries();
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             if (!roomCleared)
             {
@@ -121,7 +120,7 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
         for (int i = 0; i < enemyCount; i++)
         {
