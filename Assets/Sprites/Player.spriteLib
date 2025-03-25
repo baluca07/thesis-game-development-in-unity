@@ -168,17 +168,6 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -1534333725, guid: 46c2dd8c236677a4286acd07e040c861, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 4
-  - m_Name: Projectiles_0
-    m_Hash: 693988229
-    m_CategoryList: []
-    m_OverrideEntries:
-    - m_Name: Projectiles_0
-      m_Hash: 693988229
-      m_Sprite: {fileID: -50018617, guid: 46c2dd8c236677a4286acd07e040c861, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -50018617, guid: 46c2dd8c236677a4286acd07e040c861, type: 3}
-    m_FromMain: 0
-    m_EntryOverrideCount: 1
   - m_Name: attackVFX
     m_Hash: 127084604
     m_CategoryList: []
@@ -206,5 +195,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 4
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638758454871189682
+  m_ModificationHash: 638784476554828965
   m_Version: 1

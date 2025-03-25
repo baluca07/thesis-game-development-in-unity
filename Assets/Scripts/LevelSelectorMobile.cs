@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectorMoblie : MonoBehaviour
 {
+#if UNITY_ANDROID || UNITY_IOS
     public int dungeonIndex;
     public CanBeDisabledButton[] levelButtons;
     public StarDisplayLevels[] stars;
@@ -51,5 +52,5 @@ public class LevelSelectorMoblie : MonoBehaviour
         GameManager.Instance.SetSpawnpoint(dungeonIndex, levelIndex);
         SceneManager.LoadScene("Dungeon" + dungeonIndex);
     }
-
+#endif
 }

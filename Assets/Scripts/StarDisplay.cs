@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class StarDisplay : MonoBehaviour
 {
+#if UNITY_ANDROID || UNITY_IOS
     public Image[] starImages;
     public Sprite filledStar;
     public Sprite emptyStar;
@@ -51,4 +52,5 @@ public class StarDisplay : MonoBehaviour
             return 2;
         }
     }
+#endif
 }

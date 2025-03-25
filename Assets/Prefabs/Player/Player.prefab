@@ -412,10 +412,6 @@ MonoBehaviour:
     m_ActionId: 6e2e73bd-e50f-40c2-9905-d42182384d2f
     m_ActionName: Player/SelectElementalForward
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f1a6d8ac-2207-4c5d-8c07-9d954e30d8fe
-    m_ActionName: UI/Pause[/Keyboard/p]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1430535631599567788}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -479,6 +475,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 07e4f8f9-9115-4b13-85d2-3a59f3063e76
     m_ActionName: Player/EarthAttack
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 093fd64e-641d-45eb-bc31-99eeb07edf88
+    m_ActionName: UI/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -503,7 +503,6 @@ MonoBehaviour:
   setElementalForward: {fileID: -1579953609984506173, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
   setElementalBackward: {fileID: -5307001546234481271, guid: 32b9e3b9337312446a2b65d0962073d1, type: 3}
   animator: {fileID: 0}
-  inputSystem: {fileID: 5534484869582000839}
 --- !u!114 &6916530840894273205
 MonoBehaviour:
   m_ObjectHideFlags: 0

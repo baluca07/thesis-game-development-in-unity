@@ -28,7 +28,7 @@ public class UIButtons : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
         SceneManager.LoadScene("LevelsOfDungeon" + DungeonController.Instance.dungeonID);
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
-        SceneManager.LoadScene("LevelSelector);
+        SceneManager.LoadScene("LevelSelector");
 #endif
     }
 }
