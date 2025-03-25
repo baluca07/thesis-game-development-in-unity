@@ -13,6 +13,8 @@ public class MeleeEnemyAttack : EnemyAttack
     [SerializeField] float attackMoveDistance = 1f;
     [SerializeField] float attackMoveDuration = 1f;
 
+    private bool canDamagePlayer = true;
+
     private CircleCollider2D attackCollider;
 
     public bool isAttacking = false;
@@ -50,6 +52,7 @@ public class MeleeEnemyAttack : EnemyAttack
         yield return new WaitForSeconds(1.8f);
 
         isAttacking = false;
+        canDamagePlayer = true;
     }
 
     //TODO: only attack collider get player
@@ -59,8 +62,11 @@ public class MeleeEnemyAttack : EnemyAttack
 
         if (collision.CompareTag("Player") && collision is PolygonCollider2D)
         {
-            ai.PlayParticles();
-            PlayerStats.Instance.TakeDamage(damage);
+            if (canDamagePlayer) { 
+                ai.PlayParticles();
+                PlayerStats.Instance.TakeDamage(damage);
+                canDamagePlayer = false;
+            }
         }
     }
 

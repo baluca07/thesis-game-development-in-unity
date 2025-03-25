@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, movementLerp);
     }
 
-    public void MoveInput(InputAction.CallbackContext ctx)
+    public void OnMove(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Set Elemental Attacks
-    public void CycleElementalAttackForward(InputAction.CallbackContext ctx)
+    public void OnSelectElementalForw(InputAction.CallbackContext ctx)
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (ctx.performed)
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 #endif
     }
 
-    public void CycleElementalAttackBackward(InputAction.CallbackContext ctx)
+    public void OnSelectElementalBack(InputAction.CallbackContext ctx)
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (ctx.performed)
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Ranged Attack
-    public void OnRangedAttack(InputAction.CallbackContext ctx)
+    public void OnAIM(InputAction.CallbackContext ctx)
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (PlayerRangedCombat.Instance != null)
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
 #endif
     }
 
-    public void FireAttack(InputAction.CallbackContext ctx)
+    public void OnFireRangedAttack(InputAction.CallbackContext ctx)
     {
 #if UNITY_ANDROID || UNITY_IOS
 
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
 #endif
     }
 
-    public void WaterAttack(InputAction.CallbackContext ctx)
+    public void OnWaterRangedAttack(InputAction.CallbackContext ctx)
     {
 #if UNITY_ANDROID || UNITY_IOS
         if (ctx.performed)
@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
         }
 #endif
     }
-    public void AirAttack(InputAction.CallbackContext ctx)
+    public void OnAirRangedAttack(InputAction.CallbackContext ctx)
     {
 #if UNITY_ANDROID || UNITY_IOS
         if (ctx.performed)
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
         }
 #endif
     }
-    public void EarthAttack(InputAction.CallbackContext ctx)
+    public void OnEarthRangedAttack(InputAction.CallbackContext ctx)
     {
 #if UNITY_ANDROID || UNITY_IOS
         if (ctx.performed)
