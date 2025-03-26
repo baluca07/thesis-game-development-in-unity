@@ -29,7 +29,7 @@ public class LevelSelector : MonoBehaviour
 
     public void LoadDungeon(int dungeonIndex)
     {
- #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SceneManager.LoadScene("Dungeon" + dungeonIndex);
 #else
         SceneManager.LoadScene("LevelsOfDungeon" + dungeonIndex);
