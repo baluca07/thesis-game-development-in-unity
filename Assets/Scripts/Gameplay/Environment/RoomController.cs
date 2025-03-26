@@ -110,11 +110,11 @@ public class RoomController : MonoBehaviour
             {
                 LockDoors();
                 SpawnEnemies();
-                UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
+                UIManager.Instance.UpdateQuestEnemies(enemyCount,0);
             }
 #elif UNITY_ANDROID || UNITY_IOS
             SpawnEnemies();
-            UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
+            UIManager.Instance.UpdateQuestEnemies(0, 0);
 #endif
 
         }
@@ -127,7 +127,8 @@ public class RoomController : MonoBehaviour
             Transform spawnpoint = enemySpawnpoints[Random.Range(0, enemySpawnpoints.Length)];
             
             StartCoroutine(spawnCounter(spawnpoint));
-
+            currentEnemies = enemyCount;
+            UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
         }
     }
     public void EnemyDefeated()

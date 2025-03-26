@@ -201,7 +201,7 @@
                 {
                     "name": "",
                     "id": "a8850eef-5ff7-4149-841a-ab4720779176",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

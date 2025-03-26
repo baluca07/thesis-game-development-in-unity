@@ -520,6 +520,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3624534957999504188, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 2599390586620669805}
+    - target: {fileID: 3624534957999504188, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: enemyName
       value: Slime
       objectReference: {fileID: 0}

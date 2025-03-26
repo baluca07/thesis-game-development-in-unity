@@ -4913,6 +4913,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1643037858, guid: b23c115d3b8096d49b6a39d89610953b, type: 3}
     - target: {fileID: 4934990236710170103, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 7752971676834446038}
+    - target: {fileID: 4934990236710170103, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
       propertyPath: enemyName
       value: AirSlime
       objectReference: {fileID: 0}
@@ -4958,3 +4962,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1797514864171546374, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
   m_PrefabInstance: {fileID: 5731663263538959803}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7752971676834446038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2599390586620669805, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
+  m_PrefabInstance: {fileID: 5731663263538959803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

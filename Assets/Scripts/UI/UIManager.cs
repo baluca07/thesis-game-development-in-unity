@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     [Header("Quest UI")]
     [SerializeField] private TextMeshProUGUI enemies;
 
-    [Header("PC Objects")]    
+    [Header("Quest UI - PC Objects")]    
     [SerializeField] private Image elementalIcon;
     [SerializeField] private TextMeshProUGUI rooms;
 
