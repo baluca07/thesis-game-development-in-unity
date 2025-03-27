@@ -80,18 +80,24 @@ public class PlayerController : MonoBehaviour
     {
         if (!canMove) return;
 
+        moveInput = movement.action.ReadValue<Vector2>();
         Vector2 targetVelocity = moveInput.normalized * moveSpeed;
         rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelocity, movementLerp);
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed)
+        if(ctx.performed)
         {
-            Debug.Log("MoveInput() performed!");
-            if (!canMove) return;
-
             moveInput = ctx.ReadValue<Vector2>();
+
+            Debug.Log(moveInput+ " "+ canMove);
+        }
+
+        if (!canMove)
+        {
+            moveInput = Vector2.zero;
+            return;
         }
     }
 
