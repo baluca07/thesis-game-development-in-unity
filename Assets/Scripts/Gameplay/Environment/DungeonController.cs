@@ -27,7 +27,7 @@ public class DungeonController : MonoBehaviour
         GameManager.Instance.SpawnPlayer();
         GatherRooms();
         StartCoroutine(SearchPlayer());
-        SessionController.Instance.StartSession();
+        SessionManager.Instance.StartSession();
         
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         roomsCount = rooms.Length;

@@ -8,17 +8,17 @@ public class RoomBoundaryTrigger : MonoBehaviour
     public Transform minTransform;
     public Transform maxTransform;
 
-    private DynamicIsometricCameraFollow cameraController;
+    private DynamicCameraFollow cameraController;
 
     void Start()
     {
         roomBoundaryMin = minTransform.position;
         roomBoundaryMax = maxTransform.position;
 
-        cameraController = Camera.main.GetComponent<DynamicIsometricCameraFollow>();
+        cameraController = Camera.main.GetComponent<DynamicCameraFollow>();
         if (cameraController == null)
         {
-            Debug.LogError("DynamicIsometricCameraFollow script not found on the main camera.");
+            Debug.LogError("DynamicCameraFollow script not found on the main camera.");
         }
     }
     public void UpdateBoundariesToCurrent()
