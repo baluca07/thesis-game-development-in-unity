@@ -76,7 +76,7 @@ public class RoomController : MonoBehaviour
     public Transform[] enemySpawnpoints;
     public GameObject[] enemyPrefabs;
     public ParticleSystem spawnParticlesPrefab;
-    public int currentEnemies;
+    public int currentEnemies = 0;
 
     private PolygonCollider2D playerCollider;
 
@@ -110,11 +110,9 @@ public class RoomController : MonoBehaviour
             {
                 LockDoors();
                 SpawnEnemies();
-                UIManager.Instance.UpdateQuestEnemies(enemyCount,0);
             }
 #elif UNITY_ANDROID || UNITY_IOS
             SpawnEnemies();
-            UIManager.Instance.UpdateQuestEnemies(0, 0);
 #endif
 
         }
@@ -133,7 +131,8 @@ public class RoomController : MonoBehaviour
     }
     public void EnemyDefeated()
     {
-        currentEnemies--;
+        currentEnemies-=1;
+        Debug.LogWarning(currentEnemies);
         UIManager.Instance.UpdateQuestEnemies(enemyCount,currentEnemies);
         if (currentEnemies == 0)
         {

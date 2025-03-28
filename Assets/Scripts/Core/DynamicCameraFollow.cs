@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class DynamicIsometricCameraFollow : MonoBehaviour
+public class DynamicCameraFollow : MonoBehaviour
 {
     public Transform player;
     public float smoothSpeed = 0.125f;
@@ -14,7 +14,7 @@ public class DynamicIsometricCameraFollow : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.LogWarning("Player reference is not set in DynamicIsometricCameraFollow script.");
+            Debug.LogWarning("Player reference is not set in DynamicCameraFollow script.");
             return;
         }
 
