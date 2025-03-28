@@ -73,10 +73,10 @@ public class RoomController : MonoBehaviour
 #endif
 
     public int enemyCount;
+    public int currentEnemies = 0;
     public Transform[] enemySpawnpoints;
     public GameObject[] enemyPrefabs;
     public ParticleSystem spawnParticlesPrefab;
-    public int currentEnemies = 0;
 
     private PolygonCollider2D playerCollider;
 
@@ -125,18 +125,18 @@ public class RoomController : MonoBehaviour
             Transform spawnpoint = enemySpawnpoints[Random.Range(0, enemySpawnpoints.Length)];
             
             StartCoroutine(spawnCounter(spawnpoint));
-            currentEnemies = enemyCount;
             UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
         }
     }
     public void EnemyDefeated()
     {
-        currentEnemies-=1;
+        currentEnemies--;
         Debug.LogWarning(currentEnemies);
         UIManager.Instance.UpdateQuestEnemies(enemyCount,currentEnemies);
-        if (currentEnemies == 0)
+        if (currentEnemies <= 0)
         {
 #if UNITY_ANDROID || UNITY_IOS
+            UIManager.Instance.UpdateQuestEnemies(enemyCount, 0);
             GameManager.Instance.CompleteLevel(DungeonController.Instance.dungeonID, roomID);
 #elif UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
             OpenDoors();
