@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     public RoomController currentRoom;
 
-    private DynamicCameraFollow cameraController;
+    private DynamicIsometricCameraFollow cameraController;
     public Vector2 actualPlayerSpawnpoint = new Vector2(0,0);
 
     public static GameManager Instance;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Player moved to {spawnPoint.position} by GameManager!");
     }
 
-    public void AddEnemyKillToPlayerElementalStat(ElementalDamageType type)
+    public void AddEnemyKill(ElementalDamageType type)
     {
         var attack = elementalAttacks.Find(a => a.type == type);
         if (attack != null)
@@ -207,16 +207,16 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         PlayerController.Instance.OnDisable();
-        int score = SessionManager.Instance.CalculateScore();
-        UIManager.Instance.UpdateGameOverScreenData(SessionManager.Instance.killedEnemiesCount,
-                                                SessionManager.Instance.dealtDamage,
-                                                SessionManager.Instance.takenDamage,
-                                                SessionManager.Instance.sessionTime,
+        int score = SessionController.Instance.CalculateScore();
+        UIManager.Instance.UpdateGameOverScreenData(SessionController.Instance.killedEnemiesCount,
+                                                SessionController.Instance.dealtDamage,
+                                                SessionController.Instance.takenDamage,
+                                                SessionController.Instance.sessionTime,
                                                 score);
         UIManager.Instance.ActivateGameOverScreen();
         Time.timeScale = 0;
         Debug.Log("Game Over!");
-        SessionManager.Instance.EndSession();
+        SessionController.Instance.EndSession();
     }
 
     public void Win()
@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.ActivateWinScreen();
         Time.timeScale = 0;
         Debug.Log("Player Win!");
-        SessionManager.Instance.EndSession();
+        SessionController.Instance.EndSession();
     }
 
     public void Pause()
@@ -256,12 +256,12 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel(int dungeonIndex, int levelIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Completed", 1);
-        int score = SessionManager.Instance.CalculateScore();
+        int score = SessionController.Instance.CalculateScore();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Score", score);
-        UIManager.Instance.UpdateWinScreenData(SessionManager.Instance.killedEnemiesCount, 
-                                                SessionManager.Instance.dealtDamage, 
-                                                SessionManager.Instance.takenDamage, 
-                                                SessionManager.Instance.sessionTime, 
+        UIManager.Instance.UpdateWinScreenData(SessionController.Instance.killedEnemiesCount, 
+                                                SessionController.Instance.dealtDamage, 
+                                                SessionController.Instance.takenDamage, 
+                                                SessionController.Instance.sessionTime, 
                                                 score);
         int stars = StarDisplay.Instance.CalculateStars(score);
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Stars", stars);
@@ -274,12 +274,12 @@ public class GameManager : MonoBehaviour
     public void CompleteDungeon(int dungeonIndex)
     {
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Completed", 1);
-        int score = SessionManager.Instance.CalculateScore();
+        int score = SessionController.Instance.CalculateScore();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Score", score);
-        UIManager.Instance.UpdateWinScreenData(SessionManager.Instance.killedEnemiesCount,
-                                                SessionManager.Instance.dealtDamage,
-                                                SessionManager.Instance.takenDamage,
-                                                SessionManager.Instance.sessionTime, 
+        UIManager.Instance.UpdateWinScreenData(SessionController.Instance.killedEnemiesCount,
+                                                SessionController.Instance.dealtDamage,
+                                                SessionController.Instance.takenDamage,
+                                                SessionController.Instance.sessionTime, 
                                                 score);
         SaveGame();
         Win();
@@ -301,10 +301,10 @@ public class GameManager : MonoBehaviour
 
     public void UpdateCameraBoundaries()
     {
-        cameraController = Camera.main.GetComponent<DynamicCameraFollow>();
+        cameraController = Camera.main.GetComponent<DynamicIsometricCameraFollow>();
         if (cameraController == null)
         {
-            Debug.LogError("DynamicCameraFollow script not found on the main camera.");
+            Debug.LogError("DynamicIsometricCameraFollow script not found on the main camera.");
         }
         if (currentRoom == null)
         {

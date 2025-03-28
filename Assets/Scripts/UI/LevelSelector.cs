@@ -13,16 +13,16 @@ public class LevelSelector : MonoBehaviour
 
     void UpdateButtons()
     {
-        for (int i = 0; i < levelButtons.Length; i++)
+        for (int i = 2; i < levelButtons.Length + 2; i++)
         {
-            if (PlayerPrefs.GetInt("Dungeon" + ( i + 1 ) + "Completed") == 1)
+            if (PlayerPrefs.GetInt("Dungeon" + (i - 1) + "Completed") == 1)
             {
-                Debug.Log($"Level {(i + 1)} id completed, following button set active");
-                levelButtons[i].SetInteractable();
+                Debug.Log($"Level {(i - 1)} id completed, following button set active");
+                levelButtons[i-2].SetInteractable();
             }
             else
             {
-                levelButtons[i].SetDisabled();
+                levelButtons[i-2].SetDisabled();
             }
         }
     }
@@ -31,7 +31,7 @@ public class LevelSelector : MonoBehaviour
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SceneManager.LoadScene("Dungeon" + dungeonIndex);
-#elif UNITY_ANDROID || UNITY_IOS
+#else
         SceneManager.LoadScene("LevelsOfDungeon" + dungeonIndex);
 #endif         
     }

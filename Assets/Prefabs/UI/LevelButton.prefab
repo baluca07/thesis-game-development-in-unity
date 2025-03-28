@@ -278,7 +278,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1234303571024334030, guid: 0dcd59f44521ef642a44d0c74e8c9acf, type: 3}
       propertyPath: m_Name
-      value: StarsLevel1
+      value: StarsMobile
       objectReference: {fileID: 0}
     - target: {fileID: 3709845334357054573, guid: 0dcd59f44521ef642a44d0c74e8c9acf, type: 3}
       propertyPath: m_Pivot.x
@@ -306,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3709845334357054573, guid: 0dcd59f44521ef642a44d0c74e8c9acf, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 140
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3709845334357054573, guid: 0dcd59f44521ef642a44d0c74e8c9acf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -359,10 +359,6 @@ PrefabInstance:
     - target: {fileID: 3709845334357054573, guid: 0dcd59f44521ef642a44d0c74e8c9acf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709845334357054573, guid: 0dcd59f44521ef642a44d0c74e8c9acf, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

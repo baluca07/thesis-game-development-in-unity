@@ -42,7 +42,7 @@ public class PlayerStats : MonoBehaviour
 
         UIManager.Instance.UpdatePlayerHealthFill();
 
-        SessionManager.Instance.AddTakenDamage(damageAmount);
+        SessionController.Instance.AddTakenDamage(damageAmount);
 
         anim.SetTrigger("Damage");
 

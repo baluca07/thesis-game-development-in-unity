@@ -34,7 +34,7 @@ public class EnemyStats : MonoBehaviour
         healthUI.value = currentHealth;
 
         Debug.Log($"{enemyName} took {damageAmount} damage! Current Health: {currentHealth}");
-        SessionManager.Instance.AddDealtDamage(damageAmount);
+        SessionController.Instance.AddDealtDamage(damageAmount);
         anim.SetTrigger("Damage");
         if (currentHealth <= 0)
         {
@@ -46,8 +46,8 @@ public class EnemyStats : MonoBehaviour
     private void Die()
     {
         Debug.Log($"{enemyName} has been defeated!");
-        GameManager.Instance.AddEnemyKillToPlayerElementalStat(elementalDamageType);
-        SessionManager.Instance.IncrementKilledEnemies();
+        GameManager.Instance.AddEnemyKill(elementalDamageType);
+        SessionController.Instance.IncrementKilledEnemies();
 
 
         GameManager.Instance.currentRoom.EnemyDefeated();

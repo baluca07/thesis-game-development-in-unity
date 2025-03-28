@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 
-public class SessionManager : MonoBehaviour {
+public class SessionController : MonoBehaviour {
 
-    public static SessionManager Instance;
+    public static SessionController Instance;
 
     public int killedEnemiesCount = 0;
     public float sessionTime = 0;
