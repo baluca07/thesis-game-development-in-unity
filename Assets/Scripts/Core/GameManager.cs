@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         InitializeMobileLevelSpawnpoints();
 #endif
         //Just for testing
-        InitializeElementalAttacks(0,1,0,0,0);
+        InitializeElementalAttacks(0,1,1,1,1);
     }
 
 
@@ -255,6 +255,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
     public void CompleteLevel(int dungeonIndex, int levelIndex)
     {
+        Win();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Completed", 1);
         int score = SessionManager.Instance.CalculateScore();
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Score", score);
@@ -267,7 +268,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Dungeon" + dungeonIndex + "Level" + levelIndex + "Stars", stars);
         StarDisplay.Instance.DisplayStars(stars);
         SaveGame();
-        Win();
     }
 #endif
 
