@@ -85,12 +85,14 @@ public class GameManager : MonoBehaviour
             currentLevel = normalLevel,
             levels = new List<ElementalLevel>
         {
+            new ElementalLevel { requiredKills = 0, damageBonus = 5 },
             new ElementalLevel { requiredKills = 5, damageBonus = 10 },
             new ElementalLevel { requiredKills = 20, damageBonus = 10 },
             new ElementalLevel { requiredKills = 50, damageBonus = 10 },
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
-        }
+        },
         };
+        normalAttack.enemiesDefeated = normalAttack.levels[normalLevel].requiredKills;
         Debug.Log($"{normalAttack.type}: {normalAttack.currentLevel} lvl");
         var fireAttack = new ElementalAttack
         {
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
+        fireAttack.enemiesDefeated = fireAttack.levels[fireLevel].requiredKills;
 
         var waterAttack = new ElementalAttack
         {
@@ -125,8 +128,9 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
+        waterAttack.enemiesDefeated = waterAttack.levels[waterLevel].requiredKills;
 
-        var airAtttack = new ElementalAttack
+        var airAttack = new ElementalAttack
         {
             name = "Air",
             type = ElementalDamageType.Air,
@@ -142,6 +146,7 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
+        airAttack.enemiesDefeated = airAttack.levels[airLevel].requiredKills;
 
         var earthAtttack = new ElementalAttack
         {
@@ -159,16 +164,14 @@ public class GameManager : MonoBehaviour
             new ElementalLevel { requiredKills = 100, damageBonus = 10 }
         }
         };
+        earthAtttack.enemiesDefeated = earthAtttack.levels[earthLevel].requiredKills;
+
         elementalAttacks.Add(fireAttack);
         elementalAttacks.Add(waterAttack);
-        elementalAttacks.Add(airAtttack);
+        elementalAttacks.Add(airAttack);
         elementalAttacks.Add(earthAtttack);
 
-        PlayerPrefs.SetInt("NormalAttack",normalLevel);
-        PlayerPrefs.SetInt("FireAttack",fireLevel);
-        PlayerPrefs.SetInt("WaterAttack",waterLevel);
-        PlayerPrefs.SetInt("AirAttack",airLevel);
-        PlayerPrefs.SetInt("EarthAttack",earthLevel);
+        SaveElementalAttacks();
         
         Debug.Log($"Elemental Attacks are initialized.");
         foreach (ElementalAttack attack in elementalAttacks)
@@ -289,6 +292,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Saving game...");
         PlayerPrefs.SetString("SavedGame", System.DateTime.Now.ToString("yyyy/MM/dd HH-mm-ss"));
+        SaveElementalAttacks();
         PlayerPrefs.Save();
         Debug.Log("Saved!");
     }
@@ -313,6 +317,28 @@ public class GameManager : MonoBehaviour
         else
         {
             cameraController.UpdateBoundaries();
+        }
+    }
+
+    private void SaveElementalAttacks() {
+        PlayerPrefs.SetInt("NormalAttack", normalAttack.currentLevel);
+        foreach (ElementalAttack attack in elementalAttacks)
+        {
+            switch (attack.type)
+            {
+                case ElementalDamageType.Fire:
+                    PlayerPrefs.SetInt("FireAttack", attack.currentLevel);
+                    break;
+                case ElementalDamageType.Water:
+                    PlayerPrefs.SetInt("WaterAttack", attack.currentLevel);
+                    break;
+                case ElementalDamageType.Air:
+                    PlayerPrefs.SetInt("AirAttack", attack.currentLevel);
+                    break;
+                case ElementalDamageType.Earth:
+                    PlayerPrefs.SetInt("EarthAttack", attack.currentLevel);
+                    break;
+            }
         }
     }
 

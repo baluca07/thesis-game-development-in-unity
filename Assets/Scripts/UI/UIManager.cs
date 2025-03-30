@@ -63,9 +63,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //healthFill.minValue = 0;
-        //healthFill.maxValue = PlayerStats.Instance.maxHealth;
-        //healthFill.value = PlayerStats.Instance.currentHealth;
         DeactivateGameOverScreen();
         winScreen.SetActive(false);
         pauseAction = InputSystem.actions.FindAction("Pause");
@@ -103,7 +100,7 @@ public class UIManager : MonoBehaviour
             healthBarManager = GetComponentInChildren<UIHealthBarManager>();
         }
     }
-    public void UpdatAttackStats()
+    public void UpdateAttackStats()
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
@@ -114,16 +111,11 @@ public class UIManager : MonoBehaviour
            {
                levelFill.value = levelFill.maxValue;
            }
+#endif
         foreach(UIAttackStatManager script in attackStatManagers)
         {
             script.UpdateAll();
         }
-#elif UNITY_ANDROID || UNITY_IOS
-        foreach (UIAttackStatManager script in attackStatManagers)
-        {
-            script.UpdateAll();
-        }
-#endif
     }
 
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX

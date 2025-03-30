@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SetCurrentElemental(0);
 #endif
-        UIManager.Instance.UpdatAttackStats();
+        UIManager.Instance.UpdateAttackStats();
     }
 
     public void TakeDamage(Damage damage)

@@ -31,9 +31,11 @@ public class ElementalAttack
             {
                 currentLevel++;
                 Debug.Log($"{name} attack leveled up to level {currentLevel}!");
-                //UIManager.Instance.SetLevelBar(levels[currentLevel].requiredKills, levels[currentLevel + 1].requiredKills);
-                //UIManager.Instance.UpdateElementalLevelText();
-                UIManager.Instance.UpdatAttackStats();
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+                UIManager.Instance.SetLevelBar(levels[currentLevel].requiredKills, levels[currentLevel + 1].requiredKills);
+                UIManager.Instance.UpdateElementalLevelText();
+#endif
+                UIManager.Instance.UpdateAttackStats();
             }
         }
     }
