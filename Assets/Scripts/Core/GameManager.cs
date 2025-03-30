@@ -164,11 +164,11 @@ public class GameManager : MonoBehaviour
         elementalAttacks.Add(airAtttack);
         elementalAttacks.Add(earthAtttack);
 
-        PlayerPrefs.SetInt("NormalAttack",0);
-        PlayerPrefs.SetInt("FireAttack",0);
-        PlayerPrefs.SetInt("WaterAttack",0);
-        PlayerPrefs.SetInt("AirAttack",0);
-        PlayerPrefs.SetInt("EarthAttack",0);
+        PlayerPrefs.SetInt("NormalAttack",normalLevel);
+        PlayerPrefs.SetInt("FireAttack",fireLevel);
+        PlayerPrefs.SetInt("WaterAttack",waterLevel);
+        PlayerPrefs.SetInt("AirAttack",airLevel);
+        PlayerPrefs.SetInt("EarthAttack",earthLevel);
         
         Debug.Log($"Elemental Attacks are initialized.");
         foreach (ElementalAttack attack in elementalAttacks)

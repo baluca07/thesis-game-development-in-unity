@@ -18,7 +18,7 @@ public class ElementalAttack
 
     public Damage GetDamage()
     {
-        Debug.Log($"Current level: {currentLevel} {baseDamage} {type}");
+        Debug.Log($"{type} Current level: {currentLevel} {baseDamage}");
         int bonusDamage = levels[currentLevel].damageBonus;
         return new Damage(type, baseDamage + bonusDamage);
     }
@@ -31,8 +31,9 @@ public class ElementalAttack
             {
                 currentLevel++;
                 Debug.Log($"{name} attack leveled up to level {currentLevel}!");
-                UIManager.Instance.SetLevelBar(levels[currentLevel].requiredKills, levels[currentLevel + 1].requiredKills);
-                UIManager.Instance.UpdateElementalLevelText();
+                //UIManager.Instance.SetLevelBar(levels[currentLevel].requiredKills, levels[currentLevel + 1].requiredKills);
+                //UIManager.Instance.UpdateElementalLevelText();
+                UIManager.Instance.UpdatAttackStats();
             }
         }
     }

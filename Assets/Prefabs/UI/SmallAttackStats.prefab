@@ -707,6 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4299068330913827487}
   - component: {fileID: 8125830462409931588}
+  - component: {fileID: 3448890839421138513}
   m_Layer: 5
   m_Name: SmallAttackStats
   m_TagString: Untagged
@@ -746,3 +747,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5527230920150442951}
   m_CullTransparentMesh: 1
+--- !u!114 &3448890839421138513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527230920150442951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2579952ba38601a46b67e56aadae1551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  levelFill: {fileID: 3671544280971265567}
+  levelText: {fileID: 5962297327661319363}
+  damageText: {fileID: 2734311985959971104}

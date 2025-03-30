@@ -25,11 +25,12 @@ public class PlayerStats : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        UIManager.Instance.UpdatePlayerHealthFill();
+        UIManager.Instance.UpdatePlayerHealth();
         anim = GetComponent<Animator>();
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SetCurrentElemental(0);
 #endif
+        UIManager.Instance.UpdatAttackStats();
     }
 
     public void TakeDamage(Damage damage)
@@ -40,7 +41,7 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log($"Player took {damageAmount} damage! Current Health: {currentHealth}");
 
-        UIManager.Instance.UpdatePlayerHealthFill();
+        UIManager.Instance.UpdatePlayerHealth();
 
         SessionManager.Instance.AddTakenDamage(damageAmount);
 

@@ -13,12 +13,17 @@ public class UIManager : MonoBehaviour
 
 
     [Header("Header UI")]
-    [SerializeField] private Slider healthFill;
+    [SerializeField] private UIHealthBarManager healthBarManager;
+    [SerializeField] private UIAttackStatManager[] attackStatManagers;
+
     [SerializeField] private Slider levelFill;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI damageText;
 
     [SerializeField] private List<Image> timerFills = new List<Image>();
+
+    [Header("Header UI - mobile")]
+
     [Header("Quest UI")]
     [SerializeField] private TextMeshProUGUI enemies;
 
@@ -55,13 +60,14 @@ public class UIManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+        attackStatManagers = FindObjectsOfType<UIAttackStatManager>();
     }
 
     private void Start()
     {
-        healthFill.minValue = 0;
-        healthFill.maxValue = PlayerStats.Instance.maxHealth;
-        healthFill.value = PlayerStats.Instance.currentHealth;
+        //healthFill.minValue = 0;
+        //healthFill.maxValue = PlayerStats.Instance.maxHealth;
+        //healthFill.value = PlayerStats.Instance.currentHealth;
         DeactivateGameOverScreen();
         winScreen.SetActive(false);
         pauseAction = InputSystem.actions.FindAction("Pause");
@@ -69,7 +75,7 @@ public class UIManager : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         elementalIcon = GameObject.Find("ElementalType").GetComponent<Image>();
         rooms = GameObject.Find("Rooms").GetComponent<TextMeshProUGUI>();
-#elif UNITY_ANDROID || UNITY_IOS
+#endif
         Image[] allImage = FindObjectsOfType<Image>();
         foreach (Image image in allImage)
         {
@@ -78,7 +84,7 @@ public class UIManager : MonoBehaviour
                 timerFills.Add(image);
             }
         }
-#endif
+       
     }
 
     private void Update()
@@ -88,21 +94,41 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.Pause(); ;
         }
     }
-    public void UpdatePlayerHealthFill()
+    public void UpdatePlayerHealth()
     {
-        healthFill.value = PlayerStats.Instance.currentHealth;
-    }
-    public void UpdateLevelFill()
-    {
-        if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
+        if(healthBarManager != null)
         {
-            levelFill.value = PlayerStats.Instance.currentElementalAttack.enemiesDefeated;
+            healthBarManager.UpdatePlayerHealthFill();
         }
         else
         {
-            levelFill.value = levelFill.maxValue;
+            healthBarManager = GetComponentInChildren<UIHealthBarManager>();
         }
     }
+    public void UpdatAttackStats()
+    {
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
+        if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
+           {
+               levelFill.value = PlayerStats.Instance.currentElementalAttack.enemiesDefeated;
+           }
+           else
+           {
+               levelFill.value = levelFill.maxValue;
+           }
+        foreach(UIAttackStatManager script in attackStatManagers)
+        {
+            script.UpdateAll();
+        }
+#elif UNITY_ANDROID || UNITY_IOS
+        foreach (UIAttackStatManager script in attackStatManagers)
+        {
+            script.UpdateAll();
+        }
+#endif
+    }
+
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
 
     public void SetLevelBar(int min, int max)
     {
@@ -110,7 +136,6 @@ public class UIManager : MonoBehaviour
         levelFill.maxValue = max;
     }
 
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
     public void UpdateElementalTypeIcon()
     {
         UISpriteResolver resolver = elementalIcon.GetComponent<UISpriteResolver>();
@@ -136,11 +161,9 @@ public class UIManager : MonoBehaviour
         }
         UpdateElementalLevelText();
     }
-#endif
 
     public void UpdateElementalLevelText()
     {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         if (PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
         {
             levelText.text = $"LVL {PlayerStats.Instance.currentElementalAttack.currentLevel}";
@@ -151,13 +174,13 @@ public class UIManager : MonoBehaviour
         }
         UpdateLevelFill();
         UpdateDamageText();
-#endif
     }
 
     public void UpdateDamageText()
     {
         damageText.text = $"DMG: {PlayerStats.Instance.currentElementalAttack.GetDamage().amount}";
     }
+#endif
 
     public void StartCountRangedCooldown(float cooldown)
     {
