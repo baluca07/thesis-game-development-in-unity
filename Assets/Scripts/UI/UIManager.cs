@@ -15,20 +15,18 @@ public class UIManager : MonoBehaviour
     [Header("Header UI")]
     [SerializeField] private UIHealthBarManager healthBarManager;
     [SerializeField] private UIAttackStatManager[] attackStatManagers;
+    [SerializeField] private List<Image> timerFills = new List<Image>();
 
+    [Header("Header UI - PC")]
     [SerializeField] private Slider levelFill;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI damageText;
-
-    [SerializeField] private List<Image> timerFills = new List<Image>();
-
-    [Header("Header UI - mobile")]
+    [SerializeField] private Image elementalIcon;
 
     [Header("Quest UI")]
     [SerializeField] private TextMeshProUGUI enemies;
 
     [Header("Quest UI - PC Objects")]    
-    [SerializeField] private Image elementalIcon;
     [SerializeField] private TextMeshProUGUI rooms;
 
     [Header("WinSceen")]
