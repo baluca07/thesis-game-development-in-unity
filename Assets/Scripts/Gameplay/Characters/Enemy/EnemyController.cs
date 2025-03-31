@@ -24,6 +24,10 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -31,6 +35,7 @@ public class EnemyController : MonoBehaviour
         anim = GetComponent<Animator>();
         enemyAttack = GetComponent<MeleeEnemyAttack>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -42,6 +47,11 @@ public class EnemyController : MonoBehaviour
             }
             anim.SetBool("CanAttack", CanAttack());
         }
+    }
+
+    public void PlayJumpSound()
+    {
+        AudioController.Instance.PlayEnemyJumpSound(audioSource);
     }
     private bool PlayerInAttackRange()
     {

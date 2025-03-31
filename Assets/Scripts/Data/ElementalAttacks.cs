@@ -36,6 +36,7 @@ public class ElementalAttack
                 UIManager.Instance.UpdateElementalLevelText();
 #endif
                 UIManager.Instance.UpdateAttackStats();
+                AudioController.Instance.PlayLevelUpSound(GameManager.Instance.audioSource);
             }
         }
     }

@@ -19,12 +19,17 @@ public class EnemyStats : MonoBehaviour
     private Animator anim;
 
     [SerializeField] private Slider healthUI;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
     void Start()
     {
         currentHealth = maxHealth;
         anim = GetComponent<Animator>();
         healthUI.maxValue = maxHealth;
         healthUI.value = maxHealth;
+
+        audioSource = GetComponent<AudioSource>();
     }
     public void TakeDamage(Damage damage)
     {
@@ -36,6 +41,8 @@ public class EnemyStats : MonoBehaviour
         Debug.Log($"{enemyName} took {damageAmount} damage! Current Health: {currentHealth}");
         SessionManager.Instance.AddDealtDamage(damageAmount);
         anim.SetTrigger("Damage");
+
+        AudioController.Instance.PlayDamageSound(audioSource);
         if (currentHealth <= 0)
         {
             Die();

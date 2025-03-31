@@ -19,9 +19,14 @@ public class Projectile : MonoBehaviour
 
     private Vector3 startPosition;
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
     private void Start()
     {
         startPosition = transform.position;
+        audioSource = GetComponent<AudioSource>();
+        AudioController.Instance.PlayShootSound(audioSource);
     }
 
     private void Update()

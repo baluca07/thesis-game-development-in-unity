@@ -4912,6 +4912,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1643037858, guid: b23c115d3b8096d49b6a39d89610953b, type: 3}
+    - target: {fileID: 3827739213794995191, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3827739213794995191, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4934990236710170103, guid: 428909b60cbec1440beb084ad59cd8e2, type: 3}
       propertyPath: healthUI
       value: 

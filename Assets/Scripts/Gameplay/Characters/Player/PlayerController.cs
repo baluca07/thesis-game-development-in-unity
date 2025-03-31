@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
     private bool canMove = true;
     private Vector2 moveInput;
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -42,6 +46,8 @@ public class PlayerController : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
         OnEnable();
+
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -153,6 +159,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 PlayerMeleeCombat.Instance.AttemptAttack();
+                AudioController.Instance.PlayMeleeAttackSound(audioSource);
             }
         }
         else

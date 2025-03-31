@@ -13,6 +13,10 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] Animator anim;
 
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance == null)
@@ -27,6 +31,7 @@ public class PlayerStats : MonoBehaviour
         currentHealth = maxHealth;
         UIManager.Instance.UpdatePlayerHealth();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         SetCurrentElemental(0);
 #endif
@@ -46,6 +51,7 @@ public class PlayerStats : MonoBehaviour
         SessionManager.Instance.AddTakenDamage(damageAmount);
 
         anim.SetTrigger("Damage");
+        AudioController.Instance.PlayDamageSound(audioSource);
 
         if (currentHealth <= 0)
         {

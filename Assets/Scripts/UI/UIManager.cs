@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     [Header("InputSystem")]
     [SerializeField] private InputAction pauseAction;
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -66,7 +67,6 @@ public class UIManager : MonoBehaviour
         DeactivateGameOverScreen();
         winScreen.SetActive(false);
         pauseAction = InputSystem.actions.FindAction("Pause");
-
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
         elementalIcon = GameObject.Find("ElementalType").GetComponent<Image>();
         rooms = GameObject.Find("Rooms").GetComponent<TextMeshProUGUI>();
@@ -134,20 +134,20 @@ public class UIManager : MonoBehaviour
         {
             resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name + "Disabled");
             SetLevelBar(0,5);
-            UpdateLevelFill();
+            UpdateAttackStats();
         }
         else if(PlayerStats.Instance.currentElementalAttack.currentLevel < PlayerStats.Instance.currentElementalAttack.levels.Count - 1)
         {
             resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
             SetLevelBar(PlayerStats.Instance.currentElementalAttack.levels[PlayerStats.Instance.currentElementalAttack.currentLevel].requiredKills,
                 PlayerStats.Instance.currentElementalAttack.levels[PlayerStats.Instance.currentElementalAttack.currentLevel + 1].requiredKills);
-            UpdateLevelFill();
+            UpdateAttackStats();
         }
         else
         {
             resolver.UpdateSprite(PlayerStats.Instance.currentElementalAttack.name);
             levelFill.value = levelFill.maxValue;
-            UpdateLevelFill();
+            UpdateAttackStats();
         }
         UpdateElementalLevelText();
     }
@@ -162,7 +162,7 @@ public class UIManager : MonoBehaviour
         {
             levelText.text = "MAX";
         }
-        UpdateLevelFill();
+        UpdateAttackStats();
         UpdateDamageText();
     }
 

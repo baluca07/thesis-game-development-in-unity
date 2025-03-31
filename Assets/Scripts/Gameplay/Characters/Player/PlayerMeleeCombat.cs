@@ -32,7 +32,6 @@ public class PlayerMeleeCombat : MonoBehaviour
     public void AttemptAttack()
     {
         if (isAttacking) return;
-
         StartCoroutine(AttackRoutine());
         ResetComboTimer();
     }

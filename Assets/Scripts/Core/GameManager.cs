@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     private DynamicCameraFollow cameraController;
     public Vector2 actualPlayerSpawnpoint = new Vector2(0,0);
 
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+
     public static GameManager Instance;
 
     private void Awake()
@@ -36,6 +40,8 @@ public class GameManager : MonoBehaviour
 #endif
         //Just for testing
         InitializeElementalAttacks(0,1,1,1,1);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -67,7 +73,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"{PlayerStats.Instance.currentElementalAttack.type}");
             if (PlayerStats.Instance.currentElementalAttack.type == type)
             { 
-                UIManager.Instance.UpdateLevelFill(); 
+                UIManager.Instance.UpdateAttackStats(); 
             }
             attack.LevelUp();
 #elif UNITY_ANDROID || UNITY_IOS
@@ -220,6 +226,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Debug.Log("Game Over!");
         SessionManager.Instance.EndSession();
+
+        AudioController.Instance.PlayLoseSound(audioSource);
+
     }
 
     public void Win()
@@ -229,6 +238,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Debug.Log("Player Win!");
         SessionManager.Instance.EndSession();
+
+        AudioController.Instance.PlayWinSound(audioSource);
     }
 
     public void Pause()

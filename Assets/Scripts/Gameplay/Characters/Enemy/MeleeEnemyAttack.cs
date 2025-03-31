@@ -19,6 +19,9 @@ public class MeleeEnemyAttack : EnemyAttack
 
     public bool isAttacking = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
     private void Start()
     {
         stats = GetComponent<EnemyStats>();
@@ -26,6 +29,8 @@ public class MeleeEnemyAttack : EnemyAttack
         player = PlayerStats.Instance.transform;
         damage = new Damage(stats.elementalDamageType, stats.baseDamage);
         attackCollider = GetComponent<CircleCollider2D>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public override void Attack()
@@ -34,6 +39,10 @@ public class MeleeEnemyAttack : EnemyAttack
         StartCoroutine(PerformAttack());
     }
 
+    public void PlayAttackSound()
+    {
+        AudioController.Instance.PlayEnemyAttackSound(audioSource);
+    }
     private IEnumerator PerformAttack()
     {
         isAttacking = true;
