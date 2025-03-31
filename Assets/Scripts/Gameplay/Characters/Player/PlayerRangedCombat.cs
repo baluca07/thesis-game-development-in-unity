@@ -146,7 +146,7 @@ public class PlayerRangedCombat : MonoBehaviour
             projectileScript.damage = GameManager.Instance.elementalAttacks[elementalAttackIndex].GetDamage();
             projectileScript.attackRange = projectileRange;
             projectileScript.speed = projectileSpeed;
-            projectileScript.owner = Projectile.ProjectileOwner.Player; // Corrected to Player
+            projectileScript.owner = Projectile.ProjectileOwner.Player;
         }
         StartCoroutine(CooldownTimer());
         UIManager.Instance.StartCountRangedCooldown(attackCoolDown);

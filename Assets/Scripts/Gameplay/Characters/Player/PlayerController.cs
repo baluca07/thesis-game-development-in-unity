@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Run", isMoving);
     }
 
-    // Set Elemental Attacks
+    //Set Elemental Attacks
     public void OnSelectElementalForw(InputAction.CallbackContext ctx)
     {
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_STANDALONE_LINUX
@@ -125,6 +125,8 @@ public class PlayerController : MonoBehaviour
             int index = PlayerStats.Instance.currentElementalAttackIndex;
             PlayerStats.Instance.SetCurrentElemental((index + 1) % 4);
         }
+#else
+        return;
 #endif
     }
 
@@ -136,6 +138,8 @@ public class PlayerController : MonoBehaviour
             int index = PlayerStats.Instance.currentElementalAttackIndex;
             PlayerStats.Instance.SetCurrentElemental((index - 1 + 4) % 4);
         }
+#else
+        return;
 #endif
     }
 

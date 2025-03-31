@@ -83,12 +83,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 774359188620605621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef082b00a03c8e84c9f86e94ed794b5c, type: 3}
+  m_Script: {fileID: 11500000, guid: bf7ee54fad8df2f48ab8874ef37e3386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dashDuration: 1
   dashSpeed: 1
-  particle: {fileID: 4289499501516237818}
+  particle: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &3624534957999504188
 MonoBehaviour:
@@ -103,11 +103,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Base Slime
-  health: 1
+  maxHealth: 0
   baseDamage: 2
   attackRange: 1.2
   elementalDamageType: 0
   currentHealth: 0
+  healthUI: {fileID: 0}
 --- !u!114 &7014045715760616103
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -603,6 +603,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8184434654063997286, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 4436067903090112183}
+    - target: {fileID: 8184434654063997286, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+      propertyPath: particle
+      value: 
+      objectReference: {fileID: 5599990016223608113}
     - target: {fileID: 9045406530538770466, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
       propertyPath: m_Controller
       value: 
@@ -621,6 +629,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 440042826286023007}
   m_SourcePrefab: {fileID: 100100000, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+--- !u!50 &4436067903090112183 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5449461579539570812, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+  m_PrefabInstance: {fileID: 8516434636453893835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5599990016223608113 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4289499501516237818, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}
+  m_PrefabInstance: {fileID: 8516434636453893835}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6715589871008050272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3099291582999804587, guid: 5f85e8080b9555f47bf57a5ac21341e3, type: 3}

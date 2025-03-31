@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleeEnemyAttack : EnemyAttack
 {
     private EnemyStats stats;
-    private EnemyAI ai;
+    private EnemyController ai;
     private Damage damage;
 
     private Transform player;
@@ -22,7 +22,7 @@ public class MeleeEnemyAttack : EnemyAttack
     private void Start()
     {
         stats = GetComponent<EnemyStats>();
-        ai = GetComponent<EnemyAI>();
+        ai = GetComponent<EnemyController>();
         player = PlayerStats.Instance.transform;
         damage = new Damage(stats.elementalDamageType, stats.baseDamage);
         attackCollider = GetComponent<CircleCollider2D>();

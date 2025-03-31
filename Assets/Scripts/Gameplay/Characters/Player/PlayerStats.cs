@@ -67,6 +67,8 @@ public class PlayerStats : MonoBehaviour
         currentElementalAttack = (GameManager.Instance.elementalAttacks[index]);
         UIManager.Instance.UpdateElementalTypeIcon();
         UIManager.Instance.UpdateElementalLevelText();
+#else
+        return;
 #endif
     }
     
